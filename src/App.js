@@ -1,10 +1,16 @@
 import React from 'react';
-import { Example1 } from './pages/Example1'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, Pages } from './config/RouterManager'
+
 import './App.css';
 
 function App() {
   return (
-    <Example1/>
+    <Router>
+      <Switch>
+        {Pages.map(page => <Route {...page} />)}
+      </Switch>
+    </Router>
   )
 }
 
