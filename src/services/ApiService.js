@@ -7,20 +7,26 @@ const Api_Alkemy = axios.create({
 
 const init = {
   res: null,
+  loading: true,
   error: ''
 }
 
-export const ApiService = () => {
+export const ApiService = ({endpoint='', method='get', body=null, headers=null}) => {
   const [data, setData] = useState(init)
 
   useEffect(() => {
+    Api_Alkemy[method](endpoint, JSON.parse(headers), JSON.parse(body))
+      .then(res => setData(prevState =>
+        ({...prevState , res: res.data})
+      ))
+      .catch(error => setData(prevState =>
+        ({...prevState, error})
+      ))
+      .then(() => setData(prevState =>
+        ({...prevState, loading: false})
+      ))
 
-    Api_Alkemy
-      .get('')
-      .then(res => setData({...init, res: res.data}))
-      .catch(error => setData({...init, error}))
-
-  }, [])
+  }, [body, endpoint, method, headers])
 
   return data
 }

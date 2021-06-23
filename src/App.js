@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
 
-  const example = ApiService()
+  const example = ApiService({})
 
   console.log(example)
 
