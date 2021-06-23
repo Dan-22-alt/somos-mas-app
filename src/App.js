@@ -1,9 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
+import { ApiService } from './services/ApiService';
 import './App.css';
 
 function App() {
+
+  const example = ApiService()
+
   return (
     <div className="App">
       <header className="App-header">
