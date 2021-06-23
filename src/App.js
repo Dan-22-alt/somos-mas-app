@@ -8,6 +8,8 @@ function App() {
 
   const example = ApiService()
 
+  console.log(example)
+
   return (
     <div className="App">
       <header className="App-header">
