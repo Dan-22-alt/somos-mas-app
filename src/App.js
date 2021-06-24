@@ -5,10 +5,7 @@ import { ApiService } from './services/ApiService';
 import './App.css';
 
 function App() {
-
   const example = ApiService({})
-
-  console.log(example)
 
   return (
     <div className="App">

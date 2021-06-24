@@ -15,7 +15,11 @@ export const ApiService = ({endpoint='', method='get', body=null, headers=null})
   const [data, setData] = useState(init)
 
   useEffect(() => {
-    Api_Alkemy[method](endpoint, JSON.parse(headers), JSON.parse(body))
+    const token = localStorage.getItem('token')
+      ? {Authentication: localStorage.getItem('token')}
+      : {}
+
+    Api_Alkemy[method](endpoint, {...headers, ...token}, body)
       .then(res => setData(prevState =>
         ({...prevState , res: res.data})
       ))
