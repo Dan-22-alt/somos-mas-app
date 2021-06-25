@@ -28,3 +28,17 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `Chakra IU install`
+
+Dentro de su directorio de proyecto React, instale la interfaz de usuario de Chakra ejecutando lo siguiente:<br />
+npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4.
+
+
+lugo  realice la siguiente configuracion del ChakraProvider en la raíz de la aplicacion (archivo index.js):<br />
+import { ChakraProvider } from "@chakra-ui/react"
+
+	<ChakraProvider>
+        <App />
+    </ChakraProvider>
+
