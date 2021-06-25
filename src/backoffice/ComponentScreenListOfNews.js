@@ -10,16 +10,16 @@ import ComponentNewsBox from './ComponentNewsBox'
 const ComponentScreenListOfNews = () => {
     return (
         <div>
-            <Container maxW="container.xl">
+            <Container maxW="container.xl" marginTop="1.5%">
                 <Center>
                     <Link to='/backoffice/news/create'>
                         <Button colorScheme="blue">Crear Novedad</Button>
                     </Link>
                 </Center>
-                <Center>
+                <Center marginTop="1%">
                     <h1>Ultimas novedades</h1>
                 </Center>
-                <Center d="flex" flexDirection="column">
+                <Center d="flex" flexDirection="column" marginTop="2%">
                     <ComponentNewsBox />
                     <ComponentNewsBox />
                     <ComponentNewsBox />

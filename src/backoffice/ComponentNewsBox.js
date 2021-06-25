@@ -10,15 +10,15 @@ const ComponentNewsBox = () => {
             borderRadius="lg"
             borderColor="blue.300"
             overflow="hidden"
-            w="60%"
-            h="28vh"
+            w="58%"
+            h="26vh"
             d="flex"
-            flexDirection="row">
-            <Box h="100%" w="28%" d="flex" alignItems="center" borderWidth="1px">
+            flexDirection="row"
+            marginBottom="2.5%">
+            <Box h="100%" w="26%" d="flex" alignItems="center" borderWidth="1px">
                 Imagen de la novedad
             </Box>
             <Container>
-
                 <Box d="flex" flexDirection="column" w="78%" h="100%" justifyContent="space-around">
                     <Box mt="1"
                         fontWeight="semibold"
@@ -32,7 +32,7 @@ const ComponentNewsBox = () => {
                     </Box>
                     <Box>
                         <Box d="flex" justifyContent="space-between" w="50%">
-                            <Button colorScheme="orange">Editar</Button>
+                            <Button colorScheme="blue">Editar</Button>
                             <Button colorScheme="red">Eliminar</Button>
                         </Box>
                     </Box>
