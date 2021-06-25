@@ -1,5 +1,7 @@
 import { Example1 } from '../../pages/Example1'
 import { Example2 } from '../../pages/Example2'
+import ComponentScreenListOfNews from '../../backoffice/ComponentScreenListOfNews'
+import ComponentCreateNews from '../../backoffice/ComponentCreateNews'
 
 /*
   component = Ahi iria la pagina
@@ -20,4 +22,6 @@ class Page {
 export const Pages = [
   new Page(Example1, '/'),
   new Page(Example2, '/example2'),
+  new Page(ComponentScreenListOfNews, '/backoffice/news'),
+  new Page(ComponentCreateNews, '/backoffice/news/create')
 ]
