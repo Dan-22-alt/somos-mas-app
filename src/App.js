@@ -6,7 +6,14 @@ import { CategoriesService } from './services/CategoriesService';
 import './App.css';
 
 function App() {
-  CategoriesService()
+
+
+  const example1 = CategoriesService().getList()
+  const example2 = CategoriesService().getCategory(47)
+  const example3 = CategoriesService().createCategory({name: 'juan',
+    description:'mmmm', parent_category_id: 0})
+
+  console.log(example3)
   return (
     <Router>
       <Switch>

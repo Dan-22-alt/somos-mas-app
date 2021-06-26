@@ -19,7 +19,7 @@ export const ApiService = ({endPoint='docs', method='get', body=null, headers=nu
       ? {Authentication: localStorage.getItem('token')}
       : {}
 
-    Api_Alkemy[method](endPoint, {...headers, ...token}, body)
+    Api_Alkemy[method](endPoint, body, {...headers, ...token})
       .then(res => setData(prevState =>
         ({...prevState , res: res.data})
       ))
@@ -30,7 +30,7 @@ export const ApiService = ({endPoint='docs', method='get', body=null, headers=nu
         ({...prevState, loading: false})
       ))
 
-  }, [body, endPoint, method, headers])
+  }, [/*body, endPoint, method, headers*/])
 
   return data
 }
