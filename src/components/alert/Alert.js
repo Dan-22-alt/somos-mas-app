@@ -19,7 +19,7 @@ const Alert = ({
 	isOpen,
 	setIsOpen,
 	onConfirm,
-	hasFeedback,
+	hasFeedback = false,
 	feedbackTitle = "",
 	feedbackDescription = "",
 	feedbackType = "success",
