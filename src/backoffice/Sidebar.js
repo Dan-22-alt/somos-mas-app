@@ -30,9 +30,10 @@ const Sidebar = ({ onClose, isOpen }) => {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Somos Mas</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">Somos mas</DrawerHeader>
           <DrawerBody>
             <List spacing={3}>
+              {/* Ejemplo de navegacion*/}
               <ListLink
                 title="Home ejemplo"
                 icon={FiHome}
