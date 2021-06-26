@@ -42,3 +42,9 @@ import { ChakraProvider } from "@chakra-ui/react"
         <App />
     </ChakraProvider>
 
+### `Formik install`
+Dentro de su directorio de proyecto React, instale la librería formik ejecutando lo siguiente:<br />
+npm install formik --save
+
+instalando la siguiente versión: "formik": "^2.2.9",
+
