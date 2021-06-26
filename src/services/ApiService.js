@@ -20,14 +20,11 @@ export const ApiService = ({endPoint='docs', method='get', body=null, headers=nu
       : {}
 
     Api_Alkemy[method](endPoint, body, {...headers, ...token})
-      .then(res => setData(prevState =>
-        ({...prevState , res: res.data})
+      .then(({data}) => setData(prevState =>
+        ({...prevState , res: data, loading: false})
       ))
       .catch(error => setData(prevState =>
-        ({...prevState, error})
-      ))
-      .then(() => setData(prevState =>
-        ({...prevState, loading: false})
+        ({...prevState, error, loading: false})
       ))
 
   }, [/*body, endPoint, method, headers*/])
