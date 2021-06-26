@@ -27,7 +27,7 @@ export const ApiService = ({endPoint='docs', method='get', body=null, headers=nu
         ({...prevState, error, loading: false})
       ))
 
-  }, [/*body, endPoint, method, headers*/])
+  }, [endPoint, method, headers, body])
 
   return data
 }
