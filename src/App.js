@@ -2,12 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Route } from './config/RouterManager/Route'
 import { Pages } from './config/RouterManager/Pages'
-import { ApiService } from './services/ApiService';
+import { CategoriesService } from './services/CategoriesService';
 import './App.css';
 
 function App() {
-  const example = ApiService({})
-
+  CategoriesService()
   return (
     <Router>
       <Switch>
