@@ -26,8 +26,9 @@ export const ListOfCategories = () => {
       mb='30px'
       w={["100%", "85%", "80%", "50%"]}
       bg="gray.400"
-  >
-    <Table variant='simple'>
+    >
+      <Table variant='simple'>
+
         <Thead>
           <Tr>
             <Th>Name</Th>
@@ -35,11 +36,13 @@ export const ListOfCategories = () => {
             <Th>Actions</Th>
           </Tr>
         </Thead>
+
         <Tbody>
           {categories?.res.map( category =>
             <Category key={category.name} {...category} deleteItem={deleteItem}/>
           )}
         </Tbody>
+
         <Tfoot>
           <Tr>
             <Th>Name</Th>
@@ -47,6 +50,7 @@ export const ListOfCategories = () => {
             <Th>Actions</Th>
           </Tr>
         </Tfoot>
+
       </Table>
     </Center>
   )
