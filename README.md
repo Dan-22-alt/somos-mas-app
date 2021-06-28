@@ -34,17 +34,60 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 Dentro de su directorio de proyecto React, instale la interfaz de usuario de Chakra ejecutando lo siguiente:<br />
 npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4.
 
-
-lugo  realice la siguiente configuracion del ChakraProvider en la raíz de la aplicacion (archivo index.js):<br />
+lugo realice la siguiente configuracion del ChakraProvider en la raíz de la aplicacion (archivo index.js):<br />
 import { ChakraProvider } from "@chakra-ui/react"
 
-	<ChakraProvider>
+    <ChakraProvider>
         <App />
     </ChakraProvider>
 
-### `Formik install`
-Dentro de su directorio de proyecto React, instale la librería formik ejecutando lo siguiente:<br />
-npm install formik --save
+# Alert component
 
-instalando la siguiente versión: "formik": "^2.2.9",
+## Usage
 
+```javascript
+import { useState } from "react";
+import { Alert } from "../components";
+
+//...
+
+const App = () => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	return (
+		<>
+			<button onClick={() => setIsOpen(true)}>Test button</button>
+
+			<Alert
+				isOpen={isOpen}
+				setIsOpen={setIsOpen}
+				title="Alert title"
+				description="Alert description"
+				onConfirm={() => console.log("onConfirm")}
+				type="error"
+				hasFeedback
+				feedbackTitle="Feedback Title"
+				feedbackDescription="Feedback description"
+				feedbackType="info"
+			/>
+		</>
+	);
+};
+```
+
+## Props
+
+| prop                | default value | description                                                        | required |
+| ------------------- | ------------- | ------------------------------------------------------------------ | -------- |
+| isOpen              | null          | If true, the alert will be open.                                   | true     |
+| setIsOpen           | null          | Allows to change the isOpen variable                               | true     |
+| title               | ""            | Title of the alert                                                 | false    |
+| type                | "success"     | Determines the variant of the alert ("error","success","info")     | false    |
+| onConfirm           | null          | allows to pass a function to be executed when confirming the alert | false    |
+| confirmButtonText   | "Aceptar"     | Determines the text of the confirm button                          | false    |
+| cancelButtonText    | "Cancelar"    | Determines the text of the cancel button                           | false    |
+| hasFeedback         | false         | If true, enables the feedback functionality (toast)                | false    |
+| feedbackTitle       | ""            | Title of the feedback (toast)                                      | false    |
+| feedbackDescription | ""            | Description of the feedback (toast)                                | false    |
+| feedbackType        | "success"     | Determines the variant of the feedback ("error","success","info")  | false    |
+| feedbackDuration    | 9000          | Determines the duration of the feedback (toast)                    | false    |

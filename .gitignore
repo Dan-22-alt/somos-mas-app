@@ -71,6 +71,8 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.lock
 
 #custom
 package-lock.json
+yarn.lock
