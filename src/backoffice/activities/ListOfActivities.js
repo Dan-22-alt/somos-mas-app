@@ -7,13 +7,13 @@ export const ListOfActivities = () => {
     loading: true, res: [], error: ''
   })
 
-useEffect(() => {
+  useEffect(() => {
     fetch('http://ongapi.alkemy.org/api/activities')
       .then(r => r.json())
       .then(r => setActivities(prevState =>
         ({...prevState, res: r.data, loading: false})))
       .catch( error => setActivities(prevState =>
-        ({...prevState, error, loading: false}) ))
+        ({...prevState, error, loading: false})))
   }, [])
 
   console.log(activities)
@@ -21,13 +21,13 @@ useEffect(() => {
     <SimpleGrid
       my='50px'
       minChildWidth="400px"
+      justifyItems='center'
       spacing="40px"
       mx={[2, 5, 10, 30]}
     >
-      {activities?.res.map(
-        activity => <Activity {...activity} />
+      {activities?.res.map( activity =>
+        <Activity key={'activity ' + activity.id}{...activity} />
       )}
-      <Activity />
     </SimpleGrid>
   )
 }
