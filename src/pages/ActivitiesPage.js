@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "@chakra-ui/react"
-import { Link as ReactLink} from "react-router-dom"
+import { Link as ReactLink } from "react-router-dom"
+import { ListOfActivities } from "../backoffice/activities/ListOfActivities"
 
 const LinkNew = () => (
   <Link
@@ -19,7 +20,7 @@ export const ActivitiesPage = () => {
   return (
     <>
       <LinkNew/>
+      <ListOfActivities />
     </>
   )
 }
-//      <ListOfCategories />
