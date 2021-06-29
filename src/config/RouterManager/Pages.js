@@ -1,8 +1,12 @@
 import { Example1 } from '../../pages/Example1'
 import { Example2 } from '../../pages/Example2'
 import { ActivitiesPage } from '../../pages/ActivitiesPage'
+import { CategoriesPage } from '../../pages/CategoriesPage'
 import ComponentScreenListOfNews from '../../backoffice/ComponentScreenListOfNews'
 import ComponentCreateNews from '../../backoffice/ComponentCreateNews'
+import Registro from "../../pages/Registro"
+import Login from '../../pages/Login'
+
 
 /*
   component = Ahi iria la pagina
@@ -25,5 +29,8 @@ export const Pages = [
   new Page(Example2, '/example2'),
   new Page(ComponentScreenListOfNews, '/backoffice/news'),
   new Page(ComponentCreateNews, '/backoffice/news/create'),
-  new Page(ActivitiesPage, '/backoffice/activities')
+  new Page(ActivitiesPage, '/backoffice/activities'),
+  new Page(CategoriesPage, '/backoffice/categories'),
+  new Page(Registro, '/Registro'),
+  new Page(Login, '/Login'),
 ]
