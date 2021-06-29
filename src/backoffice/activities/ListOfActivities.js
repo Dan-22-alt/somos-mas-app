@@ -7,6 +7,9 @@ export const ListOfActivities = () => {
     loading: true, res: [], error: ''
   })
 
+  const deleteItem = id => setActivities(prevState =>
+    ({...prevState, res: prevState.res.filter(item => item.id !== id)}))
+
   useEffect(() => {
     fetch('http://ongapi.alkemy.org/api/activities')
       .then(r => r.json())
@@ -16,17 +19,21 @@ export const ListOfActivities = () => {
         ({...prevState, error, loading: false})))
   }, [])
 
-  console.log(activities)
   return(
     <SimpleGrid
       my='50px'
-      minChildWidth="400px"
+      minChildWidth="350px"
+      mt='150px'
       justifyItems='center'
       spacing="40px"
-      mx={[2, 5, 10, 30]}
+      mx={[0, 5, 10, 30]}
     >
       {activities?.res.map( activity =>
-        <Activity key={'activity ' + activity.id}{...activity} />
+        <Activity
+          key={'activity ' + activity.id}
+          deleteItem={deleteItem}
+          {...activity}
+        />
       )}
     </SimpleGrid>
   )

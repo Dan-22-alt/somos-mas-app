@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Image } from "@chakra-ui/react"
 import { ActivityButtons } from "./ActivityButtons"
 
-export const Activity = ({name, image, created_at}) => {
+export const Activity = ({name, id, image, created_at, deleteItem}) => {
   return(
     <Box
       borderWidth="1px"
@@ -43,7 +43,7 @@ export const Activity = ({name, image, created_at}) => {
       >
         {created_at.replace(/T.*/, '')}
       </Box>
-      <ActivityButtons />
+      <ActivityButtons id={id} deleteItem={deleteItem}/>
     </Box>
   )
 }
