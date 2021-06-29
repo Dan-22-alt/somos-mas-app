@@ -11,13 +11,18 @@ import {
     FormLabel,
     Alert,
     AlertIcon,
+    useToast,
 } from '@chakra-ui/react';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { login } from '../../services/authService'
 
 const FormLogin = () => {
-      // Formulario y validación con formik y Yup
-      const formik = useFormik({
+
+    const toast = useToast();
+
+    // Formulario y validación con formik y Yup
+    const formik = useFormik({
         initialValues: {
             email: '',
             password: ''
@@ -36,10 +41,34 @@ const FormLogin = () => {
                 password: valores.password
             };
             console.log(values)
+            //Conexion a la API
+            const alertType = login(values)
+            handleFeedback(alertType)
         }
     });
 
-    return ( 
+    //Funcion para llamar alertas de Login
+
+    const handleFeedback = (alertType) => {
+        if (alertType){
+            toast({
+				description: "Bienvenido!",
+				status: "success",
+				duration: 2000,
+				isClosable: true,
+			});
+        }
+        else{
+            toast({
+				description: "Email o contraseña incorrectos",
+				status: "error",
+				duration: 2000,
+				isClosable: true,
+			});
+        }
+    }
+
+    return (
         <Flex
             flexDirection="column"
             width="100wh"
@@ -109,7 +138,7 @@ const FormLogin = () => {
                                 colorScheme="teal"
                                 width="full"
                             >
-                            Login
+                                Login
                             </Button>
                         </Stack>
                     </form>
@@ -117,7 +146,7 @@ const FormLogin = () => {
             </Stack>
         </Flex>
 
-     );
+    );
 }
- 
+
 export default FormLogin;
