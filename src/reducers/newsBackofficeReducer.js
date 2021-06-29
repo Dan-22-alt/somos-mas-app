@@ -20,25 +20,30 @@ const newsSlice = createSlice({
         },
         reactionAdded(state, action) {
             const { newId, reaction } = action.payload
-            const existingNew = state.newBackoffice.find(newBackoffice => newBackoffice.id === newId)
+            const existingNew = state.data.find(newBackoffice => newBackoffice.id === newId)
             if (existingNew) {
                 existingNew.reactions[reaction]++
             }
         },
         newUpdated(state, action) {
             const { id, name, content } = action.payload
-            const existingNew = state.newBackoffice.find(newBackoffice => newBackoffice.id === id)
+            const existingNew = state.data.find(newBackoffice => newBackoffice.id === id)
             if (existingNew) {
                 existingNew.name = name
                 existingNew.content = content
             }
-        }
+        },
+        deleteNew(state, action) {
+            const { id } = action.payload
+            console.log(state, id)
+        },
+        
     }
 })
 
-export const { newAdded, newUpdated, reactionAdded } = newsSlice.actions
+export const { newAdded, newUpdated, reactionAdded, deleteNew } = newsSlice.actions
 
-export const selectNews = state => state
+export const selectNews = state => state.news.data
 
 export default newsSlice.reducer
 
