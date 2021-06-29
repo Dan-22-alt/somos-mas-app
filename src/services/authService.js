@@ -6,6 +6,8 @@ const login = (values) => {
     axios.post(`${process.env.REACT_APP_API_LOGIN}`, values)
         .then(res => {
             console.log(res)
+            const token = res.data.token
+            localStorage.setItem('token', token)
             return true
         })
         .catch(err => {
