@@ -3,6 +3,7 @@ import { Example2 } from '../../pages/Example2'
 import ComponentScreenListOfNews from '../../backoffice/ComponentScreenListOfNews'
 import ComponentCreateNews from '../../backoffice/ComponentCreateNews'
 import Registro from "../../pages/Registro"
+import Login from '../../pages/Login'
 
 /*
   component = Ahi iria la pagina
@@ -26,4 +27,5 @@ export const Pages = [
   new Page(ComponentScreenListOfNews, '/backoffice/news'),
   new Page(ComponentCreateNews, '/backoffice/news/create'),
   new Page(Registro, '/Registro'),
+  new Page(Login, '/Login'),
 ]
