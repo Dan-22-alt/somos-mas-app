@@ -5,6 +5,7 @@ import ComponentScreenListOfNews from '../../backoffice/ComponentScreenListOfNew
 import ComponentCreateNews from '../../backoffice/ComponentCreateNews'
 import Registro from "../../pages/Registro"
 import Login from '../../pages/Login'
+import BackofficePage from '../../pages/Backoffice'
 
 
 /*
@@ -26,6 +27,7 @@ class Page {
 export const Pages = [
   new Page(Example1, '/'),
   new Page(Example2, '/example2'),
+  new Page(BackofficePage, '/backoffice'),
   new Page(ComponentScreenListOfNews, '/backoffice/news'),
   new Page(ComponentCreateNews, '/backoffice/news/create'),
   new Page(CategoriesPage, '/backoffice/categories'),
