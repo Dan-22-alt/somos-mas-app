@@ -11,10 +11,31 @@ const init = {
   error: ''
 }
 
-export const ApiService = ({endPoint='docs', method='get', body=null, headers=null}) => {
+export const ApiGet = (endPoint='docs') => {
   const [data, setData] = useState(init)
 
   useEffect(() => {
+    const token = localStorage.getItem('token')
+      ? {Authentication: localStorage.getItem('token')}
+      : {}
+
+    Api_Alkemy(endPoint, null, token)
+      .then(({data}) => setData(prevState =>
+        ({...prevState , res: data, loading: false})
+      ))
+      .catch(error => setData(prevState =>
+        ({...prevState, error, loading: false})
+      ))
+
+  }, [endPoint])
+
+  return data
+}
+
+export const ApiService = () => {
+  const [data, setData] = useState(init)
+
+  const ApiFetch = ({endPoint='docs', method='get', body=null, headers=null}) => {
     const token = localStorage.getItem('token')
       ? {Authentication: localStorage.getItem('token')}
       : {}
@@ -26,8 +47,7 @@ export const ApiService = ({endPoint='docs', method='get', body=null, headers=nu
       .catch(error => setData(prevState =>
         ({...prevState, error, loading: false})
       ))
+  }
 
-  }, [endPoint, method, headers, body])
-
-  return data
+  return [data, ApiFetch]
 }
