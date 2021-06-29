@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { login } from '../../services/authService'
 
 const FormLogin = () => {
       // Formulario y validación con formik y Yup
@@ -36,6 +37,7 @@ const FormLogin = () => {
                 password: valores.password
             };
             console.log(values)
+            login(values)
         }
     });
 
