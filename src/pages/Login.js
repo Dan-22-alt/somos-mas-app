@@ -1,12 +1,12 @@
-import React from 'react';
-import FormLogin from "../features/auth/formLogin"
-
+import React from "react";
+import FormLogin from "../features/auth/formLogin";
+import AvoidAuthRedundancies from "../features/auth/AvoidAuthRedundancies";
 const Login = () => {
-    return ( 
-        <div>
-            <FormLogin/>
-        </div>
-     );
-}
- 
+	return (
+		<AvoidAuthRedundancies>
+			<FormLogin />
+		</AvoidAuthRedundancies>
+	);
+};
+
 export default Login;
