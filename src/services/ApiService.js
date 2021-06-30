@@ -11,7 +11,9 @@ const init = {
   error: ''
 }
 
-export const ApiGet = (endPoint='docs') => {
+const documentation = process.env.REACT_APP_API_BASE_URL + 'docs'
+
+export const ApiGet = (endPoint=documentation) => {
   const [data, setData] = useState(init)
 
   useEffect(() => {
@@ -19,7 +21,7 @@ export const ApiGet = (endPoint='docs') => {
       ? {Authentication: localStorage.getItem('token')}
       : {}
 
-    Api_Alkemy(endPoint, null, token)
+    axios.get(endPoint, null, token)
       .then(({data}) => setData(prevState =>
         ({...prevState , res: data, loading: false})
       ))
@@ -35,12 +37,12 @@ export const ApiGet = (endPoint='docs') => {
 export const ApiService = () => {
   const [data, setData] = useState(init)
 
-  const ApiFetch = ({endPoint='docs', method='get', body=null, headers=null}) => {
+  const ApiFetch = ({endPoint=documentation, method='get', body=null, headers=null}) => {
     const token = localStorage.getItem('token')
       ? {Authentication: localStorage.getItem('token')}
       : {}
 
-    Api_Alkemy[method](endPoint, body, {...headers, ...token})
+    axios[method](endPoint, body, {...headers, ...token})
       .then(({data}) => setData(prevState =>
         ({...prevState , res: data, loading: false})
       ))
