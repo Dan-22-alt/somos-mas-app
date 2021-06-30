@@ -16,10 +16,14 @@ import {
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { login } from '../../services/authService'
+import { useSelector, useDispatch } from 'react-redux';
+import { authLog, selectAuth } from '../../reducers/authReducer';
 
 const FormLogin = () => {
 
     const toast = useToast();
+    const auth = useSelector(selectAuth);
+    const dispatch = useDispatch();
 
     // Formulario y validación con formik y Yup
     const formik = useFormik({
@@ -42,8 +46,9 @@ const FormLogin = () => {
             };
             console.log(values)
             //Conexion a la API
-            const alertType = login(values)
-            handleFeedback(alertType)
+            dispatch(authLog(values))
+            // const alertType = login(values)
+            handleFeedback(auth)
         }
     });
 
