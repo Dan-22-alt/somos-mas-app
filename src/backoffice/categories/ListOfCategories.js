@@ -1,23 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Center,  Table, Thead, Tfoot, Tbody, Tr, Th } from "@chakra-ui/react"
 import { Category } from './Category'
+import { CategoriesService } from '../../services/CategoriesService'
 
 export const ListOfCategories = () => {
-  const [categories, setCategories] = useState({
-    loading: true, res: [], error: ''
-  })
-
-  useEffect(() => {
-    fetch('http://ongapi.alkemy.org/api/categories')
-      .then(r => r.json())
-      .then(r => setCategories(prevState =>
-        ({...prevState, res: r.data, loading: false})))
-      .catch( error => setCategories(prevState =>
-        ({...prevState, error, loading: false}) ))
-  }, [])
-
-  const deleteItem = id => setCategories(prevState =>
-    ({...prevState, res: prevState.res.filter(item => item.id !== id)}))
+  const categories = CategoriesService.getList()
 
   return (
     <Center
@@ -38,8 +25,8 @@ export const ListOfCategories = () => {
         </Thead>
 
         <Tbody>
-          {categories?.res.map( category =>
-            <Category key={category.name} {...category} deleteItem={deleteItem}/>
+          {categories?.res?.data.map( category =>
+            <Category key={category.name} {...category}/>
           )}
         </Tbody>
 

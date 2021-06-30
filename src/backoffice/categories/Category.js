@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tr, Td } from "@chakra-ui/react"
 import { CategoryButtons } from './CategoryButtons'
+import { CategoriesService } from '../../services/CategoriesService'
 
-export const Category = ({name, created_at, id, deleteItem}) => {
+export const Category = ({name, created_at, id}) => {
+  const [thisCategory, setThisCategory] = useState(true)
+  const [data, deleteApi] = CategoriesService.delete()
+
+  const deleteCategory = () => {
+    console.log(name, 'was deleted')
+    setThisCategory(false)
+    deleteApi(id)
+  }
+
   return(
-    <Tr>
+    <Tr display={thisCategory ? 'table-row': 'none'}>
       <Td px={[1, 5, 10, 10]}>{name}</Td>
       <Td
         textAlign='center'
@@ -18,7 +28,7 @@ export const Category = ({name, created_at, id, deleteItem}) => {
         justifyContent='center'
         alignItems='center'
       >
-        <CategoryButtons id={id} deleteItem={deleteItem}/>
+        <CategoryButtons id={id} deleteCategory={deleteCategory}/>
       </Td>
     </Tr>
   )
