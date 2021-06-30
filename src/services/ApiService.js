@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const Api_Alkemy = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL
-})
-
 const init = {
   res: null,
   loading: true,
