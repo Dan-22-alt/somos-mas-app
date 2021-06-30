@@ -1,12 +1,11 @@
 import React from "react";
 import FormRegistro from "../features/auth/formRegister";
-import AvoidAuthRedundancies from "../features/auth/AvoidAuthRedundancies";
 
 const Registro = () => {
 	return (
-		<AvoidAuthRedundancies>
+		<div>
 			<FormRegistro />
-		</AvoidAuthRedundancies>
+		</div>
 	);
 };
 
