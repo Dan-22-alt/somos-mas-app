@@ -1,7 +1,9 @@
 export const userIsLogged = () => {
-  const msg = localStorage.getItem('token')
-    ? 'El usuario esta autenticado'
-    : 'El usuario esta no autenticado'
+	const token = localStorage.getItem("token");
 
-  console.log(msg)
+	if (token && token !== "undefined") {
+		return true;
+	}
+	return false;
 }
+

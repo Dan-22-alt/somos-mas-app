@@ -6,7 +6,15 @@ import { userIsLogged } from "./features/auth/userIsLogged";
 import "./App.css";
 
 function App() {
-	useEffect(() => userIsLogged(), []);
+
+	useEffect(() => {
+    console.log(
+		  userIsLogged()
+				? "El usuario esta autenticado"
+				: "El usuario no esta autenticado"
+		)
+  }, []);
+
 	return (
 		<Router>
 			<Switch>
