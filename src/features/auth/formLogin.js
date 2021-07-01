@@ -65,7 +65,7 @@ const FormLogin = () => {
         }
         else{
             toast({
-				description: "Email o contraseña incorrectos",
+				description: "Email o contraseña incorrecta",
 				status: "error",
 				duration: 2000,
 				isClosable: true,
