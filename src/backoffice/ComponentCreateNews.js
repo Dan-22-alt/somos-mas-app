@@ -1,11 +1,13 @@
-import React from 'react'
-
+import React from "react";
+import AuthChecker from "../features/auth/AuthChecker";
 const ComponentCreateNews = () => {
-    return (
-        <div>
-            <h1>Formulario de creacion</h1>
-        </div>
-    )
-}
+	return (
+		<AuthChecker>
+			<div>
+				<h1>Formulario de creacion</h1>
+			</div>
+		</AuthChecker>
+	);
+};
 
-export default ComponentCreateNews
+export default ComponentCreateNews;
