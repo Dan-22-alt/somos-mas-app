@@ -14,7 +14,8 @@ const authSlice = createSlice({
   initialState: authState,
   reducers: {
     loginSuccess: (state, action) => {
-      state.token = action.payload;
+      state.token = action.payload.token;
+      state.user = action.payload.user;
       state.state = 'success'
     },
     loginFailed: (state, action) => {
@@ -33,9 +34,9 @@ export const authLog = values => dispatch => {
   axios.post(`${process.env.REACT_APP_API_LOGIN}`, values)
     .then(res => {
       if (res.data.error){
-        dispatch(loginFailed(values));
+        dispatch(loginFailed(res.data.error));
       } else if (res.data.data.token){
-        dispatch(loginSuccess(values));
+        dispatch(loginSuccess(res.data.data));
       }
     })
     .catch(err => {
