@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 const init = {
@@ -9,14 +9,14 @@ const init = {
 
 const documentation = process.env.REACT_APP_API_BASE_URL + 'docs'
 
-export const ApiGet = ({endPoint=documentation, method='get', body=null, headers=null}) => {
+export const ApiFetch = ({endPoint=documentation, method='get', body=null, headers=null}) => {
   const token = localStorage.getItem('token')
     ? {Authentication: localStorage.getItem('token')}
     : {}
 
   return axios[method](endPoint, body, {...headers, ...token})
     .then(({data}) => (
-      {res: data, error: ''})
+      {res: data, error: null})
     )
     .catch(error =>
       ({error, res: null})
