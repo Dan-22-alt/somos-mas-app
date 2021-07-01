@@ -44,11 +44,11 @@ const FormLogin = () => {
                 email: valores.email,
                 password: valores.password
             };
-            console.log(values)
+            // console.log(values)
             //Conexion a la API
             dispatch(authLog(values))
             // const alertType = login(values)
-            handleFeedback(auth)
+            // handleFeedback(alertType)
         }
     });
 
