@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React, { useEffect } from 'react';
 import FormLogin from "../features/auth/formLogin"
 import { useSelector } from 'react-redux';
@@ -37,17 +37,3 @@ const Login = () => {
 }
 
 export default Login;
-=======
-import React from "react";
-import FormLogin from "../features/auth/formLogin";
-import AvoidAuthRedundancies from "../features/auth/AvoidAuthRedundancies";
-const Login = () => {
-	return (
-		<AvoidAuthRedundancies>
-			<FormLogin />
-		</AvoidAuthRedundancies>
-	);
-};
-
-export default Login;
->>>>>>> 77bff2477c5cfe2333e16deaca302d2030536255
