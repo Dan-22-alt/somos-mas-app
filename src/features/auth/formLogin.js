@@ -19,7 +19,12 @@ import { login } from '../../services/authService'
 import { useSelector, useDispatch } from 'react-redux';
 import { authLog, selectAuth } from '../../reducers/authReducer';
 
-const FormLogin = () => {
+import React, { useEffect } from 'react';
+import FormLogin from "../features/auth/formLogin"
+import { useSelector } from 'react-redux';
+import { selectAuth } from '../reducers/authReducer';
+import { useToast } from '@chakra-ui/react';
+import AvoidAuthRedundancies from "../features/auth/AvoidAuthRedundancies";
 
     const toast = useToast();
     const auth = useSelector(selectAuth);
@@ -54,16 +59,15 @@ const FormLogin = () => {
 
     //Funcion para llamar alertas de Login
 
-    const handleFeedback = (alertType) => {
-        if (alertType){
+    useEffect(() => {
+        if (log.state === 'success') {
             toast({
-				description: "Bienvenido!",
-				status: "success",
-				duration: 2000,
-				isClosable: true,
-			});
-        }
-        else{
+                description: "Bienvenido!",
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+            });
+        } else if (log.state === 'error') {
             toast({
 				description: "Email o contraseña incorrecta",
 				status: "error",
@@ -71,87 +75,13 @@ const FormLogin = () => {
 				isClosable: true,
 			});
         }
-    }
+    });
 
     return (
-        <Flex
-            flexDirection="column"
-            width="100wh"
-            height="100vh"
-            backgroundColor="gray.200"
-            justifyContent="center"
-            alignItems="center"
-        >
-            <Stack
-                flexDir="column"
-                mb="2"
-                justifyContent="center"
-                alignItems="center"
-            >
-                <Avatar bg="teal.500" />
-                <Heading color="teal.400">Login</Heading>
-                <Box minW={{ base: "90%", md: "468px" }}>
-                    <form
-                        onSubmit={formik.handleSubmit}
-                    >
-                        <Stack
-                            spacing={4}
-                            p="1rem"
-                            backgroundColor="whiteAlpha.900"
-                            boxShadow="md"
-                        >
-                            <FormControl mt={2}>
-                                {formik.touched.email && formik.errors.email ? (
-                                    <Alert justifyContent="center" status="error">
-                                        <AlertIcon />
-                                        {formik.errors.email}
-                                    </Alert>
-                                ) : null}
-                                <FormLabel>Email</FormLabel>
-                                <Input
-                                    type="email"
-                                    placeholder="Mquinola@maquinola.com"
-                                    id="email"
-                                    value={formik.values.email}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                            </FormControl>
-
-                            <FormControl mt={2}>
-                                {formik.touched.password && formik.errors.password ? (
-                                    <Alert justifyContent="center" status="error">
-                                        <AlertIcon />
-                                        {formik.errors.password}
-                                    </Alert>
-                                ) : null}
-                                <FormLabel>Password</FormLabel>
-                                <Input
-                                    type="password"
-                                    placeholder="*******"
-                                    id="password"
-                                    value={formik.values.password}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-
-                            </FormControl>
-                            <Button
-                                borderRadius={0}
-                                type="submit"
-                                variant="solid"
-                                colorScheme="teal"
-                                width="full"
-                            >
-                                Login
-                            </Button>
-                        </Stack>
-                    </form>
-                </Box>
-            </Stack>
-        </Flex>
-
+        <AvoidAuthRedundancies>
+			<FormLogin />
+		</AvoidAuthRedundancies>
     );
 }
 
-export default FormLogin;
+export default Login;
