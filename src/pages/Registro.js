@@ -1,12 +1,13 @@
-import React from 'react';
-import FormRegistro from "../features/auth/formRegister"
+import React from "react";
+import FormRegistro from "../features/auth/formRegister";
+import AvoidAuthRedundancies from "../features/auth/AvoidAuthRedundancies";
 
 const Registro = () => {
-    return ( 
-        <div>
-            <FormRegistro/>
-        </div>
-     );
-}
- 
+	return (
+		<AvoidAuthRedundancies>
+			<FormRegistro />
+		</AvoidAuthRedundancies>
+	);
+};
+
 export default Registro;
