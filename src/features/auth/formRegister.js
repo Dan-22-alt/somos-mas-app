@@ -14,17 +14,13 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { handleRequest } from "../../services/authService";
+
+import { ApiFetch } from "../../services/ApiService";
+import { useDispatch } from "react-redux";
+import { signInLoading, signInSuccess, signInFail }from "../../reducers/authReducer";
 
 const FormRegistro = () => {
-	const sendNewUser = userData => {
-		handleRequest({
-			endpoint: process.env.REACT_APP_API_REGISTER,
-			method: "post",
-			body: { ...userData },
-		});
-	};
-
+  const dispatch = useDispatch()
 	// Formulario y validación con formik y Yup
 	const formik = useFormik({
 		initialValues: {
@@ -44,12 +40,27 @@ const FormRegistro = () => {
 				.min(6, "El password debe contener al menos 6 caracteres"),
 		}),
 		onSubmit: valores => {
+
+      dispatch(signInLoading())
+
 			const values = {
 				name: valores.nombre,
 				email: valores.email,
 				password: valores.password,
 			};
-			sendNewUser(values);
+      dispatch(signInLoading())
+
+      ApiFetch({
+        endPoint: process.env.REACT_APP_API_REGISTER,
+        method: "post",
+        body: values
+      }).then(({res, error})=> {
+        if(error) dispatch(signInFail({error}))
+        else {
+          const token = res.data.token
+          dispatch(signInSuccess({token}))
+        }
+      })
 		},
 	});
 	return (
