@@ -36,6 +36,6 @@ export const Pages = [
   new Page(CategoriesPage, '/backoffice/categories'),
   new Page(Registro, '/Registro'),
   new Page(Login, '/Login'),
-  new Page (FormCategory, '/backoffice/categories/create')
+  new Page (FormCategory, '/backoffice/categories/create'),
   new Page (FormCategory, '/backoffice/categories/:id')
 ]
