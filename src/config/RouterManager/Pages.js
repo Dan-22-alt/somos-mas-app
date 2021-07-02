@@ -7,6 +7,7 @@ import ComponentCreateNews from '../../backoffice/ComponentCreateNews'
 import Registro from "../../pages/Registro"
 import Login from '../../pages/Login'
 import BackofficePage from '../../pages/Backoffice'
+import FormCategory from '../../backoffice/categories/FormCategory'
 
 
 /*
@@ -35,4 +36,6 @@ export const Pages = [
   new Page(CategoriesPage, '/backoffice/categories'),
   new Page(Registro, '/Registro'),
   new Page(Login, '/Login'),
+  new Page (FormCategory, '/backoffice/categories/create')
+  new Page (FormCategory, '/backoffice/categories/:id')
 ]
