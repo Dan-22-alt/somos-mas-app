@@ -1,13 +1,12 @@
-import { Example1 } from '../../pages/Example1'
+import Registro from "../../pages/Registro"
+import Login from '../../pages/Login'
+import BackofficePage from '../../pages/Backoffice'
 import { HomePage } from '../../pages/HomePage'
 import { Example2 } from '../../pages/Example2'
 import { ActivitiesPage } from '../../pages/ActivitiesPage'
 import { CategoriesPage } from '../../pages/CategoriesPage'
 import ComponentScreenListOfNews from '../../backoffice/ComponentScreenListOfNews'
 import ComponentCreateNews from '../../backoffice/ComponentCreateNews'
-import Registro from "../../pages/Registro"
-import Login from '../../pages/Login'
-import BackofficePage from '../../pages/Backoffice'
 import FormCategory from '../../backoffice/categories/FormCategory'
 
 
