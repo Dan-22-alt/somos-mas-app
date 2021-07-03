@@ -7,6 +7,7 @@ export const Category = ({name, created_at, id}) => {
   const [thisCategory, setThisCategory] = useState(true)
   const [data, deleteApi] = CategoriesService.delete()
 
+  console.log(data)
   const deleteCategory = () => {
     console.log(name, 'was deleted')
     setThisCategory(false)
