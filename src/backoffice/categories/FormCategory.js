@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {
     Flex,
     Heading,
@@ -17,7 +19,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-const FormCategory = ({cate}) => {
+const FormCategory = ({ cate }) => {
 
     const toast = useToast();
 
@@ -82,21 +84,17 @@ const FormCategory = ({cate}) => {
 
     const formik = useFormik({
         initialValues: {
-            name: cate ? cate.name : "",
-            description: cate ? cate.description : ""
+            name: cate ? cate.name : ""
         },
         validationSchema: Yup.object({
             name: Yup.string()
                 .required('Name requerido')
-                .min(6, 'El nombre debe contener al menos 6 caracteres'),
-            description: Yup.string()
-                .required('Description requerido')
-                .min(6, 'La descripcion debe contener al menos 6 caracteres')
+                .min(6, 'El nombre debe contener al menos 6 caracteres')
         }),
         onSubmit: valores => {
             const values = {
                 name: valores.name,
-                description: valores.description,
+                description: newCategory.description,
                 image: newCategory.image
             };
             console.log(values)
@@ -200,13 +198,30 @@ const FormCategory = ({cate}) => {
 
                                 <FormControl mt={2}>
                                     <FormLabel>Description</FormLabel>
-                                    <Input
+                                    <CKEditor
+                                        editor={ClassicEditor}
+                                        data={cate ? cate.description : ""}
+                                        onChange={(event, editor) => {
+
+                                            const data = editor.getData();
+
+                                            setNewCategory({
+                                                ...newCategory,
+                                                description : data
+                                            })
+
+                                            console.log(newCategory.description);
+
+                                        }}
+                                        
+                                    />
+                                    {/* <Input
                                         type="text"
                                         id="description"
                                         value={formik.values.description}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                    />
+                                    /> */}
                                     {formik.touched.description && formik.errors.description ? (
                                         <Alert justifyContent="center" status="error">
                                             <AlertIcon />
