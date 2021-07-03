@@ -1,0 +1,19 @@
+.SeccFormActivities{
+    margin: auto;
+}
+
+.formActivities {
+    max-width: 99% !important;
+}
+
+@media screen and (max-width: 1200px){
+    .SeccFormActivities{
+        max-width: 70%;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .SeccFormActivities{
+        max-width: 70%;
+    }
+}
