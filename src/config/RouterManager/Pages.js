@@ -4,10 +4,10 @@ import { ActivitiesPage } from '../../pages/ActivitiesPage'
 import { CategoriesPage } from '../../pages/CategoriesPage'
 import ComponentScreenListOfNews from '../../backoffice/ComponentScreenListOfNews'
 import ComponentCreateNews from '../../backoffice/ComponentCreateNews'
-import FormTestimonials from '../../backoffice/testimonials/FormTestimonials'
 import Registro from "../../pages/Registro"
 import Login from '../../pages/Login'
 import BackofficePage from '../../pages/Backoffice'
+import FormCategory from '../../backoffice/categories/FormCategory'
 
 
 /*
@@ -32,10 +32,10 @@ export const Pages = [
   new Page(BackofficePage, '/backoffice'),
   new Page(ComponentScreenListOfNews, '/backoffice/news'),
   new Page(ComponentCreateNews, '/backoffice/news/create'),
-  new Page(FormTestimonials, '/backoffice/testimonials/create'),
-  new Page(FormTestimonials, '/backoffice/testimonials/:id'),
   new Page(ActivitiesPage, '/backoffice/activities'),
   new Page(CategoriesPage, '/backoffice/categories'),
   new Page(Registro, '/Registro'),
   new Page(Login, '/Login'),
+  new Page (FormCategory, '/backoffice/categories/create'),
+  new Page (FormCategory, '/backoffice/categories/:id')
 ]
