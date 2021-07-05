@@ -1,19 +1,24 @@
-import React, { useState } from "react";
-import { Textarea, Text } from "@chakra-ui/react"
+import React from "react";
+import { Textarea, Text, Alert, AlertIcon } from "@chakra-ui/react"
 
-export const FormTextArea = () => {
-  let [value, setValue] = useState("")
-  let handleInputChange = e => setValue(e.target.value)
-
-  return (
+export const FormTextArea = ({control, id}) => {
+  return(
     <>
       <Text mb="8px">Welcome message</Text>
       <Textarea
-        value={value}
-        onChange={handleInputChange}
+        id={id}
+        value={control.values[id]}
+        onChange={control.handleChange}
         placeholder="Here is a sample placeholder"
         size="sm"
+        onBlur={control.handleBlur}
       />
+      {control.errors[id] && control.touched[id] &&
+         <Alert justifyContent="center" status="error">
+           <AlertIcon />
+           {control.errors[id]}
+         </Alert>
+      }
     </>
   )
 }

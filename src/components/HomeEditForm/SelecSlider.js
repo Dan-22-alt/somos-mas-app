@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Input } from "@chakra-ui/react"
 
-export const SelectSlider = ({name='defaultName'}) => {
-  const [file, setFile] = useState(null)
-  const [value, setValue] = useState()
-
+export const SelectSlider = ({id, control}) => {
+  const name = 'Slider' + id
+  const idSlider = 'sliderText' + id
+  const idFile = 'sliderFile' + id
+  const file = control.values[idFile]
   return(
     <>
       <Button
@@ -13,16 +14,16 @@ export const SelectSlider = ({name='defaultName'}) => {
         {file ? `${name}: ${file.name}` : name}
         <input
           type="file"
-          id={name}
-          name={name}
+          name={idSlider}
           accept="image/png, image/jpeg"
-          onChange={e => setFile(e.target.files[0])}
+          onChange={e => control.setFieldValue(idFile , e.target.files[0])}
         />
       </Button>
       <Input
-        value={value}
-        onChange={ e => setValue(e.target.value)}
-        placeholder="xxxxxxxxx"
+        id={idSlider}
+        value={control.values[idSlider]}
+        onChange={control.handleChange}
+        placeholder="Slider msg"
       />
     </>
   )
