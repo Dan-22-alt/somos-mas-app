@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Example1 } from "../../pages/Example1";
 import { Example2 } from "../../pages/Example2";
 import { ActivitiesPage } from "../../pages/ActivitiesPage";
@@ -8,6 +9,19 @@ import Registro from "../../pages/Registro";
 import Login from "../../pages/Login";
 import BackofficePage from "../../pages/Backoffice";
 import EditNewsPage from "../../pages/backoffice/news/EditNewsPage";
+=======
+import { Example1 } from '../../pages/Example1'
+import { Example2 } from '../../pages/Example2'
+import { ActivitiesPage } from '../../pages/ActivitiesPage'
+import { CategoriesPage } from '../../pages/CategoriesPage'
+import ComponentScreenListOfNews from '../../backoffice/ComponentScreenListOfNews'
+import ComponentCreateNews from '../../backoffice/ComponentCreateNews'
+import Registro from "../../pages/Registro"
+import Login from '../../pages/Login'
+import BackofficePage from '../../pages/Backoffice'
+import FormCategory from '../../backoffice/categories/FormCategory'
+
+>>>>>>> 62fc6dd26d54f70e84687b282cbcb2d82e9a0f9f
 
 /*
   component = Ahi iria la pagina
@@ -26,14 +40,16 @@ class Page {
 }
 
 export const Pages = [
-  new Page(Example1, "/"),
-  new Page(Example2, "/example2"),
-  new Page(BackofficePage, "/backoffice"),
-  new Page(ComponentScreenListOfNews, "/backoffice/news"),
-  new Page(ComponentCreateNews, "/backoffice/news/create"),
-  new Page(ActivitiesPage, "/backoffice/activities"),
-  new Page(CategoriesPage, "/backoffice/categories"),
-  new Page(Registro, "/Registro"),
-  new Page(Login, "/Login"),
+  new Page(Example1, '/'),
+  new Page(Example2, '/example2'),
+  new Page(BackofficePage, '/backoffice'),
+  new Page(ComponentScreenListOfNews, '/backoffice/news'),
+  new Page(ComponentCreateNews, '/backoffice/news/create'),
+  new Page(ActivitiesPage, '/backoffice/activities'),
+  new Page(CategoriesPage, '/backoffice/categories'),
+  new Page(Registro, '/Registro'),
+  new Page(Login, '/Login'),
+  new Page (FormCategory, '/backoffice/categories/create'),
+  new Page (FormCategory, '/backoffice/categories/:id'),
   new Page(EditNewsPage, "/backoffice/news/:id/edit"),
-];
+]
