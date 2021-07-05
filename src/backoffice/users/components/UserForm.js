@@ -33,11 +33,12 @@ const UserForm = ({ user }) => {
 			...user,
 			...values,
 		};
+
 		const response = await handleRequest({
 			method: user ? "put" : "post",
 			endpoint: user
-				? `http://ongapi.alkemy.org/api/users/${user.id}`
-				: "http://ongapi.alkemy.org/api/users",
+				? `${process.env.REACT_APP_API_USER}/${user.id}`
+				: process.env.REACT_APP_API_USER,
 			body: user ? putBody : values,
 		});
 		console.log(response);
