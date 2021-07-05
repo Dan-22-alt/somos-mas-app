@@ -35,6 +35,7 @@ export const Pages = [
   new Page(ComponentCreateNews, '/backoffice/news/create'),
   new Page(ActivitiesPage, '/backoffice/activities'),
   new Page(ActivitiesCreate, '/backoffice/activities/create'),
+  new Page(ActivitiesCreate, '/backoffice/activities/:id'),
   new Page(CategoriesPage, '/backoffice/categories'),
   new Page(Registro, '/Registro'),
   new Page(Login, '/Login'),

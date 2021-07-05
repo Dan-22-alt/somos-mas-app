@@ -4,7 +4,11 @@ import {
     DESCARGA_ACTIVIDADES_ERROR,
     AGREGAR_ACTIVIDAD,
     AGREGAR_ACTIVIDAD_EXITO,
-    AGREGAR_ACTIVIDAD_ERROR
+    AGREGAR_ACTIVIDAD_ERROR,
+    OBTENER_ACTIVIDAD_ELIMINAR,
+    ACTIVIDAD_ELIMINAR_EXITO,
+    ACTIVIDAD_ELIMINAR_ERROR
+
 } from '../types';
 
 import axios from 'axios';
@@ -83,4 +87,36 @@ const agregarActividadExito = producto => ({
 const agregarActividadError = estado => ({
     type: AGREGAR_ACTIVIDAD_ERROR,
     payload: estado
+});
+
+
+//_________________Actualizar actividades___________
+
+//________________ELIMINAR ACTIVIDADES______________
+// Selecciona y elimina la Actividad
+export function borrarActividadAction(id) {
+    return async (dispatch) => {
+        dispatch(obtenerActividadEliminar(id) );
+
+        try {
+            await clienteAxios.delete(`/${id}`);
+            dispatch( eliminarActividadExito() );
+
+        } catch (error) {
+            console.log(error);
+            dispatch( eliminarActividadError() );
+        }
+    }
+}
+
+const obtenerActividadEliminar = id => ({
+    type: OBTENER_ACTIVIDAD_ELIMINAR,
+    payload: id
+});
+const eliminarActividadExito = () => ({
+    type: ACTIVIDAD_ELIMINAR_EXITO
+})
+const eliminarActividadError = () => ({
+    type: ACTIVIDAD_ELIMINAR_ERROR,
+    payload: true
 });
