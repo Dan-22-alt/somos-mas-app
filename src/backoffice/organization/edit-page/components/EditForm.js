@@ -48,8 +48,12 @@ const UserForm = ({ user }) => {
 				"La descripción larga es obligatorio"
 			),
 			logo: Yup.string().required("El logo es obligatorio"),
-			facebookLink: Yup.string().url("Url invalida"),
-			instagramLink: Yup.string().url("Url invalida"),
+			facebookLink: Yup.string()
+				.url("Url invalida")
+				.required("Este campo es obligatorio"),
+			instagramLink: Yup.string()
+				.url("Url invalida")
+				.required("Este campo es obligatorio"),
 		}),
 	});
 
