@@ -6,17 +6,18 @@ const Slide = () => {
         <Box
         borderWidth="1px"
         borderRadius="lg"
-        minW='400px'
-        maxW='450px'
+        w="400px"
         bg="purple.100"
         pb='10px'
+        borderColor="teal"
       >
         <Image
           borderRadius="lg"
-        //   src={image}
-        //   alt={name}
+          src="https://www.dzoom.org.es/wp-content/uploads/2010/09/mirada-ojos-encuadre-primer-plano-sexy-810x540.jpg"
+          alt="imagen"
           objectFit='cover'
           h='350px'
+          w="400px"
           p='3px'
         />
         <Box
@@ -42,8 +43,26 @@ const Slide = () => {
         >
       Orden
         </Box>
-        <Button>Delete</Button>
-        <Button>Edit</Button>
+        <Box
+      display='flex'
+      justifyContent='space-around'
+    >
+      <Button
+        w='25vh'
+        colorScheme='messenger'
+        color='white'
+        m='2px'
+      >
+        Editar
+      </Button>
+      <Button
+        m='2px'
+        w='25vh'
+        colorScheme='red'
+      >
+        Eliminar
+      </Button>
+    </Box>
       </Box>
     )
 }
