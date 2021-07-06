@@ -14,7 +14,6 @@ const EditNewsPage = () => {
     });
   }, [id]);
 
-  console.log("asdasd", novedad);
   return <NewsForm data={novedad} />;
 };
 

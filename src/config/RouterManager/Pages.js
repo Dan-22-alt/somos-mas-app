@@ -10,6 +10,8 @@ import BackofficePage from "../../pages/Backoffice";
 import FormCategory from "../../backoffice/categories/FormCategory";
 import EditNewsPage from "../../pages/backoffice/news/EditNewsPage";
 import ListOfSlides from "../../backoffice/slides/ListOfSlides";
+import EditSlidePage from "../../pages/backoffice/slide/EditSlidePage";
+import CreateSlidePage from "../../pages/backoffice/slide/CreateSlidePage";
 
 /*
   component = Ahi iria la pagina
@@ -41,4 +43,6 @@ export const Pages = [
   new Page(FormCategory, "/backoffice/categories/:id"),
   new Page(EditNewsPage, "/backoffice/news/:id/edit"),
   new Page(ListOfSlides, "/backoffice/slides"),
+  new Page(CreateSlidePage, "/backoffice/slides/create"),
+  new Page(EditSlidePage, "/backoffice/slides/:id"),
 ];
