@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Heading,
 	Avatar,
@@ -8,8 +8,15 @@ import {
 	Button,
 	useColorModeValue,
 } from "@chakra-ui/react";
+import { Alert } from "../../../../components";
 
 export default function TestimonialCard({ image, name, id }) {
+	const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+
+	const handleDelete = () => {
+		setDeleteIsOpen(true);
+	};
+
 	return (
 		<Center py={6}>
 			<Box
@@ -42,6 +49,7 @@ export default function TestimonialCard({ image, name, id }) {
 						Editar
 					</Button>
 					<Button
+						onClick={handleDelete}
 						flex={1}
 						fontSize="sm"
 						rounded="md"
@@ -58,6 +66,13 @@ export default function TestimonialCard({ image, name, id }) {
 					</Button>
 				</Stack>
 			</Box>
+			<Alert
+				isOpen={deleteIsOpen}
+				setIsOpen={setDeleteIsOpen}
+				title="¿Desea eliminar el testimonio?"
+				type="error"
+				confirmButtonText="Eliminar"
+			/>
 		</Center>
 	);
 }
