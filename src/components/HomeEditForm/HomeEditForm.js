@@ -13,16 +13,15 @@ import './style.css'
 
 export const HomeEditForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const formik = useFormik({initialValues, validationSchema, onSubmit})
-  const valuesNames = Object.keys(initialValues)
   const slicers = FetchSlicer()
+  const formik = useFormik({initialValues, validationSchema, onSubmit: onSubmit(slicers)})
+  const valuesNames = Object.keys(initialValues)
 
   useEffect(() => {
     slicers.forEach((slicer, index) =>
       formik.setFieldValue(valuesNames[index], slicer.description)
     )
   }, [slicers])
-
 
   return(
     <>
@@ -41,12 +40,7 @@ export const HomeEditForm = () => {
             control={formik}
           />
           {[1, 2, 3].map(slider =>
-            <SelectSlider
-              name={'Slider ' + slider}
-              key={'Slider ' + slider}
-              id={slider}
-              control={formik}
-            />
+            <SelectSlider id={slider} key={slider + 'slider'} control={formik} />
           )}
         </FormBox>
       </Modal>
