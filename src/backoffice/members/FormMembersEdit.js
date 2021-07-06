@@ -45,18 +45,15 @@ const FormMembersEdit = ({ data }) => {
     setImage(result);
   };
 
-
   useEffect(() => {
     if (data?.image) {
       if (previewImage === null) {
         setPreviewImage(data.image);
       }
-
       if (image === null) {
         setImage(data.image);
       }
     }
-
   }, [data, image, previewImage]);
 
   const initialValues = {
@@ -75,8 +72,8 @@ const FormMembersEdit = ({ data }) => {
 
   return (
     <div className="SeccFormMembers" >
-      <Formik initialValues={initialValues} setFieldValue={"name", data.name}
-
+      <Formik 
+        initialValues={initialValues} 
         onSubmit={(values, actions) => { enviarData(values, actions) }}
         validationSchema={Yup.object({
           name: Yup.string()
@@ -107,7 +104,7 @@ const FormMembersEdit = ({ data }) => {
               maxW="md"
             >
               <Avatar bg="teal.500" />
-              <Heading color="teal.400">{data ? "Editar miembro" : "Crea un nuevo miembro"}</Heading>
+              <Heading color="teal.400">Editar Miembro</Heading>
               <Box minW={{ base: "90%", md: "468px" }}>
                 <Form onSubmit={props.handleSubmit} className="">
                   <Stack
@@ -221,7 +218,7 @@ const FormMembersEdit = ({ data }) => {
                       colorScheme="teal"
                       width="full"
                     >
-                      {data ? "Editar" : "Crear"}
+                      Editar
                     </Button>
                   </Stack>
                 </Form>
