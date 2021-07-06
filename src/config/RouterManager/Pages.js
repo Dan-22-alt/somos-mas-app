@@ -12,7 +12,7 @@ import FormCategory from "../../backoffice/categories/FormCategory";
 import EditNewsPage from "../../pages/backoffice/news/EditNewsPage";
 import EditSlidePage from "../../pages/backoffice/slide/EditSlidePage";
 import CreateSlidePage from "../../pages/backoffice/slide/CreateSlidePage";
-
+import ListTestimonials from "../../backoffice/testimonials/list/ListTestimonials";
 /*
   component = Ahi iria la pagina
   path = endpoind de la url
@@ -42,7 +42,8 @@ export const Pages = [
 	new Page(FormCategory, "/backoffice/categories/create"),
 	new Page(FormCategory, "/backoffice/categories/:id"),
 	new Page(EditNewsPage, "/backoffice/news/:id/edit"),
+	new Page(EditSlidePage, "/backoffice/slides/:id"),
+	new Page(ListTestimonials, "/backoffice/testimonials"),
 	new Page(EditPage, "/backoffice/organization/edit"),
 	new Page(CreateSlidePage, "/backoffice/slides/create"),
-	new Page(EditSlidePage, "/backoffice/slides/:id"),
 ];
