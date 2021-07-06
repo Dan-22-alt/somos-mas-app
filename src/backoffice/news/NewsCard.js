@@ -1,15 +1,32 @@
 import React, { useState } from "react";
-
-import { Box, Button, Container } from "@chakra-ui/react";
-import { Alert } from "../components";
-import AuthChecker from "../features/auth/AuthChecker";
+import { Box, Button, Container, useToast } from "@chakra-ui/react";
+import Alert from "../../ui/alert/Alert";
 import { Link } from "react-router-dom";
+import { deleteNews } from "../../../services/newsService";
 
-const ComponentNewsBox = ({ id, name, slug, content, image, created_at }) => {
+const NewsCard = ({ id, name, slug, content, image, created_at }) => {
   const [deleteAlertIsOpen, setDeleteAlertIsOpen] = useState(false);
+  const toast = useToast();
 
   const handleDelete = () => {
     setDeleteAlertIsOpen(true);
+  };
+
+  const onConfirmDelete = () => {
+    deleteNews(id)
+      .then(() => {
+        toast({
+          title: "Novedad eliminada.",
+          status: "success",
+        });
+        window.location.reload();
+      })
+      .catch((e) => {
+        toast({
+          title: "Ocurrio un error al eliminar la novedad.",
+          status: "error",
+        });
+      });
   };
 
   return (
@@ -63,6 +80,7 @@ const ComponentNewsBox = ({ id, name, slug, content, image, created_at }) => {
       <Alert
         isOpen={deleteAlertIsOpen}
         setIsOpen={setDeleteAlertIsOpen}
+        onConfirm={onConfirmDelete}
         type="error"
         title="¿Está seguro que desea eliminar esta novedad?"
         confirmButtonText="Eliminar"
@@ -71,4 +89,4 @@ const ComponentNewsBox = ({ id, name, slug, content, image, created_at }) => {
   );
 };
 
-export default ComponentNewsBox;
+export default NewsCard;
