@@ -1,13 +1,13 @@
 import * as yup from 'yup';
 
 export const initialValues = {
-  welcomeGreeting: '',
   sliderText1: '',
-  sliderFile1: null,
   sliderText2: '',
-  sliderFile2: null,
   sliderText3: '',
+  sliderFile1: null,
+  sliderFile2: null,
   sliderFile3: null,
+  welcomeGreeting: '',
 }
 export const validationSchema = yup.object({
   welcomeGreeting:
