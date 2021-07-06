@@ -2,6 +2,7 @@ import { Example1 } from "../../pages/Example1";
 import { Example2 } from "../../pages/Example2";
 import { ActivitiesPage } from "../../pages/ActivitiesPage";
 import { CategoriesPage } from "../../pages/CategoriesPage";
+import EditPage from "../../backoffice/organization/edit-page/EditPage";
 import ComponentScreenListOfNews from "../../backoffice/ComponentScreenListOfNews";
 import ComponentCreateNews from "../../backoffice/ComponentCreateNews";
 import Registro from "../../pages/Registro";
@@ -41,7 +42,8 @@ export const Pages = [
 	new Page(FormCategory, "/backoffice/categories/create"),
 	new Page(FormCategory, "/backoffice/categories/:id"),
 	new Page(EditNewsPage, "/backoffice/news/:id/edit"),
-	new Page(CreateSlidePage, "/backoffice/slides/create"),
 	new Page(EditSlidePage, "/backoffice/slides/:id"),
 	new Page(ListTestimonials, "/backoffice/testimonials"),
+	new Page(EditPage, "/backoffice/organization/edit"),
+	new Page(CreateSlidePage, "/backoffice/slides/create"),
 ];
