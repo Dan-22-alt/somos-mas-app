@@ -4,17 +4,6 @@ import Alert from "../../ui/alert/Alert";
 import { Link } from "react-router-dom";
 import { deleteNews } from "../../../services/newsService";
 
-// id: 56,
-// name: "Apoyo escolar para el nivel Primario.",
-// slug: null,
-// content: "<p>El espacio de apoyo escolar es el corazón del área educativa. Se realizan los talleres de lunes a jueves de 10 a 12 horas y de 14 a 16 horas en el contraturno, Los sábados también se realiza el taller para niños y niñas que asisten a la escuela doble turno.Acompañamiento escolar y familiar (Los tutores son encargados de articular con la familia y con las escuelas de los jóvenes para monitorear el estado de los tutoreados) Beca estímulo (los jóvenes reciben una beca.</p>",
-// image: "http://ongapi.alkemy.org/storage/IW4KbvYLre.jpeg",
-// user_id: null,
-// category_id: 53,
-// created_at: "2021-05-20T00:23:10.000000Z",
-// updated_at: "2021-06-30T12:45:55.000000Z",
-// deleted_at: null,
-
 const NewsCard = ({ id, name, slug, content, image, created_at }) => {
   const [deleteAlertIsOpen, setDeleteAlertIsOpen] = useState(false);
   const toast = useToast();
