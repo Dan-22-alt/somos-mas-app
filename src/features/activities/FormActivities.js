@@ -216,8 +216,6 @@ const FormActivities = ({data}) => {
                                             <Image src={preview} alt="imagen" width="100px" borderRadius="10%" m="auto" />
                                         </Box>
                                     </FormControl>
-                                    {/* {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-                                    <button type="submit">Submit</button> */}
                                     {data
                                     ? <Button
                                         borderRadius={0}

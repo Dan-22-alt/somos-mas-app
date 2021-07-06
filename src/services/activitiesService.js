@@ -5,6 +5,9 @@ import {
     AGREGAR_ACTIVIDAD,
     AGREGAR_ACTIVIDAD_EXITO,
     AGREGAR_ACTIVIDAD_ERROR,
+    COMENZAR_DESCARGA_ACTIVIDADID,
+    DESCARGA_ACTIVIDADID_EXITO,
+    DESCARGA_ACTIVIDADID_ERROR,
     OBTENER_ACTIVIDAD_EDITAR,
     COMENZAR_EDICION_ACTIVIDAD,
     ACTIVIDAD_EDITADO_EXITO,
@@ -92,6 +95,40 @@ const agregarActividadError = estado => ({
     type: AGREGAR_ACTIVIDAD_ERROR,
     payload: estado
 });
+
+//_________________Mostrar actividad por ID___________
+
+export function obtenerActividadID(actividad) {
+    return async (dispatch) => {
+        dispatch( mostrarActividadId() );
+
+        try {
+            const respuesta = await clienteAxios.get(`/${actividad.id}`, actividad);
+            dispatch( mostrarActividadIdExitosa(respuesta.data.data) )
+            
+        } catch (error) {
+            console.log(error);
+            dispatch( mostrarActividadIdError() )
+        }
+    }
+}
+
+const mostrarActividadId = () => ({
+    type: COMENZAR_DESCARGA_ACTIVIDADID,
+    payload: true
+});
+
+const mostrarActividadIdExitosa = actividad => ({
+    type: DESCARGA_ACTIVIDADID_EXITO,
+    payload: actividad
+})
+const mostrarActividadIdError = () => ({
+    type: DESCARGA_ACTIVIDADID_ERROR, 
+    payload: true
+});
+
+
+
 
 
 //_________________Actualizar actividades___________
