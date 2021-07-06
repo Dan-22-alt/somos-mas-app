@@ -1,0 +1,7 @@
+.margin-auto{
+    margin: auto !important
+}
+
+.SeccFormMembers form{
+    max-width: 90vw;
+}
