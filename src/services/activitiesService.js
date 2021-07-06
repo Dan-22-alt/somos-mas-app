@@ -5,6 +5,10 @@ import {
     AGREGAR_ACTIVIDAD,
     AGREGAR_ACTIVIDAD_EXITO,
     AGREGAR_ACTIVIDAD_ERROR,
+    OBTENER_ACTIVIDAD_EDITAR,
+    COMENZAR_EDICION_ACTIVIDAD,
+    ACTIVIDAD_EDITADO_EXITO,
+    ACTIVIDAD_EDITADO_ERROR,
     OBTENER_ACTIVIDAD_ELIMINAR,
     ACTIVIDAD_ELIMINAR_EXITO,
     ACTIVIDAD_ELIMINAR_ERROR
@@ -91,6 +95,46 @@ const agregarActividadError = estado => ({
 
 
 //_________________Actualizar actividades___________
+
+// Colocar actividad en edición
+export function obtenerActividadEditar(actividad) {
+    return (dispatch) => {
+        dispatch( obtenerActividadEditarAction(actividad) )
+    }
+}
+
+const obtenerActividadEditarAction = actividad=> ({
+    type: OBTENER_ACTIVIDAD_EDITAR,
+    payload: actividad
+})
+
+// Edita un registro en la api y state
+export function editarActividadAction(actividad) {
+    return async (dispatch) => {
+        dispatch( editarActividad() );
+
+        try {
+            await clienteAxios.put(`/${actividad.id}`, actividad);    
+            dispatch( editarActividadExito(actividad) );
+        } catch (error) {
+            console.log(error);
+            dispatch( editarActividadError() );
+        }
+    }
+}
+const editarActividad = () => ({
+    type: COMENZAR_EDICION_ACTIVIDAD
+});
+
+const editarActividadExito = actividad => ({
+    type: ACTIVIDAD_EDITADO_EXITO,
+    payload: actividad
+});
+
+const editarActividadError = () => ({
+    type: ACTIVIDAD_EDITADO_ERROR,
+    payload: true
+})
 
 //________________ELIMINAR ACTIVIDADES______________
 // Selecciona y elimina la Actividad
