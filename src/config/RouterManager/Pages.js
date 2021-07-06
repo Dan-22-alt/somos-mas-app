@@ -15,6 +15,8 @@ import CreateSlidePage from "../../pages/backoffice/slide/CreateSlidePage";
 import ListTestimonials from "../../backoffice/testimonials/list/ListTestimonials";
 import ScreenList from "../../backoffice/users/ScreenList";
 import ListOfSlides from "../../backoffice/slides/ListOfSlides";
+import MembersEdit from "../../backoffice/members/MembersEdit"
+
 /*
   component = Ahi iria la pagina
   path = endpoind de la url
@@ -50,4 +52,5 @@ export const Pages = [
 	new Page(CreateSlidePage, "/backoffice/slides/create"),
 	new Page(ScreenList, "/backoffice/users"),
 	new Page(ListOfSlides, "/backoffice/slides"),
+	new Page(MembersEdit, "/backoffice/members/edit/:id")
 ];
