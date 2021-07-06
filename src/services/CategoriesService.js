@@ -1,10 +1,10 @@
-import { ApiService, ApiFetch } from './ApiService'
+import { ApiService, ApiGet } from './ApiService'
 
 const endPoint = process.env.REACT_APP_API_CATEGORY
 
 export const CategoriesService = {
-  getList : () => ApiFetch({endPoint}),
-  getCategory : id => ApiFetch({endPoint: endPoint + `/${id}`}),
+  getList : () => ApiGet(endPoint),
+  getCategory : id => ApiGet(endPoint + `/${id}`),
 
   delete : () => {
     const [data, apiFetch] = ApiService()
