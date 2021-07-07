@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { SimpleGrid } from "@chakra-ui/react"
 import { Activity } from './Activity'
 
+// Redux
+import { useDispatch } from 'react-redux';
+import { obtenerActividadesAction } from '../../services/activitiesService';
+
 export const ListOfActivities = () => {
   const [activities, setActivities] = useState({
     loading: true, res: [], error: ''
@@ -10,14 +14,16 @@ export const ListOfActivities = () => {
   const deleteItem = id => setActivities(prevState =>
     ({...prevState, res: prevState.res.filter(item => item.id !== id)}))
 
-  useEffect(() => {
-    fetch('http://ongapi.alkemy.org/api/activities')
-      .then(r => r.json())
-      .then(r => setActivities(prevState =>
-        ({...prevState, res: r.data, loading: false})))
-      .catch( error => setActivities(prevState =>
-        ({...prevState, error, loading: false})))
-  }, [])
+    const dispatch = useDispatch();
+    
+    useEffect( ()=> {
+
+      // Consultar la api
+      const cargarActividades = () => dispatch( obtenerActividadesAction () );
+      cargarActividades();
+      // eslint-disable-next-line
+    }, []);
+
 
   return(
     <SimpleGrid
