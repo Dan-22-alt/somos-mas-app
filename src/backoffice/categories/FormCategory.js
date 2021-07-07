@@ -48,6 +48,7 @@ const FormCategory = ({ cate }) => {
 		setTimeout(() => {
 			setIsLoading(false);
 		}, 1500);
+    // eslint-disable-next-line
 	}, [selectetdFile, imagenes]);
 
 	const encodeFileBase64 = file => {
