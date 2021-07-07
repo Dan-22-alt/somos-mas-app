@@ -12,6 +12,7 @@ import FormCategory from "../../backoffice/categories/FormCategory";
 import EditNewsPage from "../../pages/backoffice/news/EditNewsPage";
 import EditSlidePage from "../../pages/backoffice/slide/EditSlidePage";
 import CreateSlidePage from "../../pages/backoffice/slide/CreateSlidePage";
+import ActivitiesCreate from "../../pages/ActivitiesCreate"
 import ListTestimonials from "../../backoffice/testimonials/list/ListTestimonials";
 import ScreenList from "../../backoffice/users/ScreenList";
 import ListOfSlides from "../../backoffice/slides/ListOfSlides";
@@ -39,6 +40,8 @@ export const Pages = [
 	new Page(ComponentScreenListOfNews, "/backoffice/news"),
 	new Page(ComponentCreateNews, "/backoffice/news/create"),
 	new Page(ActivitiesPage, "/backoffice/activities"),
+	new Page(ActivitiesCreate , "/backoffice/activities/create"),
+	new Page(ActivitiesCreate , "/backoffice/activities/:id"),
 	new Page(CategoriesPage, "/backoffice/categories"),
 	new Page(Registro, "/Registro"),
 	new Page(Login, "/Login"),
