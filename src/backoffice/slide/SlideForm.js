@@ -14,6 +14,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createSlide, updateSlide } from "../../services/slideService";
 import { slideSchema } from "../../validations/slideSchema";
+import getBase64 from "../../utils/getBase64";
 
 const defaultSlide = {
   name: "",
@@ -91,14 +92,6 @@ export default function SlideForm({ data = defaultSlide }) {
     }
   };
 
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-
   const handleImage = async (e, handleChange) => {
     handleChange(e);
 
@@ -109,7 +102,7 @@ export default function SlideForm({ data = defaultSlide }) {
     const file = e.target.files[0];
     setPreviewImage(URL.createObjectURL(file));
 
-    const result = await toBase64(file).catch((e) => Error(e));
+    const result = await getBase64(file).catch((e) => Error(e));
     if (result instanceof Error) {
       console.log("Error: ", result.message);
       return;

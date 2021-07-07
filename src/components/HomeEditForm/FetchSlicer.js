@@ -8,7 +8,7 @@ export const FetchSlicer = () => {
   useEffect(() => {
     if(res?.data) setSlicers(res.data.slice(0, 3))
     if(error) console.log(error)
-  }, [res])
+  }, [res, error])
 
   return slicers
 }
