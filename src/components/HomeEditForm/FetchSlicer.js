@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import { ApiFetch } from '../../services/ApiService'
+import { getSlides } from '../../services/slidesService'
 
 export const FetchSlicer = () => {
   const [slicers, setSlicers] = useState([])
+  const {res, error} = getSlides()
 
   useEffect(() => {
-    ApiFetch({endPoint:process.env.REACT_APP_API_SLIDE})
-      .then(({res, error}) => {
-        if(res) setSlicers(res.data.slice(0, 3))
-        else console.log(error)
-      })
-  }, [])
+    if(res?.data) setSlicers(res.data.slice(0, 3))
+    if(error) console.log(error)
+  }, [res])
 
   return slicers
 }
