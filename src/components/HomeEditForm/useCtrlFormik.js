@@ -34,7 +34,13 @@ const handleSliderText = (sliders, values) => {
 }
 
 const handleWelcomeGreeting = welcomeGreeting =>{
-  if(welcomeGreeting) console.log('editar welcome')
+  if(welcomeGreeting) {
+    console.log('editar welcome')
+  /*
+    To do
+    Como no se de donde sacar el welcome no lo puse
+  */
+  }
 }
 
 const handleFiles = (values) => {
