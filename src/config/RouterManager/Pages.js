@@ -1,7 +1,7 @@
-import { Example1 } from "../../pages/Example1";
 import { Example2 } from "../../pages/Example2";
 import { ActivitiesPage } from "../../pages/ActivitiesPage";
 import { CategoriesPage } from "../../pages/CategoriesPage";
+import { HomePage } from '../../pages/HomePage'
 import EditPage from "../../backoffice/organization/edit-page/EditPage";
 import ComponentScreenListOfNews from "../../backoffice/ComponentScreenListOfNews";
 import ComponentCreateNews from "../../backoffice/ComponentCreateNews";
@@ -34,7 +34,7 @@ class Page {
 }
 
 export const Pages = [
-	new Page(Example1, "/"),
+  new Page(HomePage, '/'),
 	new Page(Example2, "/example2"),
 	new Page(BackofficePage, "/backoffice"),
 	new Page(ComponentScreenListOfNews, "/backoffice/news"),

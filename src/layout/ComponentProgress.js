@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Progress } from "@chakra-ui/react"
 
 
@@ -17,7 +17,7 @@ const ComponentProgress = (props) => {
                 colorScheme='yellow'
             />
         </div>
-        
+
     )
 }
 

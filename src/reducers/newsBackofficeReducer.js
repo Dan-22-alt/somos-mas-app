@@ -1,5 +1,4 @@
-
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { ApiService } from '../services/ApiService';
 
 const newsState = {
@@ -37,7 +36,7 @@ const newsSlice = createSlice({
             const { id } = action.payload
             console.log(state, id)
         },
-        
+
     }
 })
 

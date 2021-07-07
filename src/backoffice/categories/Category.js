@@ -9,6 +9,7 @@ export const Category = ({name, created_at, id}) => {
 
   const deleteCategory = () => {
     console.log(name, 'was deleted')
+    console.log(data, 'was deleted')
     setThisCategory(false)
     deleteApi(id)
   }
