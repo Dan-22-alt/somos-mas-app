@@ -1,4 +1,5 @@
 import React from 'react'
+import ButtDeleteSlide from './ButtDeleteSlide'
 import { Box, Image, Button } from "@chakra-ui/react"
 
 const Slide = () => {
@@ -55,13 +56,7 @@ const Slide = () => {
       >
         Editar
       </Button>
-      <Button
-        m='2px'
-        w='25vh'
-        colorScheme='red'
-      >
-        Eliminar
-      </Button>
+      <ButtDeleteSlide />
     </Box>
       </Box>
     )
