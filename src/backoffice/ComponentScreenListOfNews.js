@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 
 import { Container } from "@chakra-ui/react"
@@ -8,7 +8,7 @@ import { Center } from "@chakra-ui/react"
 import ComponentNewsBox from './ComponentNewsBox'
 
 // Redux
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { obtenerNovedadesAction } from '../services/newServices';
 
 const ComponentScreenListOfNews = () => {
