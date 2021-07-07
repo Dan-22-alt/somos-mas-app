@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import getBase64 from '../../utils/getBase64';
 import { Button, Input } from "@chakra-ui/react"
 
 export const SelectSlider = ({id, control}) => {
+  const [fileName, setFileName] = useState()
+
   const name = 'Slider' + id
   const idSlider = 'sliderText' + id
   const idFile = 'sliderFile' + id
@@ -11,12 +14,16 @@ export const SelectSlider = ({id, control}) => {
       <Button
         colorScheme={file ? 'red': 'blue'}
       >
-        {file ? `${name}: ${file.name}` : name}
+        {fileName ? `${name}: ${fileName}` : name}
         <input
           type="file"
           name={idSlider}
           accept="image/png, image/jpeg"
-          onChange={e => control.setFieldValue(idFile , e.target.files[0])}
+          onChange={async e => {
+            setFileName(e.target.files[0].name)
+            const file64 = await getBase64(e.target.files[0])
+            control.setFieldValue(idFile , file64)
+          }}
         />
       </Button>
       <Input

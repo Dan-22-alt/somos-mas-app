@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const init = {
@@ -15,12 +15,29 @@ export const ApiFetch = ({endPoint=documentation, method='get', body=null, heade
     : {}
 
   return axios[method](endPoint, body, {...headers, ...token})
-    .then(({data}) => (
-      {res: data, error: null})
-    )
-    .catch(error =>
-      ({error, res: null})
-    )
+    .then(({data}) => ({res: data, error: null}))
+    .catch(error => ({ error, data: null}))
+}
+
+export const ApiGet = (endPoint=documentation) => {
+  const [data, setData] = useState(init)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+      ? {Authentication: localStorage.getItem('token')}
+      : {}
+
+    axios.get(endPoint, null, token)
+      .then(({data}) => setData(prevState =>
+        ({...prevState , res: data, loading: false})
+      ))
+      .catch(error => setData(prevState =>
+        ({...prevState, error, loading: false})
+      ))
+
+  }, [endPoint])
+
+  return data
 }
 
 export const ApiService = () => {

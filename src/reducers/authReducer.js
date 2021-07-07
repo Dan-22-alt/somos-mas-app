@@ -5,8 +5,6 @@ import axios from 'axios'
 const authState = {
   token: '',
   error: '',
-  user: null,
-  loading: false,
   state: null
 };
 
@@ -16,30 +14,18 @@ const authSlice = createSlice({
   reducers: {
     loginSuccess: (state, action) => {
       state.token = action.payload.token;
-      localStorage.setItem('token', action.payload.token)
       state.user = action.payload.user;
       state.state = 'success'
     },
     loginFailed: (state, action) => {
       state.error = action.payload;
       state.state = 'error'
-    },
-    signInLoading: state => {
-      state.loading = true
-    },
-    signInSuccess: (state, action) => {
-      state.token = action.payload.token
-      localStorage.setItem('token', action.payload.token)
-      state.loading = false
-    },
-    signInFail: (state, action) => {
-      state.error = action.payload.error
-      state.loading = false
-    }
-  },
-})
 
-export const { loginSuccess, loginFailed, signInLoading, signInSuccess, signInFail } = authSlice.actions;
+    },
+  },
+});
+
+export const { loginSuccess, loginFailed } = authSlice.actions;
 
 export const selectAuth = state => state.auth;
 

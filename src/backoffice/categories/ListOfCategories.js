@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Center,  Table, Thead, Tfoot, Tbody, Tr, Th } from "@chakra-ui/react"
 import { Category } from './Category'
 import { CategoriesService } from '../../services/CategoriesService'
 
 export const ListOfCategories = () => {
-  const [categories, setCategories] = useState({res: null, error: null})
-
-  useEffect(() => {
-    CategoriesService
-      .getList()
-      .then(r => setCategories(r))
-  }, [])
-
+  const categories = CategoriesService.getList()
   return (
     <Center
       m='auto'

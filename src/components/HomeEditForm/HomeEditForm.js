@@ -18,10 +18,9 @@ export const HomeEditForm = () => {
 
   useEffect(() => {
     const valuesNames = Object.keys(initialValues)
-    slicers.forEach((slicer, index) =>
-      formik.setFieldValue(valuesNames[index], slicer.description)
+    slicers.forEach((slicer, index ) =>
+      formik.setFieldValue(valuesNames[index + 1], slicer.description)
     )
-    console.log('mmm')
     // eslint-disable-next-line
   }, [slicers])
 
