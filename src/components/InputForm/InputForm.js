@@ -1,17 +1,11 @@
 import React from "react";
+import { Input, FormControl, FormLabel } from '@chakra-ui/react';
 
-import {
-  Input as ChakraInput,
-  FormControl,
-  FormLabel,
-} from '@chakra-ui/react';
-
-export const InputForm =
-  ({type='text', placeholder='set this please', label='set this please'}) => {
+export const InputForm = ({type='text', placeholder='', label=''}) => {
   return (
     <FormControl mt={2}>
       <FormLabel>{label}</FormLabel>
-      <ChakraInput
+      <Input
         type={type}
         placeholder={placeholder}
       />

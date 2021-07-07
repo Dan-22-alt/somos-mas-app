@@ -15,12 +15,14 @@ export const HomeEditForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const slicers = FetchSlicer()
   const formik = useFormik({initialValues, validationSchema, onSubmit: onSubmit(slicers)})
-  const valuesNames = Object.keys(initialValues)
 
   useEffect(() => {
+    const valuesNames = Object.keys(initialValues)
     slicers.forEach((slicer, index) =>
       formik.setFieldValue(valuesNames[index], slicer.description)
     )
+    console.log('mmm')
+    // eslint-disable-next-line
   }, [slicers])
 
   return(

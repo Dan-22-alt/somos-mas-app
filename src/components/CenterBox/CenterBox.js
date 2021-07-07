@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Flex, Stack } from '@chakra-ui/react';
-
 
 export const CenterBox = ({children}) => {
   return (

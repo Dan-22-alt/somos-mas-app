@@ -2,18 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {
-    Flex,
-    Heading,
-    Input,
-    Button,
-    Stack,
-    Box,
-    FormControl,
-    FormLabel,
-    Alert,
-    AlertIcon,
-    Image,
-    useToast
+  Flex, Heading,
+  Input, Button,
+  Stack, Box,
+  FormControl, FormLabel,
+  Alert, AlertIcon,
+  Image, useToast
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -55,6 +49,8 @@ const FormCategory = ({ cate }) => {
         setTimeout(() => {
             setIsLoading(false)
         }, 1500)
+
+    // eslint-disable-next-line
     }, [selectetdFile, imagenes])
 
     const encodeFileBase64 = (file) => {
@@ -213,7 +209,7 @@ const FormCategory = ({ cate }) => {
                                             console.log(newCategory.description);
 
                                         }}
-                                        
+
                                     />
                                     {/* <Input
                                         type="text"
