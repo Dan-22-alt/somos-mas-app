@@ -68,6 +68,7 @@ const FormActivities = ({ data }) => {
 		setTimeout(() => {
 			setIsLoading(false);
 		}, 1500);
+// eslint-disable-next-line
 	}, [data, selectetdFile, imagenes]);
 
 	const encodeFileBase64 = file => {

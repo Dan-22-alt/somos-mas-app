@@ -4,6 +4,10 @@ import { Activity } from "./Activity";
 import { useHistory } from "react-router-dom";
 import { createActivity, deleteActivity } from "../../services/activityService";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { obtenerActividadesAction } from "../../services/activitiesService";
+
 export const ListOfActivities = () => {
   const [activities, setActivities] = useState({
     loading: true,
@@ -33,19 +37,13 @@ export const ListOfActivities = () => {
       });
   };
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetch("http://ongapi.alkemy.org/api/activities")
-      .then((r) => r.json())
-      .then((r) =>
-        setActivities((prevState) => ({
-          ...prevState,
-          res: r.data,
-          loading: false,
-        }))
-      )
-      .catch((error) =>
-        setActivities((prevState) => ({ ...prevState, error, loading: false }))
-      );
+    // Consultar la api
+    const cargarActividades = () => dispatch(obtenerActividadesAction());
+    cargarActividades();
+    // eslint-disable-next-line
   }, []);
 
   return (
