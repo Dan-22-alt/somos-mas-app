@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SlideForm from "../../../backoffice/slide/SlideForm";
+import SlideForm from "../../../backoffice/slide/SlideForm/index";
 import { getSlideById } from "../../../services/slidesService";
 
 const EditSlidePage = () => {
