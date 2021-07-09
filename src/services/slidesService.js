@@ -1,5 +1,4 @@
 import { ApiService, ApiGet } from './ApiService'
-import getBase64 from '../utils/getBase64'
 
 const endPoint = process.env.REACT_APP_API_SLIDE
 
@@ -14,29 +13,25 @@ export const deleteSlide = () => {
 
 export const createSlide = () => {
   const [data, apiFetch] = ApiService()
-  const createSlide = async ({name, description, image, parent_category_id}) =>{
-
-    /*
+  const createSlide = async ({name, description, image, order}) => {
     apiFetch({
       endPoint, method: 'post',
-      //body: { name, description, parent_category_id, image},
+      body: { name, description, order, image},
     })
-    */
-    console.log(image)
-
-    }
+  }
   return [data, createSlide]
 }
 
 
 export const editSlide = () => {
   const [data, apiFetch] = ApiService()
-  const editSlide = ({id}/*{id, name, description, parent_category_id, image}*/) =>
+  const editSlide = ({id, ...body}) =>{
     apiFetch({
       endPoint: endPoint + `/${id}`,
       method: 'put',
-      //body: { name, description, parent_category_id, /*image*/ }
-    // checkear el tema de las imagenes
+      // name, description, order, image
+      body: body
     })
+  }
   return [data, editSlide]
 }

@@ -12,8 +12,7 @@ import {
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createSlide, updateSlide } from "../../../services/slideService";
-import { createSlide as createSlide2} from "../../../services/slidesService";
+import { createSlide, editSlide } from "../../../services/slidesService";
 import { slideSchema } from "../../../validations/slideSchema";
 import getBase64 from "../../../utils/getBase64";
 
@@ -24,47 +23,69 @@ const defaultSlide = {
   order: "",
 };
 
-
 export default function SlideForm({ data }) {
   const [previewImage, setPreviewImage] = useState(null);
 
-  const [{res, error}, apiCreate] = createSlide2()
+  const [create, apiCreate] = createSlide()
+  const [edit, apiEdit] = editSlide()
 
   const toast = useToast();
   let history = useHistory();
 
-
-
   useEffect(()=> {
-    if(res){
+    if(edit.res){
       toast({
-        title: data?.id ? "Slide actualizada." : "Slide creada.",
+        title:  "Slide actualizada.",
         status: "success",
       });
       history.push("/backoffice/slides");
     }
-    if(error){
+    if(edit.error){
       toast({
-        title: data?.id
-          ? "Ocurrio un error al actualizar el slide."
-          : "Ocurrio un error al crear el slide.",
+        title: "Ocurrio un error al actualizar el slide.",
         status: "error",
       });
     }
-  }, [res, data, error])
+// eslint-disable-next-line
+  }, [edit.res, edit.error])
+
+
+  useEffect(()=> {
+    if(create.res){
+      toast({
+        title: "Slide creada.",
+        status: "success",
+      });
+      history.push("/backoffice/slides");
+    }
+    if(create.error){
+      toast({
+        title: "Ocurrio un error al crear el slide.",
+        status: "error",
+      });
+    }
+  // eslint-disable-next-line
+  }, [create.res, create.error])
 
 
   const submitText = data?.id ? "Guardar" : "Crear";
   const formTitle = data?.id ? "Editar Slide" : "Crear Slide";
 
   const onSubmit = values => {
-    // Actualizar
     if (data?.id) {
-      updateSlide(data?.id, values)
+      let body = {}
+      for(const key in data) {
+        if(data[key] !== values[key]){
+          console.log(data[key])
+          body[key] = values[key] || data[key]
+        }
+      }
+      body.name = data.name
+      apiEdit(body)
     } else {
-      createSlide(values)
-  }};
-
+      apiCreate(values)
+    }
+  }
 
   const formik = useFormik({initialValues: defaultSlide, validationSchema:
     slideSchema, onSubmit})
@@ -73,14 +94,16 @@ export default function SlideForm({ data }) {
     if(formik.values.image){
       setPreviewImage(formik.values.image)
     }
+  // eslint-disable-next-line
   }, [formik.values.image])
 
   useEffect(() => {
     if(data){
       for(const key in formik.values){
-        formik.setFieldValue(key, data[key])
+          formik.setFieldValue(key, data[key])
       }
     }
+  // eslint-disable-next-line
   }, [data])
 
   const handleImage = async e => {

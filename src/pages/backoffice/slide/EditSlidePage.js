@@ -9,7 +9,15 @@ const EditSlidePage = () => {
   const [slide, setSlide] = useState(null);
 
   useEffect(() => {
-    if(res?.data) setSlide(res?.data)
+    if(res?.data) {
+      const {
+        user_id,
+        created_at,
+        updated_at,
+        deleted_at,
+        ...rest} = res.data
+      setSlide(rest)
+    }
     if(error) console.log(error)
   }, [res, error]);
 

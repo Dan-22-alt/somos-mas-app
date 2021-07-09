@@ -4,6 +4,7 @@ import { useFormik } from "formik"
 
 import { FormBox } from '../FormBox/FormBox'
 import { Modal } from '../Modal/Modal'
+import { editSlide } from '../../services/slidesService'
 
 import { SelectSlider } from "./SelecSlider"
 import { FormTextArea } from "./FormTextArea"
@@ -14,7 +15,8 @@ import './style.css'
 export const HomeEditForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const slicers = FetchSlicer()
-  const formik = useFormik({initialValues, validationSchema, onSubmit: onSubmit(slicers)})
+  const [data, apiEdit] = editSlide()
+  const formik = useFormik({initialValues, validationSchema, onSubmit: onSubmit(slicers, apiEdit)})
 
   useEffect(() => {
     const valuesNames = Object.keys(initialValues)
@@ -23,6 +25,10 @@ export const HomeEditForm = () => {
     )
     // eslint-disable-next-line
   }, [slicers])
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
 
   return(
     <>
