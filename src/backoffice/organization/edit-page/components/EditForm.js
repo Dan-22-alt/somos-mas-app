@@ -1,60 +1,81 @@
-import React, { useRef, useState } from "react";
-import {
-	Input,
-	Button,
-	Stack,
-	Box,
-	FormControl,
-	FormLabel,
-	Text,
-} from "@chakra-ui/react";
-// form imports
+import React, { useRef, useState, useEffect } from "react";
+import {Input, Button, Stack, Box, FormControl,	FormLabel, Text, useToast, Image} from "@chakra-ui/react"; // form imports
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import getBase64 from "../../../../utils/getBase64";
 import InputErrorAlert from "../../../../components/input-error-alert/InputErrorAlert";
 import { BsUpload } from "react-icons/bs"; // logo upload icon
+import { edit } from './../../../../services/organizationService';
+import { formEditOrgSchema } from "../../../../validations/formEditOrg";
 
-const UserForm = ({ user }) => {
+
+const EditOrgForm = ({ datos }) => {
 	const logoRef = useRef();
 	const [logoName, setLogoName] = useState("");
+	const [image, setImage] = useState(null);
+	const [previewImage, setPreviewImage] = useState(null);
+	const toast = useToast();
 
 	const initialValues = {
-		name: "",
-		shortDescription: "",
-		longDescription: "",
-		logo: "",
-		facebookLink: "",
-		instagramLink: "",
+		name: datos.name ? datos.name : "",
+		shortDescription: datos ? datos.short_description : "",
+		longDescription: datos ? datos.long_description : "",
+		logo: datos ? datos.logo : "",
+		facebookLink: datos ? datos.facebookLink : "",
+		instagramLink: datos ? datos.instagramLink : "",
 	};
 
 	const handleSubmit = async values => {
-		console.log(values);
+		// console.log(values);
+		edit(values)
+			.then((res) => {
+				// console.log(res);
+				toast({
+					description: "Datos Atualizados!",
+					status: "success",
+					duration: 2000,
+					isClosable: true,
+				});
+			})
+			.catch((e) => {
+				console.log(e);;
+			})
 	};
+
+	const handleImage = async (e, handleChange) => {
+		handleChange(e);
+		if (e.target.files.length === 0) {
+			setPreviewImage(null);
+			return;
+		}
+		const logo = e.target.files[0]
+		setPreviewImage(URL.createObjectURL(logo));
+		if (logo) {
+			getBase64(logo)
+				.then(image64 => {
+					setImage(image64);
+					formik.setFieldValue('logo', image64)})
+				.catch(error => console.log('Error', error))
+		}
+	};
+	useEffect(() => {
+		if (datos?.logo) {
+			if (previewImage === null) {
+				setPreviewImage(datos.logo);
+			}
+			if (image === null) {
+				setImage(datos.logo);
+			}
+		}
+	}, [datos, image, previewImage]);
 
 	// Formulario y validación con formik y Yup
 	const formik = useFormik({
 		initialValues: initialValues,
 		onSubmit: values => handleSubmit(values),
-		validationSchema: Yup.object({
-			name: Yup.string().required("El nombre es obligatorio"),
-			shortDescription: Yup.string().required(
-				"La descripción corta es obligatorio"
-			),
-			longDescription: Yup.string().required(
-				"La descripción larga es obligatorio"
-			),
-			logo: Yup.string().required("El logo es obligatorio"),
-			facebookLink: Yup.string()
-				.url("Url invalida")
-				.required("Este campo es obligatorio"),
-			instagramLink: Yup.string()
-				.url("Url invalida")
-				.required("Este campo es obligatorio"),
-		}),
+		validationSchema: formEditOrgSchema
 	});
 
 	return (
@@ -80,6 +101,7 @@ const UserForm = ({ user }) => {
 								type="text"
 								placeholder="Miguel"
 								id="name"
+								name="name"
 								value={formik.values.name}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
@@ -94,8 +116,9 @@ const UserForm = ({ user }) => {
 							<FormLabel>Descripción corta</FormLabel>
 							<CKEditor
 								editor={ClassicEditor}
-								data=""
+								data={formik.values.shortDescription}
 								id="shortDescription"
+								name="shortDescription"
 								onChange={(event, editor) => {
 									const text = editor.getData();
 									formik.values.shortDescription = text;
@@ -112,8 +135,9 @@ const UserForm = ({ user }) => {
 							<CKEditor
 								isFullWidth
 								editor={ClassicEditor}
-								data=""
+								data={formik.values.longDescription}
 								id="longDescription"
+								name="longDescription"
 								onChange={(event, editor) => {
 									const text = editor.getData();
 									formik.values.longDescription = text;
@@ -135,11 +159,9 @@ const UserForm = ({ user }) => {
 									type="file"
 									id="logo"
 									name="logo"
-									onChange={async event => {
-										const logo = await event.target.files[0];
-										setLogoName(logo ? logo.name : "");
-										const logoBase64 = await getBase64(logo);
-										formik.setFieldValue("logo", logoBase64);
+									accept="image/png, image/jpeg"
+									onChange={(e) => {
+										handleImage(e, formik.handleChange);
 									}}
 								/>
 								<Stack style={{ margin: 0 }} direction="row" spacing={4}>
@@ -155,7 +177,17 @@ const UserForm = ({ user }) => {
 									</Button>
 								</Stack>
 								<Text>{logoName && logoName}</Text>
+								{previewImage && (
+								<Box boxSize="" className="margin-auto" justifyContent="center">
+									<Image boxSize="40%"
+										objectFit="contain"
+										src={previewImage}
+										className="margin-auto"
+										alt="logo" />
+								</Box>
+							)}
 							</Stack>
+							
 						</FormControl>
 						{/* facebook link */}
 						<FormControl>
@@ -169,6 +201,7 @@ const UserForm = ({ user }) => {
 								type="text"
 								placeholder="https://www.facebook.com/user/"
 								id="facebookLink"
+								name="facebookLink"
 								value={formik.values.facebookLink}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
@@ -186,6 +219,7 @@ const UserForm = ({ user }) => {
 								type="text"
 								placeholder="https://www.instagram.com/user/"
 								id="instagramLink"
+								name="instagramLink"
 								value={formik.values.instagramLink}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
@@ -199,7 +233,7 @@ const UserForm = ({ user }) => {
 								colorScheme="teal"
 								mt={6}
 								isFullWidth>
-								Login
+								Editar
 							</Button>
 						</Box>
 					</Stack>
@@ -209,4 +243,4 @@ const UserForm = ({ user }) => {
 	);
 };
 
-export default UserForm;
+export default EditOrgForm;
