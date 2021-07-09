@@ -5,6 +5,7 @@ import FormMembersEdit from './FormMembersEdit'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import ComponentSkeleton from './../../layout/ComponentSkeleton';
+import { getData } from '../../services/membersService'
 
 const MembersEdit = () => {
   const { id } = useParams()
@@ -13,18 +14,27 @@ const MembersEdit = () => {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    const getMember = async () => {
-      await axios({ method: 'GET', url: process.env.REACT_APP_API_MEMBER + "/" + id })
-        .then(consulta => {
-          setMember(consulta.data.data)
-          setReady(true)
+    // const getMember = async () => {
+    //   await axios({ method: 'GET', url: process.env.REACT_APP_API_MEMBER + "/" + id })
+    //     .then(consulta => {
+    //       setMember(consulta.data.data)
+    //       setReady(true)
 
-        }).catch(error => {
-          console.error(error);
-          setError(true)
-        })
-    }
-    getMember()
+    //     }).catch(error => {
+    //       console.error(error);
+    //       setError(true)
+    //     })
+    // }
+    // getMember()
+    getData(id).then(res => {
+      console.log(res);
+      setMember(res.data)
+      setReady(true)
+
+    }).catch(error => {
+      console.error(error);
+      setError(true)
+    })
   }, [])
 
   return (
