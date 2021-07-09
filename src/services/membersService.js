@@ -1,13 +1,43 @@
 import httpClient from "../utils/httpClient";
-import { ApiGet } from './ApiService';
-
-const endPoint = process.env.REACT_APP_API_MEMBER
-// export const getData = () => ApiGet(endPoint)
 
 export function getData(id) {
-    return httpClient
-      .get(`/members/`+id)
-      .then((response) => response.data)
-      .catch(e => {console.log(e)
-         return e});
-  }
+  return httpClient
+    .get(`/members/` + id)
+    .then((response) => response.data)
+    .catch(e => {
+      console.log(e)
+      return e
+    });
+}
+
+export function edit(data) {
+  return httpClient
+    .post(`/members`, data)
+    .then((response) => response.data)
+    .catch(e => {
+      console.log(e)
+      return e
+    });
+}
+
+
+export function deleteMember(id) {
+  return httpClient
+    .post(`/members/`+id)
+    .then((response) => response.data)
+    .catch(e => {
+      console.log(e)
+      return e
+    });
+}
+
+export function create(data) {
+  return httpClient
+    .post(`/members`, data)
+    .then((response) => response.data)
+    .catch(e => {
+      console.log(e)
+      return e
+    });
+}
+
