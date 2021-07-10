@@ -1,4 +1,6 @@
 import { Example2 } from "../../pages/Example2";
+import FormTestimonials from
+"../../backoffice/testimonials/FormTestimonials/index";
 import { ActivitiesPage } from "../../pages/ActivitiesPage";
 import { CategoriesPage } from "../../pages/CategoriesPage";
 import { HomePage } from '../../pages/HomePage'
@@ -17,6 +19,7 @@ import ListTestimonials from "../../backoffice/testimonials/list/ListTestimonial
 import ScreenList from "../../backoffice/users/ScreenList";
 import ListOfSlides from "../../backoffice/slides/ListOfSlides";
 import MembersEdit from './../../backoffice/members/MembersEdit';
+console.log('acordate de borrarme paisa')
 
 /*
   component = Ahi iria la pagina
@@ -34,10 +37,11 @@ class Page {
 	}
 }
 
+	//new Page(Example2, "/example2"),
 export const Pages = [
   new Page(HomePage, '/'),
-	new Page(Example2, "/example2"),
-	new Page(BackofficePage, "/backoffice"),
+	new Page(FormTestimonials, "/example2"),
+ 	new Page(BackofficePage, "/backoffice"),
 	new Page(ComponentScreenListOfNews, "/backoffice/news"),
 	new Page(ComponentCreateNews, "/backoffice/news/create"),
 	new Page(ActivitiesPage, "/backoffice/activities"),

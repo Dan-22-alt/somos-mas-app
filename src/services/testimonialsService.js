@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
 import { ApiService, ApiGet } from './ApiService'
-import { useToast } from '@chakra-ui/react'
-
 
 const endPoint = process.env.REACT_APP_API_TESTIMONIAL
 
@@ -18,8 +15,6 @@ export const createTestimonials = () => {
       body: {name, image, description}
     })
   )
-
-
   return [data, post]
 }
 
