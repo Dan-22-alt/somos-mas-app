@@ -10,9 +10,9 @@ export function getData(id) {
     });
 }
 
-export function edit(data) {
+export function edit(id, data) {
   return httpClient
-    .post(`/members`, data)
+    .put(`/members/`+id, data)
     .then((response) => response.data)
     .catch(e => {
       console.log(e)
