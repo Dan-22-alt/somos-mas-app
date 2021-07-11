@@ -1,5 +1,5 @@
 import React from "react";
-import SlideForm from "../../../backoffice/slide/SlideForm";
+import SlideForm from "../../../backoffice/slide/SlideForm/index";
 
 const CreateSlidePage = () => {
   return <SlideForm />;

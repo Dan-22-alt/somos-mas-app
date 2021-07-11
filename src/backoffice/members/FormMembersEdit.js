@@ -10,7 +10,6 @@ import {
   Box,
   FormControl,
   FormLabel,
-  useToast,
   Image,
   Avatar
 } from '@chakra-ui/react';
@@ -22,7 +21,6 @@ import getBase64 from '../../utils/getBase64';
 
 const FormMembersEdit = ({ data }) => {
 
-  const toast = useToast();
   const [description, setDescription] = useState('')
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
@@ -72,8 +70,8 @@ const FormMembersEdit = ({ data }) => {
 
   return (
     <div className="SeccFormMembers" >
-      <Formik 
-        initialValues={initialValues} 
+      <Formik
+        initialValues={initialValues}
         onSubmit={(values, actions) => { enviarData(values, actions) }}
         validationSchema={Yup.object({
           name: Yup.string()
