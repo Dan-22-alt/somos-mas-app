@@ -17,6 +17,7 @@ import ListTestimonials from "../../backoffice/testimonials/list/ListTestimonial
 import ScreenList from "../../backoffice/users/ScreenList";
 import ListOfSlides from "../../backoffice/slides/ListOfSlides";
 import MembersEdit from './../../backoffice/members/MembersEdit';
+import MembersCreate from './../../backoffice/members/MemberCreate';
 
 /*
   component = Ahi iria la pagina
@@ -55,5 +56,6 @@ export const Pages = [
 	new Page(CreateSlidePage, "/backoffice/slides/create"),
 	new Page(ScreenList, "/backoffice/users"),
 	new Page(ListOfSlides, "/backoffice/slides"),
-	new Page(MembersEdit, "/backoffice/members/edit/:id")
+	new Page(MembersEdit, "/backoffice/members/edit/:id"),
+	new Page(MembersCreate, "/backoffice/members/create")
 ];
