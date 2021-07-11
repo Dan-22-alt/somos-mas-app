@@ -14,6 +14,8 @@ import { ErrorMessage, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getCategories } from "../../services/categories.service";
+import {crearNuevaNewsAction, editarNewsAction} from "../../services/newServices";
+import { useDispatch } from "react-redux";
 import { createNews, updateNews } from "../../services/newsService";
 import { newsSchema } from "../../validations/newsSchema";
 
@@ -25,6 +27,12 @@ const defaultNew = {
 };
 
 export default function NewsForm({ data = defaultNew }) {
+	const dispatch = useDispatch();
+
+	//llamar la funcion desde el services
+	const crearNews = news => dispatch(crearNuevaNewsAction(news));
+	const editarNews = news => dispatch(editarNewsAction(news));
+
 	const [categories, setCategories] = useState([]);
 	const [image, setImage] = useState(null);
 	const [previewImage, setPreviewImage] = useState(null);
@@ -66,43 +74,27 @@ export default function NewsForm({ data = defaultNew }) {
 			image,
 		};
 		if (data?.id) {
-			updateNews(data?.id, payload)
-				.then(() => {
-					toast({
-						title: "Novedad actualizada.",
-						status: "success",
-					});
-
-					history.push("/backoffice/news");
-				})
-				.catch(e => {
-					toast({
-						title: "Ocurrio un error al crear la novedad.",
-						status: "error",
-					});
-				})
-				.finally(() => {
-					setSubmitting(false);
-				});
+			editarNews(data?.id, payload)
+			toast({
+				title: "New Actualizada con exito",
+				status: "success",
+				duration: 2000,
+				isClosable: true,
+			});
+			// redireccionar
+			history.push("/backoffice/news");
+			
 		} else {
 			// Crear
-			createNews(payload)
-				.then(() => {
-					toast({
-						title: "Novedad creada.",
-						status: "success",
-					});
-					history.push("/backoffice/news");
-				})
-				.catch(e => {
-					toast({
-						title: "Ocurrio un error al actualizar la novedad.",
-						status: "error",
-					});
-				})
-				.finally(() => {
-					setSubmitting(false);
-				});
+			crearNews(payload)
+			toast({
+				title: "new creada",
+				status: "success",
+				duration: 2000,
+				isClosable: true,
+			});
+			// redireccionar
+			history.push("/backoffice/news");
 		}
 	};
 

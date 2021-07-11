@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import { ApiFetch } from '../../services/ApiService';
 
 export const initialValues = {
   welcomeGreeting: '',
@@ -15,9 +14,7 @@ export const validationSchema = yup.object({
     yup.string().min(20, 'La bienvenida debe tener al menos 20 caracteres')
 })
 
-const path = process.env.REACT_APP_API_SLIDE + '/'
-
-const handleSlider = (dataFromApi, values, keys) => {
+const handleSlider = (dataFromApi, values, keys, apiEdit) => {
 
   for(let i = 0, j = 3; j < keys.length; i++, j++){
     const newDescription = values[keys[i]]
@@ -27,10 +24,9 @@ const handleSlider = (dataFromApi, values, keys) => {
     if(image || newDescription !== description){
       const body = {
         ...(image ? {image, name} : {}),
-        ...(newDescription !== description ? {description: description, name} : {})
+        ...(newDescription !== description ? {description: newDescription, name} : {})
       }
-      const endPoint = path + id
-      ApiFetch({endPoint, body, method:'put'}).then(r => console.log(r))
+      apiEdit({...body, id})
     }
   }
 }
@@ -45,8 +41,8 @@ const handleWelcomeGreeting = welcomeGreeting =>{
   }
 }
 
-export const onSubmit = slidersFromApi => values => {
+export const onSubmit = (slidersFromApi, apiEdit) => values => {
   const [welcomeKey, ...slidersKeys] = Object.keys(initialValues)
-  handleSlider(slidersFromApi, values, slidersKeys)
+  handleSlider(slidersFromApi, values, slidersKeys, apiEdit)
   handleWelcomeGreeting(values[welcomeKey])
 }
