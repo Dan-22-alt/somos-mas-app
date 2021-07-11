@@ -9,7 +9,7 @@ import getBase64 from '../../utils/getBase64';
 import { edit, create } from '../../services/membersService';
 import {memberSchema} from "../../validations/memberSchema"
 
-const FormMembersEdit = ({ data, mode }) => {
+const FormMembers = ({ data, mode }) => {
 
   const toast = useToast();
   const [foto, setFoto] = useState(null);
@@ -25,7 +25,7 @@ const FormMembersEdit = ({ data, mode }) => {
     facebookUrl: data.facebookUrl ? data.facebookUrl : '',
     linkedinUrl: data.linkedinUrl ? data.linkedinUrl : ''
   }
-
+// previsualizacion de imagen
   useEffect(() => {
     if (data?.image) {
       if (previewImage === null) {
@@ -60,12 +60,9 @@ const FormMembersEdit = ({ data, mode }) => {
   };
 
   const enviarData = (values, actions) => {
-    // console.log(values);
     // CREAR
     if (mode === "create"){
-      console.log(values);
       create(values).then(res => {
-        console.log(res);
         setError(false)
         toast({
           title: "Miembro creado id: "+res.data.id,
@@ -96,14 +93,16 @@ const FormMembersEdit = ({ data, mode }) => {
           })
         }).catch(error => {
           console.error(error);
+          toast({
+            title: "Ocurrio un error al editar",
+            status: "error",
+            duration: 2000
+          })
         })
       }
-    }
-    
+    }    
   }
-
-  
-
+ 
   return (
     <div className="SeccFormMembers" >
       <Formik
@@ -116,7 +115,7 @@ const FormMembersEdit = ({ data, mode }) => {
             flexDirection="column"
             backgroundColor="gray.200"
             justifyContent="center"
-            height="100vh"
+            height="110vh"
             alignItems="center"
           >
             <Stack
@@ -159,25 +158,15 @@ const FormMembersEdit = ({ data, mode }) => {
                         editor={ClassicEditor}
                         data={props.values.description}
                         name="description"
-                        id="description"
-                        onReady={editor => {
-                          // You can store the "editor" and use when it is needed.
-
-                        }}
+                        id="description"                       
                         onChange={(event, editor) => {
                           const text = editor.getData();
-                          // setDescription(text)
-                          // data ? setError(false) : setError(true)
-                          // console.log({ event, editor, data });
                           props.values.description = text
                         }}
-
                       />
                       <Box color="red.500">
                         <ErrorMessage name="description" component="small" />
                       </Box>
-
-
                     </FormControl>
                     <FormControl className="formControl-image" mt={2}>
                       <FormLabel>Imagen</FormLabel>
@@ -186,9 +175,6 @@ const FormMembersEdit = ({ data, mode }) => {
                         ref={buttonImg}
                         onChange={async (e) => {
                           handleImage(e, props.handleChange, props.setFieldValue);
-                          // setFileName(e.target.files[0].name)
-                          // const file64 = await getBase64(e.target.files[0])
-                          // props.setFieldValue('image', file64)
                         }}
                         onBlur={props.handleBlur}
                         value={props.values.file}
@@ -279,4 +265,4 @@ const FormMembersEdit = ({ data, mode }) => {
   );
 }
 
-export default FormMembersEdit;
+export default FormMembers;

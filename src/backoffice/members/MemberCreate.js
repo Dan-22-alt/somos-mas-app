@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import './stylesMembers.css'
 import FormMembersEdit from './FormMembers'
 
 const MembersCreate = () => {
-    const data =
-    {
+    const data = {
         name: '',
         description: '',
         image: '',
