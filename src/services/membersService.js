@@ -1,6 +1,18 @@
 import httpClient from "../utils/httpClient";
 
-export function getData(id) {
+export function getAll() {
+  return httpClient
+  .get(`/members`)
+  .then((response) => {
+    console.log(response.data);
+    return response.data})
+  .catch(e => {
+    console.log(e)
+    return e
+  });
+}
+
+export function getMember(id) {
   return httpClient
     .get(`/members/` + id)
     .then((response) => response.data)
@@ -23,8 +35,11 @@ export function edit(id, data) {
 
 export function deleteMember(id) {
   return httpClient
-    .post(`/members/`+id)
-    .then((response) => response.data)
+    .delete(`/members/`+id)
+    .then((response) => {
+      console.log(response.data);
+      return response.data
+    })
     .catch(e => {
       console.log(e)
       return e
