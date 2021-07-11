@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import './stylesMembers.css'
 import { useParams } from 'react-router-dom'
-import FormMembersEdit from './FormMembersEdit'
+import FormMembersEdit from './FormMembers'
 import { useState, useEffect } from 'react';
 import ComponentSkeleton from './../../layout/ComponentSkeleton';
 import { getMember} from '../../services/membersService'

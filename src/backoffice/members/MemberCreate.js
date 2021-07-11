@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import './stylesMembers.css'
-import FormMembersEdit from './FormMembersEdit'
+import FormMembersEdit from './FormMembers'
 
 const MembersCreate = () => {
     const data =
@@ -12,9 +12,7 @@ const MembersCreate = () => {
         linkedinUrl: ''
     }
     return (
-        <Fragment>
-            <FormMembersEdit data={data} mode={"create"}></FormMembersEdit>
-        </Fragment>
+        <FormMembersEdit data={data} mode={"create"}></FormMembersEdit>
     )
 }
 export default MembersCreate
