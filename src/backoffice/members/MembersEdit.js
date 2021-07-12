@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 import './stylesMembers.css'
 import { useParams } from 'react-router-dom'
-import FormMembersEdit from './FormMembersEdit'
-import axios from 'axios'
+import FormMembersEdit from './FormMembers'
 import { useState, useEffect } from 'react';
 import ComponentSkeleton from './../../layout/ComponentSkeleton';
+import { getMember } from '../../services/membersService'
+import ErrorMessage from '../../components/alert/ErrorMessage';
+import { CenterBox } from './../../components/CenterBox/index';
 
 const MembersEdit = () => {
   const { id } = useParams()
@@ -13,37 +15,29 @@ const MembersEdit = () => {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    const getMember = async () => {
-      await axios({ method: 'GET', url: process.env.REACT_APP_API_MEMBER + "/" + id })
-        .then(consulta => {
-          setMember(consulta.data.data)
-          setReady(true)
-
-        }).catch(error => {
-          console.error(error);
-          setError(true)
-        })
-    }
-    getMember()
-  }, [id])
-
+    getMember(id).then(res => {
+      setMember(res.data)
+      res.data.name ? (setReady(true)) : setReady(false)
+    }).catch(error => {
+      setError(true)
+      return error
+    })
+  }, [])
   return (
     <Fragment>
       {
         ready ?
-          (<FormMembersEdit data={member}></FormMembersEdit>)
+          (<FormMembersEdit data={member} mode={"edit"} />)
           :
-          (
-            !error ?
-              (<div className="contenedorMemberEditSkeleton margin-auto">
-                <ComponentSkeleton></ComponentSkeleton>
-              </div>)
-              :
-              (<span> ESTE MIEMBRO NO EXISTE - ERROR 404</span>)
+          (!error ?
+            (<div className="contenedorMemberEditSkeleton margin-auto">
+              <ComponentSkeleton />
+            </div>)
+            :
+            (<CenterBox children={<ErrorMessage message={"ESTE MIEMBRO NO EXISTE - ERROR 404"}></ErrorMessage>}></CenterBox>)
           )
       }
     </Fragment>
   )
 }
-
 export default MembersEdit

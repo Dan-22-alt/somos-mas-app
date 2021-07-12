@@ -1,4 +1,3 @@
-import { Example2 } from "../../pages/Example2";
 import FormTestimonials from
 "../../backoffice/testimonials/FormTestimonials/index";
 import { ActivitiesPage } from "../../pages/ActivitiesPage";
@@ -19,7 +18,7 @@ import ListTestimonials from "../../backoffice/testimonials/list/ListTestimonial
 import ScreenList from "../../backoffice/users/ScreenList";
 import ListOfSlides from "../../backoffice/slides/ListOfSlides";
 import MembersEdit from './../../backoffice/members/MembersEdit';
-console.log('acordate de borrarme paisa')
+import MembersCreate from './../../backoffice/members/MemberCreate';
 
 /*
   component = Ahi iria la pagina
@@ -59,5 +58,6 @@ export const Pages = [
 	new Page(CreateSlidePage, "/backoffice/slides/create"),
 	new Page(ScreenList, "/backoffice/users"),
 	new Page(ListOfSlides, "/backoffice/slides"),
-	new Page(MembersEdit, "/backoffice/members/edit/:id")
+	new Page(MembersEdit, "/backoffice/members/edit/:id"),
+	new Page(MembersCreate, "/backoffice/members/create")
 ];
