@@ -25,7 +25,7 @@ const MembersEdit = () => {
         })
     }
     getMember()
-  }, [])
+  }, [id])
 
   return (
     <Fragment>

@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Container } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
-import { Center } from "@chakra-ui/react";
+import { Button, Center, Container } from "@chakra-ui/react";
 import ComponentNewsBox from "./ComponentNewsBox";
 import { getNews } from "../services/newsService";
+import { useDispatch } from "react-redux";
+import { obtenerNovedadesAction } from "../services/newServices";
 
+// Redux
 const ComponentScreenListOfNews = () => {
-  const [news, setNews] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getNews().then((response) => {
-      setNews(response.data);
-    });
+    // Consultar la api
+    const cargarNovedades = () => dispatch(obtenerNovedadesAction());
+    cargarNovedades();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -27,7 +29,7 @@ const ComponentScreenListOfNews = () => {
           <h1>Ultimas novedades</h1>
         </Center>
         <Center d="flex" flexDirection="column" marginTop="2%">
-          {news.map((n) => (
+          {dispatch.map((n) => (
             <ComponentNewsBox {...n} key={n.id} />
           ))}
         </Center>
