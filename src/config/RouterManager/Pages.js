@@ -1,4 +1,3 @@
-import { Example2 } from "../../pages/Example2";
 import { ActivitiesPage } from "../../pages/ActivitiesPage";
 import { CategoriesPage } from "../../pages/CategoriesPage";
 import { HomePage } from "../../pages/HomePage";
@@ -34,11 +33,11 @@ class Page {
   }
 }
 
+//new Page(Example2, "/example2"),
 export const Pages = [
   new Page(HomePage, "/"),
   new Page(Registro, "/Registro"),
   new Page(Login, "/Login"),
-  new Page(Example2, "/example2"),
   new Page(BackofficePage, "/backoffice"),
   new Page(ScreenList, "/backoffice/users"),
   new Page(ComponentScreenListOfNews, "/backoffice/news"),
