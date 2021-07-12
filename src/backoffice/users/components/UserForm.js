@@ -41,7 +41,7 @@ const UserForm = ({ user }) => {
     };
 
     if (user) {
-      updateUser(user?.id)
+      updateUser(user?.id, putBody)
         .then(() => {
           toast({
             title: "Usuario actualizado.",
@@ -64,7 +64,7 @@ const UserForm = ({ user }) => {
       createUser(values)
         .then(() => {
           toast({
-            title: "Novedad creada.",
+            title: "Uauario creado.",
             status: "success",
           });
           history.push("/backoffice/users");
