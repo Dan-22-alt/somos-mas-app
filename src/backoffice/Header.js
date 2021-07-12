@@ -1,9 +1,10 @@
 import React from "react";
 import { Box, Flex, IconButton, Text, useDisclosure } from "@chakra-ui/react";
 import { FiMenu } from "react-icons/fi";
+import Sidebar from "./Sidebar";
 
 const Header = () => {
-  const { onOpen } = useDisclosure();
+  const { isOpen, onClose, onOpen } = useDisclosure();
   return (
     <Box>
       <Flex
@@ -31,6 +32,7 @@ const Header = () => {
           </Text>
         </Flex>
       </Flex>
+      <Sidebar onClose={onClose} isOpen={isOpen} />
     </Box>
   );
 };

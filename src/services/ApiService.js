@@ -9,6 +9,16 @@ const init = {
 
 const documentation = process.env.REACT_APP_API_BASE_URL + 'docs'
 
+export const ApiFetch = ({endPoint=documentation, method='get', body=null, headers=null}) => {
+  const token = localStorage.getItem('token')
+    ? {Authentication: localStorage.getItem('token')}
+    : {}
+
+  return axios[method](endPoint, body, {...headers, ...token})
+    .then(({data}) => ({res: data, error: null}))
+    .catch(error => ({ error, data: null}))
+}
+
 export const ApiGet = (endPoint=documentation) => {
   const [data, setData] = useState(init)
 

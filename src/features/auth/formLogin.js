@@ -1,28 +1,19 @@
 import React from 'react';
 import {
-    Flex,
-    Heading,
-    Input,
-    Button,
-    Stack,
-    Box,
-    Avatar,
-    FormControl,
-    FormLabel,
-    Alert,
-    AlertIcon,
-    useToast,
+  Flex, Heading,
+  Input, Button,
+  Stack, Box,
+  Avatar, FormControl,
+  FormLabel, Alert,
+  AlertIcon
 } from '@chakra-ui/react';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import { login } from '../../services/authService'
-import { useSelector, useDispatch } from 'react-redux';
-import { authLog, selectAuth } from '../../reducers/authReducer';
+import { useDispatch } from 'react-redux';
+import { authLog } from '../../reducers/authReducer';
 
 const FormLogin = () => {
 
-    const toast = useToast();
-    const auth = useSelector(selectAuth);
     const dispatch = useDispatch();
 
     // Formulario y validación con formik y Yup
@@ -44,34 +35,9 @@ const FormLogin = () => {
                 email: valores.email,
                 password: valores.password
             };
-            // console.log(values)
-            //Conexion a la API
             dispatch(authLog(values))
-            // const alertType = login(values)
-            // handleFeedback(alertType)
         }
     });
-
-    //Funcion para llamar alertas de Login
-
-    const handleFeedback = (alertType) => {
-        if (alertType){
-            toast({
-				description: "Bienvenido!",
-				status: "success",
-				duration: 2000,
-				isClosable: true,
-			});
-        }
-        else{
-            toast({
-				description: "Email o contraseña incorrecta",
-				status: "error",
-				duration: 2000,
-				isClosable: true,
-			});
-        }
-    }
 
     return (
         <Flex
@@ -150,7 +116,6 @@ const FormLogin = () => {
                 </Box>
             </Stack>
         </Flex>
-
     );
 }
 

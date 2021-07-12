@@ -5,7 +5,6 @@ import { CategoriesService } from '../../services/CategoriesService'
 
 export const ListOfCategories = () => {
   const categories = CategoriesService.getList()
-
   return (
     <Center
       m='auto'

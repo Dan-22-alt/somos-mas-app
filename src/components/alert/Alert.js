@@ -60,8 +60,8 @@ const Alert = ({
 	};
 	useEffect(() => {
 		setColorsByVariant({ type, setVariant });
+    // eslint-disable-next-line
 	}, []);
-
 	return (
 		<>
 			<AlertDialog
