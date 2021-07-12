@@ -1,4 +1,5 @@
-import { Example2 } from "../../pages/Example2";
+import FormTestimonials from
+"../../backoffice/testimonials/FormTestimonials/index";
 import { ActivitiesPage } from "../../pages/ActivitiesPage";
 import { CategoriesPage } from "../../pages/CategoriesPage";
 import { HomePage } from '../../pages/HomePage'
@@ -35,10 +36,11 @@ class Page {
 	}
 }
 
+	//new Page(Example2, "/example2"),
 export const Pages = [
   new Page(HomePage, '/'),
-	new Page(Example2, "/example2"),
-	new Page(BackofficePage, "/backoffice"),
+	new Page(FormTestimonials, "/example2"),
+ 	new Page(BackofficePage, "/backoffice"),
 	new Page(ComponentScreenListOfNews, "/backoffice/news"),
 	new Page(ComponentCreateNews, "/backoffice/news/create"),
 	new Page(ActivitiesPage, "/backoffice/activities"),

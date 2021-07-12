@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import ComponentSkeleton from './../../layout/ComponentSkeleton';
 import { getMember } from '../../services/membersService'
 import ErrorMessage from '../../components/alert/ErrorMessage';
-import { CenterBox } from './../../components/CenterBox/CenterBox';
+import { CenterBox } from './../../components/CenterBox/index';
 
 const MembersEdit = () => {
   const { id } = useParams()
