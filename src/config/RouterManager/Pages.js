@@ -17,7 +17,7 @@ import ListTestimonials from "../../backoffice/testimonials/list/ListTestimonial
 import ScreenList from "../../backoffice/users/ScreenList";
 import ListOfSlides from "../../backoffice/slides/ListOfSlides";
 import MembersEdit from "./../../backoffice/members/MembersEdit";
-
+import MembersCreate from "./../../backoffice/members/MemberCreate";
 /*
   component = Ahi iria la pagina
   path = endpoind de la url
@@ -56,4 +56,5 @@ export const Pages = [
   new Page(ListTestimonials, "/backoffice/testimonials"),
   new Page(EditPage, "/backoffice/organization/edit"),
   new Page(MembersEdit, "/backoffice/members/edit/:id"),
+  new Page(MembersCreate, "/backoffice/members/create"),
 ];
