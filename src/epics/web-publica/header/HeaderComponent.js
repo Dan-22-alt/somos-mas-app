@@ -10,8 +10,8 @@ const Header = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const handleToggle = () => (isOpen ? onClose() : onOpen());
 
+    // revisar esta funcion, o verificar de donde traer los datos de sesion
     const logged = userIsLogged()
-
     console.log(logged);
 
     //   datos ejemplo ----------------------------------------
