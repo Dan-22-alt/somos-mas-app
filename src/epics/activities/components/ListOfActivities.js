@@ -4,7 +4,7 @@ import { Activity } from "./Activity";
 import { useHistory } from "react-router-dom";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import {
 	borrarActividadAction,
 	obtenerActividadesAction,
@@ -38,6 +38,11 @@ export const ListOfActivities = () => {
 				});
 			});
 	};
+
+
+  useEffect(()=> {
+
+  }, [])
 
 	const dispatch = useDispatch();
 

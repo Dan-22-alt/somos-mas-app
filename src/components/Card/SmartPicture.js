@@ -8,6 +8,7 @@ export const SmartPicture = ({src}) => (
       src={src}
       objectFit="cover"
       h="350px"
+      m='auto'
       p="3px"
     />
       :
