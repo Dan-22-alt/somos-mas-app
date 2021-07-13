@@ -3,22 +3,32 @@ import { Link } from "react-router-dom";
 import { Button, Center, Container } from "@chakra-ui/react";
 import ComponentNewsBox from "../components/ComponentNewsBox";
 import { getNews } from "../../../services/newsService";
-import { useDispatch } from "react-redux";
+import { Card } from "../../../components/Card";
+
+import { useSelector, useDispatch } from "react-redux";
 import { obtenerNovedadesAction } from "../../../services/newServices";
 
 // Redux
 const ComponentScreenListOfNews = () => {
 	const dispatch = useDispatch();
+  const [data, setData] = useState([])
+
+	useEffect(() => {
+    getNews().then(r => setData(r.data))
+	}, []);
 
 	useEffect(() => {
 		// Consultar la api
-		const cargarNovedades = () => dispatch(obtenerNovedadesAction());
-		cargarNovedades();
+		//const cargarNovedades = () => dispatch(obtenerNovedadesAction());
+		//cargarNovedades();
+
+    getNews().then(r => setData(r.data))
 		// eslint-disable-next-line
 	}, []);
 
 	return (
 		<div>
+          <Card />
 			<Container maxW="container.xl" marginTop="1.5%">
 				<Center>
 					<Link to="/backoffice/news/create">
@@ -29,7 +39,7 @@ const ComponentScreenListOfNews = () => {
 					<h1>Ultimas novedades</h1>
 				</Center>
 				<Center d="flex" flexDirection="column" marginTop="2%">
-					{dispatch.map(n => (
+					{data.map(n => (
 						<ComponentNewsBox {...n} key={n.id} />
 					))}
 				</Center>
@@ -39,3 +49,12 @@ const ComponentScreenListOfNews = () => {
 };
 
 export default ComponentScreenListOfNews;
+
+
+/*
+ *
+ *
+					{dispatch.map(n => (
+						<ComponentNewsBox {...n} key={n.id} />
+					))}
+*/
