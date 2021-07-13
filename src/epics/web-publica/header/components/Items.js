@@ -16,7 +16,7 @@ const Items = ({ array, isOpen }) => {
             >
                 {
                     array.map(item => (
-                        <Text key={item.id}>
+                        <Text key={item.id} fontSize="xl">
                             <Link href={item.route}>
                                 {item.name}
                             </Link>
