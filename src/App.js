@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { Route } from "./config/RouterManager/Route";
 import { Pages } from "./config/RouterManager/Pages";
 import userIsLogged from "./features/auth/userIsLogged";
-import "./App.css";
 
 function App() {
 	useEffect(() => {
