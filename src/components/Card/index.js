@@ -9,8 +9,9 @@ export const Card = ({name, id, image, description, handleEdit, handleDelete}) =
 			borderWidth="1px"
 			borderRadius="lg"
       w={[350]}
-			bg="purple.200"
 			pb="10px"
+      boxShadow="lg"
+      p='1rem'
     >
       <SmartPicture src={image} />
 			<Box>
