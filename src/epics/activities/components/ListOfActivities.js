@@ -18,7 +18,7 @@ export const ListOfActivities = () => {
 
   useEffect(() => {
     dispatch(fetchActivities());
-  }, [])
+  }, [dispatch])
 
 	const handleDelete = id => {
     dispatch(deleteActivity(id))
