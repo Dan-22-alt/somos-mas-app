@@ -10,10 +10,15 @@ import { obtenerNovedadesAction } from "../../../services/newServices";
 const ComponentScreenListOfNews = () => {
 	const dispatch = useDispatch();
 
+	const [data, setData] = useState([])
+
 	useEffect(() => {
 		// Consultar la api
-		const cargarNovedades = () => dispatch(obtenerNovedadesAction());
-		cargarNovedades();
+		//Nuevo metodo
+		getNews().then(r => setData(r.data))
+		//Da error
+		// const cargarNovedades = () => dispatch(obtenerNovedadesAction());
+		// cargarNovedades();
 		// eslint-disable-next-line
 	}, []);
 
@@ -29,7 +34,7 @@ const ComponentScreenListOfNews = () => {
 					<h1>Ultimas novedades</h1>
 				</Center>
 				<Center d="flex" flexDirection="column" marginTop="2%">
-					{dispatch.map(n => (
+					{data.map(n => (
 						<ComponentNewsBox {...n} key={n.id} />
 					))}
 				</Center>
