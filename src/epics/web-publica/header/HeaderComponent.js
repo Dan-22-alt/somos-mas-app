@@ -56,8 +56,8 @@ const Header = (props) => {
             align="center"
             justify="space-between"
             wrap="wrap"
-            padding={6}
-            bg="teal.500"
+            padding={1}
+            bg="blue.1"
             color="white"
         >
             <Flex align="center" >

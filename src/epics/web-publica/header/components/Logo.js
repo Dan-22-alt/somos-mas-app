@@ -6,7 +6,7 @@ const Logo = (img) => {
         <Box>
             <Image
                 objectFit="cover"
-                width="20vw"
+                width="12vw"
                 mr={5}
                 alt="Logo"
                 src={img.img} />                
