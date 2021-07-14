@@ -13,6 +13,11 @@ const ComponentScreenListOfNews = () => {
 		history.push(`/backoffice/news/${id}/edit`);
 	};
 
+
+	useEffect(() => {
+    getNews().then(r => setData(r.data))
+	}, []);
+
 	const handleDelete = id => {
 		deleteNews(id)
 			.then(r => {
@@ -30,10 +35,6 @@ const ComponentScreenListOfNews = () => {
 				});
 			});
 	};
-
-	useEffect(() => {
-    getNews().then(r => setData(r.data))
-	}, []);
 
 	return (
     <Container maxW="container.xxl" marginTop="1.5%">

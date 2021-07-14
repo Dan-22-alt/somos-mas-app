@@ -1,56 +1,153 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { ApiService } from '../services/ApiService';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import httpClient from "../utils/httpClient";
 
-const newsState = {
-    data: [],
+const initialState = {
+    news: [],
     status: 'idle',
     error: null,
 };
 
-
-const newsSlice = createSlice({
-    name: "newsBackoffice",
-    initialState: newsState,
-    reducers: {
-        newAdded: {
-            reducer(state, action) {
-                state.data.push(action.payload)
-            }
-        },
-        reactionAdded(state, action) {
-            const { newId, reaction } = action.payload
-            const existingNew = state.data.find(newBackoffice => newBackoffice.id === newId)
-            if (existingNew) {
-                existingNew.reactions[reaction]++
-            }
-        },
-        newUpdated(state, action) {
-            const { id, name, content } = action.payload
-            const existingNew = state.data.find(newBackoffice => newBackoffice.id === id)
-            if (existingNew) {
-                existingNew.name = name
-                existingNew.content = content
-            }
-        },
-        deleteNew(state, action) {
-            const { id } = action.payload
-            console.log(state, id)
-        },
-
+//Funcion para obtener las News => dispatch(ObtenerNovedades());
+export const ObtenerNovedades = createAsyncThunk(
+    'news/ObtenerNovedades',
+    async (arg, { getState }) => { // <-- destructure getState method
+        const state = getState(); // <-- invoke and access state object
+        const respuesta = await httpClient.get("/news");
+        return respuesta.data.data;
     }
+);
+
+//Funcion para obtener las News => dispatch(agregarNews(payload));
+export const agregarNews = createAsyncThunk(
+    'posts/agregarNews',
+    async (news, { getState }) => { // <-- destructure getState method
+        const state = getState(); // <-- invoke and access state object
+        const respuesta = await httpClient("/news",{
+            method: 'POST',
+            data : { 
+                name: `${news.name}`,
+                content: `${news.content}`,
+                category_id: `${news.category_id}`,
+                image: `${news.image }`,
+            } ,
+        })
+        return respuesta.data.data;
+    }
+);
+
+//Funcion para obtener las News => dispatch(actualizarNews(news));
+export const actualizarNews = createAsyncThunk(
+  'posts/actualizarNews',
+  async (news, { getState }) => { // <-- destructure getState method
+    const state = getState(); // <-- invoke and access state object
+      const respuesta = await httpClient.put(`/news/${news.id}`, news); 
+      console.log(respuesta.data.data) 
+      return respuesta.data.data;
+   
+  }
+);
+
+//Funcion para obtener las News => dispatch(borrarNewsAction(news));
+export const borrarNewsAction = createAsyncThunk(
+  'posts/borrarNews',
+  async (news) => { // <-- destructure getState metho
+      const respuesta = await httpClient.delete(`/news/${news.id}`);
+      console.log(respuesta)
+      return news.id;
+  }
+);
+
+//Funcion para obtener las News => dispatch(ObtenerNovedadesId(news));
+export const ObtenerNovedadesId = createAsyncThunk(
+  'news/ObtenerNovedadesId',
+  async (news, { getState }) => { // <-- destructure getState method
+    const state = getState(); // <-- invoke and access state object
+      const respuesta = await httpClient.get(`/news/${news.id}`, news);
+      console.log(respuesta)
+      return respuesta.data.data;
+   
+  }
+);
+
+
+
+const novedadesSlice = createSlice({
+  name: 'news',
+  initialState,
+  reducers: {
+    newEliminar: (state, action) => {
+      state.newseliminar= action.payload
+    },
+    newError: (state, action) => {
+        state.error = action.error.message;
+        state.state = 'error'
+    },
+  },
+  extraReducers: {
+    [ObtenerNovedades.pending]: (state, action) => {
+      state.status = 'loading'
+    },
+    [ObtenerNovedades.fulfilled]: (state, action) => {
+      state.status = 'succeeded'
+      // Add any fetched posts to the array
+      state.news = action.payload
+    },
+    [ObtenerNovedades.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
+    [agregarNews.pending]: (state, action) => {
+        state.status = 'loading'
+    },
+    [agregarNews.fulfilled]: (state, action) => {
+        state.status = 'succeeded'
+        state.news = [...state.news, action.payload] 
+    },
+    [agregarNews.rejected]: (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+    },
+    [actualizarNews.pending]: (state, action) => {
+        state.status = 'loading'
+    },
+    [actualizarNews.fulfilled]: (state, action) => {
+        state.status = 'succeeded'
+        state.news = state.news.map( novedad => 
+          novedad.id === action.payload.id ? novedad = action.payload : novedad
+        )
+    },
+    [actualizarNews.rejected]: (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+    },
+    [borrarNewsAction.pending]: (state, action) => {
+        state.status = 'loading'
+    },
+    [borrarNewsAction.fulfilled]: (state, action) => {
+        state.status = 'succeeded'
+      const id = action.payload
+      state.news =  state.news.filter( novedad => novedad.id !== id)
+    },
+    [borrarNewsAction.rejected]: (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+    },
+    [ObtenerNovedadesId.pending]: (state, action) => {
+        state.status = 'loading'
+    },
+    [ObtenerNovedadesId.fulfilled]: (state, action) => {
+      state.status = 'succeeded'
+      state.news = [action.payload]
+    },
+    [ObtenerNovedadesId.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
+   
+  
+  },
 })
 
-export const { newAdded, newUpdated, reactionAdded, deleteNew } = newsSlice.actions
+export const {newError, newEliminar } = novedadesSlice.actions
 
-export const selectNews = state => state.news.data
-
-export default newsSlice.reducer
-
-export const selectNewById = (state, newId) =>
-    state.newsBackoffice.newsBackoffice.find(newBackoffice => newBackoffice.id === newId)
-
-export const fetchNewsBackoffice = createAsyncThunk('news/fetchNewsBackoffice', async () => {
-    const response = await ApiService.get('/news')
-    console.log(response.data)
-    return response.data
-})
+export default novedadesSlice.reducer
