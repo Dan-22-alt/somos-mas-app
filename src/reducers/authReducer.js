@@ -1,11 +1,49 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { register } from "../services/authService";
+
+// ! SIGN UP FUNCTIONALITY
+
+export const signUpUser = createAsyncThunk(
+	"auth/signUpUser",
+	async (body, { rejectWithValue }) => {
+		try {
+			const response = await register(body);
+			if (response.status === 200) {
+				return response.data.data;
+			} else {
+				return rejectWithValue(response.data);
+			}
+		} catch (error) {
+			console.log("Error", error.response.data);
+			return rejectWithValue(error.response.data);
+		}
+	}
+);
+
+/* 
+USAGE:{
+	import { useDispatch } from "react-redux";
+	import { signUpUser } from "./authReducer";
+
+	///...
+
+	const dispatch = useDispatch();
+		dispatch(
+						signUpUser({
+							name: "name",
+							email: "email",
+							password: "password",
+						})
+					);
+}
+*/
 
 // AUTH STATE
 const authState = {
 	token: "",
 	error: "",
-	user: null,
+	user: {},
 	loading: false,
 	state: null,
 };
@@ -26,29 +64,27 @@ const authSlice = createSlice({
 			state.error = action.payload;
 			state.state = "error";
 		},
-		signInLoading: state => {
+	},
+	extraReducers: {
+		//signUpUser
+		[signUpUser.pending]: state => {
 			state.loading = true;
 		},
-
-		signInSuccess: (state, action) => {
-			state.token = action.payload.token;
-			localStorage.setItem("token", action.payload.token);
+		[signUpUser.rejected]: (state, { payload }) => {
+			state.state = "error";
+			state.error = payload.message;
 			state.loading = false;
 		},
-		signInFail: (state, action) => {
-			state.error = action.payload.error;
+		[signUpUser.fulfilled]: (state, { payload }) => {
+			state.user = payload.user;
+			state.token = payload.token;
 			state.loading = false;
+			state.state = "success";
 		},
 	},
 });
 
-export const {
-	loginSuccess,
-	loginFailed,
-	signInLoading,
-	signInSuccess,
-	signInFail,
-} = authSlice.actions;
+export const { loginSuccess, loginFailed } = authSlice.actions;
 
 export const selectAuth = state => state.auth;
 
