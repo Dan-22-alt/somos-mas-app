@@ -1,12 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import authReducer from '../reducers/authReducer';
-import newsBackofficeSlice from '../reducers/newsBackofficeReducer';
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "../features/counter/counterSlice";
+import authReducer from "../reducers/authReducer";
+import newsBackofficeSlice from "../reducers/newsBackofficeReducer";
+import activitiesReducer from "../reducers/activitiesSlice";
 
 export default configureStore({
-  reducer: {
-    counter: counterReducer,
-    auth: authReducer,
-    news : newsBackofficeSlice,
-  },
+	reducer: {
+		counter: counterReducer,
+		auth: authReducer,
+		news: newsBackofficeSlice,
+		activities: activitiesReducer,
+	},
 });
