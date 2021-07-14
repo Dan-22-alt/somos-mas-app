@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, handleRequest } from '../services/authService'
 import axios from 'axios'
 
 // AUTH STATE
