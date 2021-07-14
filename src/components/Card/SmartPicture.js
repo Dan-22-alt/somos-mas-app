@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 
 export const SmartPicture = ({src}) => (
   src ?
@@ -14,10 +14,15 @@ export const SmartPicture = ({src}) => (
       :
     <Box
       borderRadius="lg"
+      display='flex'
       bg="purple.100"
       h="350px"
+      alignItems='center'
+      justifyContent='center'
       p="3px"
     >
-      Hola
+      <Text as='p'>
+        No existe esta imagen
+      </Text>
     </Box>
 )
