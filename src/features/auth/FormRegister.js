@@ -16,11 +16,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ApiFetch } from "../../services/ApiService";
 import { useDispatch } from "react-redux";
-import {
-	signInLoading,
-	signInSuccess,
-	signInFail,
-} from "../../reducers/authReducer";
+import { signUpUser } from "../../reducers/authReducer";
 
 const FormRegister = () => {
 	const dispatch = useDispatch();
@@ -43,26 +39,12 @@ const FormRegister = () => {
 				.min(6, "El password debe contener al menos 6 caracteres"),
 		}),
 		onSubmit: valores => {
-			dispatch(signInLoading());
 			const values = {
 				name: valores.nombre,
 				email: valores.email,
 				password: valores.password,
 			};
-
-			dispatch(signInLoading());
-
-			ApiFetch({
-				endPoint: process.env.REACT_APP_API_REGISTER,
-				method: "post",
-				body: values,
-			}).then(({ res, error }) => {
-				if (error) dispatch(signInFail({ error }));
-				else {
-					const token = res.data.token;
-					dispatch(signInSuccess({ token }));
-				}
-			});
+			dispatch(signUpUser(values));
 		},
 	});
 
