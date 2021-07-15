@@ -17,6 +17,7 @@ import ScreenList from "../../epics/users/components/screen-list/ScreenList";
 import ListOfSlides from "../../epics/slides/components/ListOfSlides";
 import MembersEdit from "../../epics/members/pages/MembersEdit";
 import MembersCreate from "../../epics/members/pages/MemberCreate";
+import MembersList from "../../epics/members/pages/MemberList";
 /*
   component = Ahi iria la pagina
   path = endpoind de la url
@@ -56,4 +57,5 @@ export const Pages = [
 	new Page(EditPage, "/backoffice/organization/edit"),
 	new Page(MembersEdit, "/backoffice/members/edit/:id"),
 	new Page(MembersCreate, "/backoffice/members/create"),
+	new Page(MembersList, "/backoffice/members"),
 ];
