@@ -9,15 +9,15 @@ import {
 const Items = ({ titulo, array }) => {
 
     return (
-        <Stack mt={0} align={'center'}>
+        <Stack mt={0} px={0} align={'center'} fontSize={["md", "lg", "xl"]}>
        
-            <Text fontWeight={'500'} fontSize={'md'} mb={2}>
+            <Text fontWeight={'500'} fontSize={["sm", "md", "lg", "xl"]}  mb={2}>
                 {titulo}
             </Text>
-            <SimpleGrid columns={2} spacing={5}>
+            <SimpleGrid columns={["1","2"]} spacing={2}>
             {
                 array.map(item => (
-                    <Text key={item.id} fontSize="sm" >
+                    <Text key={item.id} fontSize={["xs","sm", "md", "lg", "xl"]} mx={"auto"} >
                         <Link href={item.route}>
                             {item.name}
                         </Link>

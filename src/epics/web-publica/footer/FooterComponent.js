@@ -71,15 +71,15 @@ const FooterComponent = () => {
                 color="white"
                 mt="20rem" // RECORDAR SACARLOOOOOO ES SOLO DE PARA LA PRUEBAAAAA-------------------------------------------------
             >
-                <Container as={Stack} maxW={'7x1'} py={2}>
+                <Container as={Stack} maxW={'5x1'} py={2}>
                     <SimpleGrid
-                        columns={3} spacing={10}>
+                        columns={3} spacing={5}>
                         <Center>
-                        <Stack  spacing={4}>
+                        <Stack  spacing={2}>
                             <Flex align="center" >
                                 <Logo img={data.logo}></Logo>
                             </Flex>
-                            <Heading mx={1} as="h3" size="md">
+                            <Heading align="center" mx={0} as="h3" size="md">
                                 <Center>{data.name}</Center>
                             </Heading>
                         </Stack>

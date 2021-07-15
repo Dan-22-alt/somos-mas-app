@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import Items from './components/Items';
@@ -46,7 +46,7 @@ const Header = (props) => {
     },
     ]
 
-    const usuarioLog = false
+    const usuarioLog = true
 
     // fin datos ejemplo ----------------------------------------
 
@@ -64,17 +64,22 @@ const Header = (props) => {
                 <Logo img={datosEjemplo.logo}></Logo>
             </Flex>
 
-            <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
-                <HamburgerIcon />
-            </Box>
+
 
             {
                 usuarioLog ?
-                (<Items array={arraySecciones} isOpen={isOpen} ></Items>)
-                :
-                (<ButtonLog isOpen={isOpen} ></ButtonLog>)
+                    (
+                        <Fragment>
+                            <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+                                <HamburgerIcon />
+                            </Box>
+                            <Items array={arraySecciones} isOpen={isOpen} ></Items>
+                        </Fragment>
+                    )
+                    :
+                    (<ButtonLog isOpen={isOpen} ></ButtonLog>)
             }
-                
+
         </Flex>
     );
 };
