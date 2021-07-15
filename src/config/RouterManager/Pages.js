@@ -1,11 +1,8 @@
 import { ActivitiesPage } from "../../epics/activities/pages/ActivitiesPage";
 import { CategoriesPage } from "../../epics/categories/pages/CategoriesPage";
-import { HomePage } from "../../epics/home/pages/HomePage";
 import EditPage from "../../epics/organization/pages/EditPage";
 import ComponentScreenListOfNews from "../../epics/news/pages/ComponentScreenListOfNews";
 import ComponentCreateNews from "../../epics/news/pages/ComponentCreateNews";
-import Registro from "../../epics/register/pages/Registro";
-import Login from "../../epics/login/pages/Login";
 import BackofficePage from "../../epics/backoffice/pages/Backoffice";
 import FormCategory from "../../epics/categories/pages/FormCategory";
 import EditNewsPage from "../../epics/news/pages/EditNewsPage";
@@ -36,9 +33,6 @@ class Page {
 
 //new Page(Example2, "/example2"),
 export const Pages = [
-	new Page(HomePage, "/"),
-	new Page(Registro, "/Registro"),
-	new Page(Login, "/Login"),
 	new Page(BackofficePage, "/backoffice"),
 	new Page(ScreenList, "/backoffice/users"),
 	new Page(ComponentScreenListOfNews, "/backoffice/news"),
