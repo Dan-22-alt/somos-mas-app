@@ -4,12 +4,12 @@ import App from "./App";
 import store from "./app/store";
 import { Provider } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
-import themeSomosMas from "./utils/theme";
+import { theme } from "./theme/theme";
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<ChakraProvider theme={themeSomosMas}>
+			<ChakraProvider theme={theme}>
 				<App />
 			</ChakraProvider>
 		</Provider>

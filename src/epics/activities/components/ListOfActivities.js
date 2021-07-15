@@ -1,52 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { SimpleGrid, useToast } from "@chakra-ui/react";
-import { Activity } from "./Activity";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SimpleGrid } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 
-// Redux
-import { useDispatch } from "react-redux";
+import { Card } from "../../../components/Card";
+
 import {
-	borrarActividadAction,
-	obtenerActividadesAction,
-} from "../../../services/activitiesService";
+  fetchActivities,
+  activitiesSelectors,
+  deleteActivity
+} from "../../../reducers/activitiesSlice"
 
 export const ListOfActivities = () => {
-	const [activities, setActivities] = useState({
-		loading: true,
-		res: [],
-		error: "",
-	});
-	const [deleteAlertIsOpen, setDeleteAlertIsOpen] = useState(false);
-	const toast = useToast();
-	let history = useHistory();
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const allActivities = useSelector(activitiesSelectors.selectAll)
 
-	const deleteItem = id => {
-		setDeleteAlertIsOpen(true);
-		borrarActividadAction(id)
-			.then(() => {
-				toast({
-					title: "Actividad eliminada.",
-					status: "success",
-				});
-				window.location.reload();
-				history.push("/backoffice/activities");
-			})
-			.catch(e => {
-				toast({
-					title: "Ocurrio un error al eliminar la actividad.",
-					status: "error",
-				});
-			});
+  useEffect(() => {
+    dispatch(fetchActivities());
+  }, [dispatch])
+
+	const handleDelete = id => {
+    dispatch(deleteActivity(id))
+		history.push("/backoffice/activities")
 	};
 
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		// Consultar la api
-		const cargarActividades = () => dispatch(obtenerActividadesAction());
-		cargarActividades();
-		// eslint-disable-next-line
-	}, []);
+  const handleEdit = id => {
+    console.log(id)
+  }
 
 	return (
 		<SimpleGrid
@@ -55,14 +36,16 @@ export const ListOfActivities = () => {
 			mt="150px"
 			justifyItems="center"
 			spacing="40px"
-			mx={[0, 5, 10, 30]}>
-			{activities?.res.map(activity => (
-				<Activity
-					key={"activity " + activity.id}
-					deleteItem={deleteItem}
-					{...activity}
-				/>
-			))}
+			mx={[0, 5, 10, 30]}
+    >
+      {allActivities.map(activity => (
+        <Card
+          key={"activity " + activity.id}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+          {...activity}
+        />
+      ))}
 		</SimpleGrid>
 	);
 };
