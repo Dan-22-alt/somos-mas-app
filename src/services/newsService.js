@@ -19,5 +19,6 @@ export function updateNews(id, data) {
 }
 
 export function deleteNews(id) {
-	return httpClient.delete(`/news/${id}`).then(response => response.data);
+	return httpClient.delete(`/news/${id}`)
+    .then(response => response);
 }
