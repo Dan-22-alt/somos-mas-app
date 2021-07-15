@@ -13,6 +13,7 @@ const LogOutButt = () => {
     return (
         <>
             <Button
+                borderRadius="20px"
                 variant="solid"
                 colorScheme="teal"
                 onClick={logOut}>
