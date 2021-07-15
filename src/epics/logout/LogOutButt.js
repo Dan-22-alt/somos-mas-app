@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
 import { Button } from '@chakra-ui/button'
 import { Alert } from "../../components";
+import { useDispatch } from 'react-redux';
+import { logoutSuccess } from '../../reducers/authReducer';
 
 const LogOutButt = () => {
+
+    const dispatch = useDispatch()
 
     const [alertOpen, setAlertOpen] = useState(false)
 
     const logOut = () => {
-        setAlertOpen(true)
+        console.log('logout')
+        dispatch(logoutSuccess())
     }
+
 
     return (
         <>
@@ -16,13 +22,13 @@ const LogOutButt = () => {
                 borderRadius="20px"
                 variant="solid"
                 colorScheme="teal"
-                onClick={logOut}>
+                onClick={() => setAlertOpen(true)}>
                 Cerrar sesión
             </Button>
             <Alert
                 isOpen={alertOpen}
                 setIsOpen={setAlertOpen}
-                //onConfirm={}  Logica para cerar sesion
+                onConfirm={logOut}
                 title="¿Desea cerrar sesión?"
                 type="info"
                 confirmButtonText="Cerrar"

@@ -64,6 +64,12 @@ const authSlice = createSlice({
 			state.error = action.payload;
 			state.state = "error";
 		},
+    logoutSuccess: (state, action) => {
+      state.token = ''
+      state.user = {}
+      localStorage.removeItem("token")
+      state.state = "success"
+    }
 	},
 	extraReducers: {
 		//signUpUser
@@ -84,7 +90,7 @@ const authSlice = createSlice({
 	},
 });
 
-export const { loginSuccess, loginFailed } = authSlice.actions;
+export const { loginSuccess, loginFailed, logoutSuccess } = authSlice.actions;
 
 export const selectAuth = state => state.auth;
 
