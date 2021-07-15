@@ -22,10 +22,15 @@ const authSlice = createSlice({
       state.state = 'error'
 
     },
+    logoutSuccess: (state, action) => {
+      state.token = ''
+      state.user = ''
+      state.state = 'success'
+    }
   },
 });
 
-export const { loginSuccess, loginFailed } = authSlice.actions;
+export const { loginSuccess, loginFailed, logoutSuccess } = authSlice.actions;
 
 export const selectAuth = state => state.auth;
 
