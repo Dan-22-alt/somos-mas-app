@@ -11,7 +11,8 @@ const ButtonLog = (isOpen) => {
         <Button
             variant="solid"
             onClick={()=>{window.location.href = "/login"}}
-            _hover={{ bg: "blue.3", borderColor: "blue.3" }}
+            bg="primary.800"
+            _hover={{ bg: "primary.200", borderColor: "primary.800" }}
         >
             Ingresar
         </Button>

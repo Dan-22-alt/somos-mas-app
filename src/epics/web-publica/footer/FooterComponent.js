@@ -65,7 +65,7 @@ const FooterComponent = () => {
                 justify="space-between"
                 wrap="wrap"
                 pb={1}
-                bg="blue.1"
+                bg="primary.400"
                 color="white"
             >
                 <Container as={Stack} maxW={'5x1'} py={2}>

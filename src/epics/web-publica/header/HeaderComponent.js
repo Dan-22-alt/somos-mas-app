@@ -46,7 +46,7 @@ const Header = (props) => {
     },
     ]
 
-    const usuarioLog = true
+    const usuarioLog = false
 
     // fin datos ejemplo ----------------------------------------
 
@@ -57,7 +57,7 @@ const Header = (props) => {
             justify="space-between"
             wrap="wrap"
             padding={1}
-            bg="blue.1"
+            bg="primary.400"
             color="white"
         >
             <Flex align="center" >
