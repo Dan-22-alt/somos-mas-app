@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react'
-import { Flex, Container, SimpleGrid, Stack, Heading, Center} from "@chakra-ui/react";
+import { Flex, Container, SimpleGrid, Stack, Heading, Center } from "@chakra-ui/react";
 import { getData } from '../../../services/organizationService';
 import Logo from './components/Logo';
 import Items from './components/Items';
@@ -26,7 +26,7 @@ const FooterComponent = () => {
         name: "Proyectos",
         id: 3
     },
-    ,
+        ,
     {
         route: "/2",
         name: "Donaciones",
@@ -45,18 +45,16 @@ const FooterComponent = () => {
     ]
     // Fin datos ejemplo------------------------------------------------------------
 
-
-
     useEffect(() => {
         if (getDatos.res?.data) {
             setData(getDatos.res.data[0]);
             setDatosContacto({
-                phone : getDatos.res.data[0].phone,
+                phone: getDatos.res.data[0].phone,
                 cellphone: getDatos.res.data[0].cellphone,
                 address: getDatos.res.data[0].address
             }
             )
-        } 
+        }
     }, [getDatos]);
     console.log(data);
     return (
@@ -69,20 +67,19 @@ const FooterComponent = () => {
                 pb={1}
                 bg="blue.1"
                 color="white"
-                mt="20rem" // RECORDAR SACARLOOOOOO ES SOLO DE PARA LA PRUEBAAAAA-------------------------------------------------
             >
                 <Container as={Stack} maxW={'5x1'} py={2}>
                     <SimpleGrid
                         columns={3} spacing={5}>
                         <Center>
-                        <Stack  spacing={2}>
-                            <Flex align="center" >
-                                <Logo img={data.logo}></Logo>
-                            </Flex>
-                            <Heading align="center" mx={0} as="h3" size="md">
-                                <Center>{data.name}</Center>
-                            </Heading>
-                        </Stack>
+                            <Stack spacing={2}>
+                                <Flex align="center" >
+                                    <Logo img={data.logo}></Logo>
+                                </Flex>
+                                <Heading align="center" mx={0} as="h3" size="md">
+                                    <Center>{data.name}</Center>
+                                </Heading>
+                            </Stack>
                         </Center>
                         <Items titulo={"Navegación"} array={arraySecciones}></Items>
                         <Contactos titulo={"Contáctanos"} datosContacto={datosContacto}></Contactos>
@@ -92,5 +89,4 @@ const FooterComponent = () => {
         </Fragment>
     )
 }
-
 export default FooterComponent
