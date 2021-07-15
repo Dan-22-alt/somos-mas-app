@@ -3,11 +3,11 @@ import { Box, Image } from "@chakra-ui/react"
 
 const Logo = (img) => {
     return (
-        <Box>
+        <Box p={0} align="center">
             <Image
                 objectFit="cover"
-                width="25vw"
-                mr={5}
+                width="20vw"
+                // mr={5}
                 alt="Logo"
                 src={img.img} />                
         </Box>

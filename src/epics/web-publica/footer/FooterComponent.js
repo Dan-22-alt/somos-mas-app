@@ -1,72 +1,91 @@
 import React, { useEffect, useState, Fragment } from 'react'
-import {
-    Flex,
-    Container,
-    SimpleGrid,
-    Stack,
-    Text
-} from "@chakra-ui/react";
+import { Flex, Container, SimpleGrid, Stack, Heading, Center} from "@chakra-ui/react";
 import { getData } from '../../../services/organizationService';
 import Logo from './components/Logo';
 import Items from './components/Items';
-
-// PENDIENTE: 
-// 1-altura del componente, revisarlo
-// 2-No hay datos de redes sociales, incluir los datos de contacto por ahora mientras consulto 
-// 3-Cambiar los colores a la paleta que se decidió hoy
-// 4-Centrar y aumentar el tamaño del nombre de la organización
+import Contactos from './components/Contacto';
 
 const FooterComponent = () => {
     const getDatos = getData();
     const [data, setData] = useState({});
+    const [datosContacto, setDatosContacto] = useState({});
+
+    // datos ejemplo------------------------------------------------------------
     const arraySecciones = [{
         route: "/1",
-        name: "Uno",
+        name: "Inicio",
         id: 1
     },
     {
         route: "/2",
-        name: "Dos",
+        name: "Contactos",
         id: 2
     },
     {
         route: "/3",
-        name: "Tres",
+        name: "Proyectos",
         id: 3
     },
+    ,
+    {
+        route: "/2",
+        name: "Donaciones",
+        id: 4
+    },
+    {
+        route: "/3",
+        name: "Servicios",
+        id: 5
+    },
+    {
+        route: "/2",
+        name: "Algo mas",
+        id: 6
+    },
     ]
+    // Fin datos ejemplo------------------------------------------------------------
+
+
 
     useEffect(() => {
-        if (getDatos.res?.data) setData(getDatos.res.data[0]);
+        if (getDatos.res?.data) {
+            setData(getDatos.res.data[0]);
+            setDatosContacto({
+                phone : getDatos.res.data[0].phone,
+                cellphone: getDatos.res.data[0].cellphone,
+                address: getDatos.res.data[0].address
+            }
+            )
+        } 
     }, [getDatos]);
     console.log(data);
     return (
         <Fragment>
             <Flex
-
                 as="footer"
                 align="center"
                 justify="space-between"
                 wrap="wrap"
-                padding={6}
-                bg="teal.500"
+                pb={1}
+                bg="blue.1"
                 color="white"
                 mt="20rem" // RECORDAR SACARLOOOOOO ES SOLO DE PARA LA PRUEBAAAAA-------------------------------------------------
             >
-                <Container as={Stack} maxW={'6xl'} py={10}>
+                <Container as={Stack} maxW={'7x1'} py={2}>
                     <SimpleGrid
-                        templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr' }}
-                        spacing={8}>
-                        <Stack spacing={6}>
+                        columns={3} spacing={10}>
+                        <Center>
+                        <Stack  spacing={4}>
                             <Flex align="center" >
                                 <Logo img={data.logo}></Logo>
                             </Flex>
-                            <Text fontSize={'sm'}>
-                                {data.name}
-                            </Text>
+                            <Heading mx={1} as="h3" size="md">
+                                <Center>{data.name}</Center>
+                            </Heading>
                         </Stack>
+                        </Center>
                         <Items titulo={"Navegación"} array={arraySecciones}></Items>
-                        <Items titulo={"Navegación"} array={arraySecciones}></Items>  
+                        <Contactos titulo={"Contáctanos"} datosContacto={datosContacto}></Contactos>
                     </SimpleGrid>
                 </Container>
             </Flex>
