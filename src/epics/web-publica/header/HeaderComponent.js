@@ -46,7 +46,7 @@ const Header = (props) => {
     },
     ]
 
-    const usuarioLog = true
+    const usuarioLog = false
 
     // fin datos ejemplo ----------------------------------------
 
