@@ -27,3 +27,11 @@ export const handleRequest = async ({
 		return error;
 	}
 };
+
+export const register = async body => {
+	const response = await axios.post(
+		process.env.REACT_APP_API_REGISTER,
+		body
+	);
+	return response;
+};
