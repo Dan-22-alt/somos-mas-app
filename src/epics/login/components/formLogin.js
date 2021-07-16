@@ -15,7 +15,7 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { authLog } from "../../../reducers/authReducer";
+import { signInUser } from "../../../reducers/authReducer";
 
 const FormLogin = () => {
 	const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const FormLogin = () => {
 				email: valores.email,
 				password: valores.password,
 			};
-			dispatch(authLog(values));
+			dispatch(signInUser(values));
 		},
 	});
 
