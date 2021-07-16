@@ -6,7 +6,7 @@ export const Welcome = ({text}) => {
     <Text
       textAlign='center'
       as='h1'
-      fontSize='50px'
+      fontSize={['30px', '35px', '50px']}
       mt='2rem'
     >
       {text}

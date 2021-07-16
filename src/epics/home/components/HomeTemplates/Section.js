@@ -8,10 +8,10 @@ export const Section = ({title}) => {
     <Box>
       <Text
         as='h2'
-        fontSize='2rem'
+        fontSize={['1.5rem', '2rem']}
         textAlign='center'
-        mt='170px'
-        mb='3.25rem'
+        mt={['80px', '170px']}
+        mb={['1rem', '3.25rem']}
       >
     {title}
       </Text>
