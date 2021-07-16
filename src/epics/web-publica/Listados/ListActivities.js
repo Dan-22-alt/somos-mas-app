@@ -44,4 +44,3 @@ const ListActivities = () => {
 }
 
 export default ListActivities
-// {name, id, image, description, handleEdit, handleDelete
