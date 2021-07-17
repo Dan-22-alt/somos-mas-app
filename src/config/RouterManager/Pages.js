@@ -16,6 +16,7 @@ import MembersEdit from "../../epics/members/pages/MembersEdit";
 import MembersCreate from "../../epics/members/pages/MemberCreate";
 import Members from "../../epics/members/pages/Members";
 import ScreenOrganization from "../../epics/organization/pages/ScreenOrganization";
+import ContactPage from "../../epics/contact/pages/contactPage";
 /*
   component = Ahi iria la pagina
   path = endpoind de la url
@@ -54,4 +55,5 @@ export const Pages = [
 	new Page(MembersCreate, "/backoffice/members/create"),
 	new Page(Members, "/backoffice/members"),
 	new Page(ScreenOrganization, "/backoffice/organization"),
+	new Page(ContactPage,"/backoffice/contact" )
 ];
