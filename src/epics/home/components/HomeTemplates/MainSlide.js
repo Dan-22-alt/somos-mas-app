@@ -53,7 +53,7 @@ export const MainSlide = () => {
         </Text>
         <Text
           as='h2'
-          fontSize={['1.5rem', '2rem']}
+          fontSize={['1rem', '2rem']}
           color={color}
         >
           {data?.description}
