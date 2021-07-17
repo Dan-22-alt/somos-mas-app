@@ -53,5 +53,5 @@ export const Pages = [
 	new Page(MembersEdit, "/backoffice/members/edit/:id"),
 	new Page(MembersCreate, "/backoffice/members/create"),
 	new Page(Members, "/backoffice/members"),
-	new Page(ScreenOrganization, "/backoffice/organization")
+	new Page(ScreenOrganization, "/backoffice/organization"),
 ];
