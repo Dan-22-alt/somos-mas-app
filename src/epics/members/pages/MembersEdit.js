@@ -24,7 +24,7 @@ const MembersEdit = () => {
 				setError(true);
 				return error;
 			});
-	}, []);
+	}, [id]);
 	return (
 		<Fragment>
 			{ready ? (
