@@ -1,7 +1,8 @@
 import { HomePage } from "../../epics/home/pages/HomePage";
 import Registro from "../../epics/register/pages/Registro";
 import Login from "../../epics/login/pages/Login";
-import Nosotros  from "../../epics/nosotros/Index";
+import Nosotros from "../../epics/nosotros/Index";
+import ContactPage from "../../epics/contact/pages/contactPage";
 
 /*
   component = Ahi iria la pagina
@@ -24,5 +25,6 @@ export const PagesP = [
 	new Page(HomePage, "/"),
 	new Page(Registro, "/Registro"),
 	new Page(Login, "/Login"),
-	new Page(Nosotros, "/nosotros" )
+	new Page(Nosotros, "/nosotros"),
+	new Page(ContactPage, "/contacto"),
 ];
