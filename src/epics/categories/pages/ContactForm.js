@@ -51,6 +51,7 @@ const ContactForm = () => {
                 message: valores.message,
             };
             //fUNCIONES PARA EVITAR SPAM DE MENSAJES A REVISAR
+            //Falta crear funcion para enviar el mail
             localStorage.setItem('msjSend', values)
             setSend(true)
             //fUNCIONES PARA EVITAR SPAM DE MENSAJES A REVISAR
