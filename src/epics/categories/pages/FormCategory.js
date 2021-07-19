@@ -80,7 +80,7 @@ const FormCategory = ({ cate }) => {
 		},
 		validationSchema: Yup.object({
 			name: Yup.string()
-				.required("Name requerido")
+				.required("Nombre requerido")
 				.min(6, "El nombre debe contener al menos 6 caracteres"),
 		}),
 		onSubmit: valores => {
@@ -155,7 +155,7 @@ const FormCategory = ({ cate }) => {
 								backgroundColor="whiteAlpha.900"
 								boxShadow="md">
 								<FormControl mt={2}>
-									<FormLabel>Name</FormLabel>
+									<FormLabel>Nombre</FormLabel>
 									<Input
 										type="text"
 										id="name"
@@ -190,7 +190,7 @@ const FormCategory = ({ cate }) => {
 								</FormControl>
 
 								<FormControl mt={2}>
-									<FormLabel>Description</FormLabel>
+									<FormLabel>Descripcion</FormLabel>
 									<CKEditor
 										editor={ClassicEditor}
 										data={cate ? cate.description : ""}
