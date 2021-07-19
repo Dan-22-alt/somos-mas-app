@@ -20,6 +20,8 @@ const ContactForm = () => {
 
     const [send, setSend] = useState(false)
 
+    const toast = useToast();
+
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -52,6 +54,12 @@ const ContactForm = () => {
             localStorage.setItem('msjSend', values)
             setSend(true)
             //fUNCIONES PARA EVITAR SPAM DE MENSAJES A REVISAR
+            toast({
+                title: "Mensaje enviado!",
+                status: "info",
+                duration: 2000,
+                isClosable: true,
+            });
         },
     });
 
