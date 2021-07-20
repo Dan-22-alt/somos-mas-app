@@ -10,6 +10,7 @@ import {
     SimpleGrid,
   } from '@chakra-ui/react';
 import InfoContact from './infContact';
+import ContactForm from '../../categories/pages/ContactForm';
 
 
 
@@ -49,7 +50,7 @@ const Contact = () => {
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             <InfoContact/>
             <Flex>
-              <Heading fontSize={'3xl'}>Formulario de contacto</Heading>
+              <ContactForm />
             </Flex>
           </SimpleGrid>
         </Container>
