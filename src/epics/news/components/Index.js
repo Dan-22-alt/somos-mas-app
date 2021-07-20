@@ -6,9 +6,9 @@ import {
     Text,
     useBreakpointValue,
     Box,
-    Container,
-    SimpleGrid,
+    Container
   } from '@chakra-ui/react';
+import ComponentScreenListOfNews from '../pages/ComponentScreenListOfNews';
 
 const Index = () => {
     return (
@@ -40,8 +40,7 @@ const Index = () => {
             </Stack>
           </Flex>
         </Stack>
-
-        
+          <ComponentScreenListOfNews/>
       </Box>
     
     );

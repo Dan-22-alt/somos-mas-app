@@ -41,7 +41,7 @@ const ComponentScreenListOfNews = () => {
   const sortData = (date) => date.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, '$3-$2-$1')
 
 	return (
-    <Container maxW="container.xxl" marginTop="1.5%">
+    <Container maxW="container.xxl" marginTop="1%">
       <Center>
         <Link to="/backoffice/news/create">
           <Button colorScheme="blue">Crear Novedad</Button>
@@ -53,7 +53,7 @@ const ComponentScreenListOfNews = () => {
       <SimpleGrid
         my="auto"
         minChildWidth="300px"
-        mt="150px"
+        mt="50px"
         justifyItems="center"
         spacing="40px"
         mx={[0, 5, 10, 30]}
