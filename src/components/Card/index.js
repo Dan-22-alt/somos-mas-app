@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { SmartPicture } from "./SmartPicture";
 import { ButtonsCard } from "./ButtonsCard";
 
-export const Card = ({name, id, image, description, handleEdit, handleDelete}) => {
+export const Card = ({name, id, image, description, handleEdit, handleDelete, children}) => {
   return(
 		<Box
 			borderWidth="1px"
@@ -27,16 +27,19 @@ export const Card = ({name, id, image, description, handleEdit, handleDelete}) =
         >
           {name}
         </Box>
-        <Box
-          mt="1"
-          fontSize="16px"
-          as="p"
-          textAlign="center"
-          my="8px"
-          lineHeight="tight"
-          isTruncated>
-          {description}
-        </Box>
+        { description &&
+            <Box
+              mt="1"
+              fontSize="16px"
+              as="p"
+              textAlign="center"
+              my="8px"
+              lineHeight="tight"
+              isTruncated>
+              {description}
+            </Box>
+        }
+        { children }
         { handleDelete && handleEdit
           ? <ButtonsCard
               id={id}
