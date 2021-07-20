@@ -16,6 +16,7 @@ import MembersEdit from "../../epics/members/pages/MembersEdit";
 import MembersCreate from "../../epics/members/pages/MemberCreate";
 import Members from "../../epics/members/pages/Members";
 import ScreenOrganization from "../../epics/organization/pages/ScreenOrganization";
+import Newspage from "../../epics/news/pages/NewsPage";
 
 /*
   component = Ahi iria la pagina
