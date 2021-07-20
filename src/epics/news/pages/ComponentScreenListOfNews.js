@@ -4,6 +4,8 @@ import { Button, Center, Container, SimpleGrid, useToast } from "@chakra-ui/reac
 import { getNews, deleteNews } from "../../../services/newsService";
 import { Card } from "../../../components/Card";
 
+import { sortDate } from "../../../utils/sortDate";
+
 const ComponentScreenListOfNews = () => {
   const history = useHistory()
   const [data, setData] = useState([])
@@ -13,7 +15,7 @@ const ComponentScreenListOfNews = () => {
 		history.push(`/backoffice/news/${id}/edit`);
 	};
 
-
+  console.log(data)
 	useEffect(() => {
     getNews().then(r => setData(r.data))
 	}, []);
@@ -36,6 +38,8 @@ const ComponentScreenListOfNews = () => {
 			});
 	};
 
+  const sortData = (date) => date.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, '$3-$2-$1')
+
 	return (
     <Container maxW="container.xxl" marginTop="1.5%">
       <Center>
@@ -53,6 +57,7 @@ const ComponentScreenListOfNews = () => {
         justifyItems="center"
         spacing="40px"
         mx={[0, 5, 10, 30]}
+        mb='10rem'
       >
         {data.map(n =>
           <Card
@@ -60,7 +65,7 @@ const ComponentScreenListOfNews = () => {
             handleDelete={handleDelete}
             {...n}
             key={n.id}
-            description={n.content}
+            description={sortDate(n.created_at)}
           />
         )}
       </SimpleGrid>

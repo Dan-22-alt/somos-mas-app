@@ -19,8 +19,8 @@ function App() {
   }, []);
 
   return (
-    <Layout>
-      <Router>
+    <Router>
+      <Layout>
         <Switch>
           {Pages.map((page) => (
             <Route {...page} />
@@ -29,8 +29,8 @@ function App() {
             <RouteP {...page} />
           ))}
         </Switch>
-      </Router>
-    </Layout>
+      </Layout>
+    </Router>
   );
 }
 
