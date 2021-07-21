@@ -21,7 +21,7 @@ const InfoContact = () => {
   const [data, setData] = useState({})
 
   useEffect(() => {
-    getContact().then(r => setData(r.data[0])).catch(setData({}))
+    getContact().then(r => setData(r.data[0]))
   }, []);
 
   return (
