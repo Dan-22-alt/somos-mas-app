@@ -9,6 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import NosotrosSMIcon from "./NosotrosSMIcon";
+import { convertirHtml } from './../../../utils/convertirHtml';
+
 const NosotrosMemberCard = ({
 	name,
 	image,
@@ -16,6 +18,7 @@ const NosotrosMemberCard = ({
 	facebookUrl,
 	linkedinUrl,
 }) => {
+
 	return (
 		<Box
 			w="full"
@@ -48,8 +51,7 @@ const NosotrosMemberCard = ({
 				<Heading fontSize="2xl" mb={3} color="primary.400">
 					{name}
 				</Heading>
-				<Text fontWeight={600} color={"gray.500"}>
-					{description}
+				<Text dangerouslySetInnerHTML={convertirHtml(description)} fontWeight={600} color={"gray.500"}>					
 				</Text>
 				<Divider my={5} />
 				<HStack spacing={6} justify="center">
