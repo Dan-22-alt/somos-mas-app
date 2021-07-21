@@ -7,12 +7,11 @@ import { Section } from "../components/HomeTemplates/Section";
 
 import LogOutButt from "../../logout/LogOutButt"
 
-import { useRequest }from "../useRequest"
+import { UseRequest }from "../useRequest"
 
 export const HomePage = () => {
-  const {news, testimonials} = useRequest()
+  const {news, testimonials} = UseRequest()
 	const admin = true;
-
 
 	return(
     <>

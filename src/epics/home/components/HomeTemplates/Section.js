@@ -17,7 +17,7 @@ export const Section = ({title, state}) => {
     </Box>
   )
 
-
+  console.log(state)
   return(
     <Box
       mb={['5rem', '10.625rem']}

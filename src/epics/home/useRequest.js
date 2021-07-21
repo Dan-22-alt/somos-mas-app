@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { getNews } from '../../services/newsService'
+import { getTestimonials } from '../../services/testimonialsService'
 
 const init = {
   res: [],
@@ -6,23 +8,40 @@ const init = {
   error: null
 }
 
-export const useRequest = () => {
+const set = async (request, set) => {
+  try {
+    const { data } = await request()
+    console.log(data)
+    set({res: [...data].slice(0, 4), loading: false, error: null})
+  } catch(error){
+    set({res: [1, 2, 3, 4], loading: false, error})
+    console.log(error)
+  }
+}
+
+export const UseRequest = () => {
   const [news, setNews] = useState(init)
   const [testimonials, setTestimonials] = useState(init)
+  const {res, error} = getTestimonials()
 
-
-  useEffect(()=>{
-    setTimeout(()=> {
-
-      // success
-      setTestimonials({res: [1, 2, 3, 4], loading: false, error: null})
-    }, 5000)
+  useEffect( () => {
+    set(getNews, setNews)
   }, [])
 
 
   useEffect(()=>{
-
-  }, [])
+    if(res) {
+      setTestimonials( prev => ({
+        ...prev,
+       loading: false,
+        res: [...res.data].slice(0, 4)
+      }))
+    }
+    if(error){
+      setTestimonials({res: [1, 2, 3, 4], loading: false, error})
+      console.log(error)
+    }
+  }, [res, error])
 
 
   return{news, testimonials}
