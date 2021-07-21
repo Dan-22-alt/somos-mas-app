@@ -3,6 +3,7 @@ import Registro from "../../epics/register/pages/Registro";
 import Login from "../../epics/login/pages/Login";
 import Nosotros from "../../epics/nosotros/Index";
 import ContactPage from "../../epics/contact/pages/contactPage";
+import NewDetail from "../../epics/news/Detail/Index"
 
 /*
   component = Ahi iria la pagina
@@ -27,4 +28,5 @@ export const PagesP = [
 	new Page(Login, "/Login"),
 	new Page(Nosotros, "/nosotros"),
 	new Page(ContactPage, "/contacto"),
+	new Page(NewDetail, "/novedades/:id")
 ];
