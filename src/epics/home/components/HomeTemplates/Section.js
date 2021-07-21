@@ -1,23 +1,9 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { Container } from "./Container";
-import SpinnerChakra from "../../../../layout/Spinners";
+import { Spinner } from "../../../../layout/Spinners";
 
 export const Section = ({title, state}) => {
-
-  const Spinner = () => (
-    <Box
-      w='100%'
-      h='9rem'
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
-    >
-      <SpinnerChakra />
-    </Box>
-  )
-
-  console.log(state)
   return(
     <Box
       mb={['5rem', '10.625rem']}
@@ -31,7 +17,7 @@ export const Section = ({title, state}) => {
         {title}
       </Text>
       { state.loading
-        ? <Spinner />
+        ? <Spinner minH='10rem' />
         : <Container arrOfImage={state.res}/>
       }
     </Box>

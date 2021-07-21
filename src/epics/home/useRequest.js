@@ -11,11 +11,9 @@ const init = {
 const set = async (request, set) => {
   try {
     const { data } = await request()
-    console.log(data)
     set({res: [...data].slice(0, 4), loading: false, error: null})
   } catch(error){
     set({res: [1, 2, 3, 4], loading: false, error})
-    console.log(error)
   }
 }
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Spinner } from "@chakra-ui/react"
+import { Spinner as SpinnerChakra, Box} from "@chakra-ui/react"
 
 const Spinners = () => {
   return (
-    <Spinner
+    <SpinnerChakra
       label="Cargando"
       thickness="5px"
       speed="0.55s"
@@ -13,5 +13,17 @@ const Spinners = () => {
     />
   )
 }
+
+export const Spinner = ({...rest}) => (
+  <Box
+    w='100%'
+    {...rest}
+    display='flex'
+    alignItems='center'
+    justifyContent='center'
+  >
+    <Spinners/>
+  </Box>
+)
 
 export default Spinners;
