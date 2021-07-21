@@ -10,8 +10,8 @@ import NosotrosMemberList from './components/NosotrosMemberList';
 const Index = () => {
     const getDatos = getData();
     const [data, setData] = useState({});
-    //   const getMembers = getAll()
     const [members, setMembers] = useState()
+    const imagen = 'https://cdn.pixabay.com/photo/2017/10/13/12/29/hands-2847508_960_720.jpg'
 
     useEffect(() => {
         if (getDatos.res?.data) {
@@ -38,7 +38,7 @@ const Index = () => {
                 spacing={{ base: 8, md: 14 }}
                 py={{ base: 20, md: 36 }}
             >
-                <Title title="Nosotros"></Title>
+                <Title title="Nosotros" image={imagen}></Title>
                 <Heading align="center" mx={"auto"} my={5} as="h1" size="2xl">
                     Sobre nosotros
                 </Heading>
