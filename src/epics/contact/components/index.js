@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     Flex,
     Heading,
@@ -11,10 +11,27 @@ import {
   } from '@chakra-ui/react';
 import InfoContact from './infContact';
 import ContactForm from '../../categories/pages/ContactForm';
+import { datosOrganización } from '../../../reducers/organizationReducer';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 
 const Contact = () => {
+  const dispatch = useDispatch();
+  
+  dispatch(datosOrganización())
+
+  const datosOrg = useSelector(state => state.organization)
+  
+
+  // useEffect(() => {
+  //  datosOrganización().then(
+  //    res => {console.log(res)
+  //   dispatch(datosOrganización.pending)}
+  //  )
+  // // dispatch(datosOrganización())
+  // }, [])
+
     return ( 
 
       <Box p={4}>
