@@ -1,15 +1,14 @@
 import { SimpleGrid, Container } from "@chakra-ui/react";
 import React from "react";
-import { nosotrosMockData } from "../mock-data/mockData";
 import NosotrosMemberCard from "./NosotrosMemberCard";
 
-const NosotrosMemberList = () => {
+const NosotrosMemberList = ({members}) => {
 	return (
 		<div>
 			<Container maxW="container.xl">
 				<SimpleGrid columns={{ lg: 4, md: 3, sm: 2 }} spacing={7} my={10}>
-					{nosotrosMockData.map(card => (
-						<NosotrosMemberCard {...card} />
+					{members.map(card => (
+						<NosotrosMemberCard key={card.id} {...card} />
 					))}
 				</SimpleGrid>
 			</Container>

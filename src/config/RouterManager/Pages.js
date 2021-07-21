@@ -1,7 +1,6 @@
 import { ActivitiesPage } from "../../epics/activities/pages/ActivitiesPage";
 import { CategoriesPage } from "../../epics/categories/pages/CategoriesPage";
 import EditPage from "../../epics/organization/pages/EditPage";
-import ComponentScreenListOfNews from "../../epics/news/pages/ComponentScreenListOfNews";
 import ComponentCreateNews from "../../epics/news/pages/ComponentCreateNews";
 import BackofficePage from "../../epics/backoffice/pages/Backoffice";
 import FormCategory from "../../epics/categories/pages/FormCategory";
@@ -16,6 +15,7 @@ import MembersEdit from "../../epics/members/pages/MembersEdit";
 import MembersCreate from "../../epics/members/pages/MemberCreate";
 import Members from "../../epics/members/pages/Members";
 import ScreenOrganization from "../../epics/organization/pages/ScreenOrganization";
+import Newspage from "../../epics/news/pages/NewsPage";
 
 /*
   component = Ahi iria la pagina
@@ -37,7 +37,7 @@ class Page {
 export const Pages = [
 	new Page(BackofficePage, "/backoffice"),
 	new Page(ScreenList, "/backoffice/users"),
-	new Page(ComponentScreenListOfNews, "/backoffice/news"),
+	new Page(Newspage, "/backoffice/news"),
 	new Page(ComponentCreateNews, "/backoffice/news/create"),
 	new Page(EditNewsPage, "/backoffice/news/:id/edit"),
 	new Page(ActivitiesPage, "/backoffice/activities"),

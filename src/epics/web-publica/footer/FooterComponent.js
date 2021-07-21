@@ -56,7 +56,7 @@ const FooterComponent = () => {
             )
         }
     }, [getDatos]);
-    console.log(data);
+    // console.log(data);
     return (
         <Fragment>
             <Flex
