@@ -12,9 +12,8 @@ import {
 import InfoContact from './infContact';
 import ContactForm from '../../categories/pages/ContactForm';
 
-
-
 const Contact = () => {
+
     return ( 
 
       <Box p={4}>

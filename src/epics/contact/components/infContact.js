@@ -1,43 +1,50 @@
-import React from 'react';
-import {Heading,
-    Stack,
-    Text,
-    Box,
-    Center,
-    Image,
-    Button,
-    useColorModeValue,
-  } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import {
+  Heading,
+  Stack,
+  Text,
+  Box,
+  Image,
+  Button,
+  Center,
+} from '@chakra-ui/react';
+import Spinner from '../../../layout/Spinners.js'
+import { getContact } from '../../../services/contactService';
 import { FaFacebook } from 'react-icons/fa';
-import { SiLinkedin} from 'react-icons/si';
+import { SiLinkedin } from 'react-icons/si';
 
 const IMAGE =
   'https://cdn.discordapp.com/attachments/854123246759968773/858030522151731220/unknown_2.png';
 
 const InfoContact = () => {
-    return ( 
-        <Stack spacing={4}>
-        <Box
+
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    getContact().then(r => setData(r.data[0])).catch(setData({}))
+  }, []);
+
+  return (
+    <Stack spacing={4}>
+      {data.name
+        ? <Center><Box
           maxW={'330px'}
           w={'full'}
-          bg={useColorModeValue('white', 'gray.800')}
           boxShadow={'2xl'}
           rounded={'md'}
           overflow={'hidden'} >
           <Stack
             textAlign={'center'}
             p={6}
-            color={useColorModeValue('gray.800', 'white')}
             align={'center'}>
             <Text
               fontSize={'sm'}
               fontWeight={500}
-              bg={useColorModeValue('green.50', 'green.900')}
               p={2}
               px={3}
               color={'green.500'}
               rounded={'full'}>
-              ONG
+              {data.name}
             </Text>
 
           </Stack>
@@ -47,27 +54,12 @@ const InfoContact = () => {
               rounded={'lg'}
               mt={-12}
               pos={'relative'}
-              height={'230px'}
-              _after={{
-                transition: 'all .3s ease',
-                content: '""',
-                w: 'full',
-                h: 'full',
-                pos: 'absolute',
-                top: 5,
-                left: 0,
-                backgroundImage: `url(${IMAGE})`,
-                filter: 'blur(15px)',
-                zIndex: -1,
-              }}
-              _groupHover={{
-                _after: {
-                  filter: 'blur(20px)',
-                },
-              }}>
+              justifyContent="center"
+              alignItems="center"
+            >
               <Image
                 rounded={'lg'}
-                height={230}
+                height={125}
                 width={282}
                 src={IMAGE}
               />
@@ -75,7 +67,7 @@ const InfoContact = () => {
             <Stack pt={6} align={'center'}>
               <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500} p={3}
                 px={4}>
-                Nombre aca
+                {data.email}
               </Heading>
 
             </Stack>
@@ -91,9 +83,6 @@ const InfoContact = () => {
               }}
 
             >
-              <Center>
-                <Text>  Facebook aca</Text>
-              </Center>
             </Button>
 
             <Button
@@ -109,12 +98,17 @@ const InfoContact = () => {
               _focus={{
                 bg: 'green.500',
               }}>
-              Linkedin aca
             </Button>
           </Box>
         </Box>
-      </Stack>
-     );
+        </Center>
+        :
+        <Center>
+          <Spinner />
+        </Center>
+      }
+    </Stack>
+  );
 }
- 
+
 export default InfoContact;
