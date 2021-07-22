@@ -7,6 +7,7 @@ import { Card } from "../../../components/Card";
 
 import {
   fetchActivities,
+  activitiesSelectors,
 } from "../../../reducers/activitiesSlice"
 
 import {obtenerActividadID} from "../../../services/activitiesService"
@@ -24,8 +25,7 @@ const ListActPublic = () => {
 
     const handleViews = activity => {
         console.log(activity)
-        dispatch(obtenerActividadID(activity))
-        history.push(`/actividades/${activity.id}`)
+        history.push(`/actividades/${activity.id}`, activity)
     }
  
     return ( 

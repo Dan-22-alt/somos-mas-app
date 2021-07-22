@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box , Button} from "@chakra-ui/react";
 import { SmartPicture } from "./SmartPicture";
 import { ButtonsCard } from "./ButtonsCard";
 
