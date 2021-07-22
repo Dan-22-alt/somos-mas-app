@@ -1,15 +1,25 @@
 import httpClient from "../utils/httpClient";
-import { ApiGet } from './ApiService';
-
 
 const endPoint = process.env.REACT_APP_API_ORGANIZATION
 
-export const getData = () => ApiGet(endPoint)
+export const getOng = async() => (
+  await httpClient
+   .get(endPoint)
+   .then(({data})=> data.data)
+)
 
-export function edit(data) {
-    return httpClient
-      .post(`/organization`, data)
-      .then((response) => response.data)
-      .catch(e => {console.log(e)
-         return e});
-  }
+export const editOng = async(data)=> {
+  return await httpClient
+    .post(endPoint, data)
+    .then(res => res.data)
+}
+
+
+
+/*
+export const edit = async(data)=> (
+  await httpClient
+    .post(endPoint, data)
+    .then(res => res.data)
+)
+*/
