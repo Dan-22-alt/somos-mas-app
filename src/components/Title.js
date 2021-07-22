@@ -1,32 +1,32 @@
-import { Box, Heading, Image } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import React from "react";
+import { Parallax } from "react-parallax";
 
 // aca va una imagen por defecto
 const imageDefault = "imagen";
 
-//este componente recibe el titulo, la imagen
+//este componente recibe el titulo y la imagen
 const Title = ({ title = "Título", image = imageDefault }) => {
   return (
-    <Box
-      position="relative"
-      alignItems={"center"}
-      height="200px"
-      display="flex"
-      width="100%"
-      overflow="hidden"
-      justifyContent="center"
-    >
-      <Heading as="h1" zIndex="9999" fontSize="7xl">
-        {title}
-      </Heading>
-      <Image
-        src={image ? image : imageDefault}
-        alt={imageDefault}
-        position="absolute"
-        width="100%"
-        style={{ filter: "blur(4px)" }}
-      />
-    </Box>
+    <>
+      <Parallax
+        blur={4}
+        bgImage={image}
+        bgImageAlt={image}
+        //profundidad del efecto parallax
+        strength={400}
+        bgImageStyle={{ width: "100%" }}
+        bgImageSize={{ width: "100px", height: "100px" }}
+        x={[-20, 20]}
+        y={[-20, 20]}
+        tagOuter="figure"
+        style={{ height: "110px" }}
+      >
+        <Heading align="center" as="h1" mx={"auto"} my={6} size="3xl">
+          {title}
+        </Heading>
+      </Parallax>
+    </>
   );
 };
 
