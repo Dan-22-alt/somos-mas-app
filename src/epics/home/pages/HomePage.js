@@ -10,6 +10,7 @@ import LogOutButt from "../../logout/LogOutButt";
 import { fetchOrganizationData } from "../../../services/homeService";
 
 import { UseRequest }from "../useRequest"
+import { ListNews } from "../components/newsListComponents/ListNews";
 
 export const HomePage = () => {
 
@@ -27,7 +28,7 @@ export const HomePage = () => {
       <LogOutButt />
       <MainSlide />
 			<Welcome text={homeData?.welcome_text} />
-      <Section title='Últimas Novedades' state={news}/>
+      <ListNews title='Últimas Novedades' state={news}/>
       <Section title='Testimonios' state={testimonials}/>
     </>
   )
