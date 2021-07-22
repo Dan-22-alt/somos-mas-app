@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     Flex,
     Heading,
@@ -14,7 +14,7 @@ import ContactForm from '../../categories/pages/ContactForm';
 
 const Contact = () => {
 
-    return ( 
+    return (
 
       <Box p={4}>
         <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
@@ -54,8 +54,8 @@ const Contact = () => {
           </SimpleGrid>
         </Container>
       </Box>
-    
+
     );
 }
- 
+
 export default Contact;
