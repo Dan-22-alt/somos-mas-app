@@ -41,7 +41,7 @@ export const actualizarNews = createAsyncThunk(
   async (news, { getState }) => { // <-- destructure getState method
     const state = getState(); // <-- invoke and access state object
       const respuesta = await httpClient.put(`/news/${news.id}`, news); 
-      console.log(respuesta.data.data) 
+      // console.log(respuesta.data.data) 
       return respuesta.data.data;
    
   }
@@ -52,7 +52,7 @@ export const borrarNewsAction = createAsyncThunk(
   'posts/borrarNews',
   async (news) => { // <-- destructure getState metho
       const respuesta = await httpClient.delete(`/news/${news.id}`);
-      console.log(respuesta)
+      // console.log(respuesta)
       return news.id;
   }
 );
@@ -63,7 +63,7 @@ export const ObtenerNovedadesId = createAsyncThunk(
   async (news, { getState }) => { // <-- destructure getState method
     const state = getState(); // <-- invoke and access state object
       const respuesta = await httpClient.get(`/news/${news.id}`, news);
-      console.log(respuesta)
+      // console.log(respuesta)
       return respuesta.data.data;
    
   }
