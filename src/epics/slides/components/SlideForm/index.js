@@ -77,7 +77,6 @@ export default function SlideForm({ data }) {
 			let body = {};
 			for (const key in data) {
 				if (data[key] !== values[key]) {
-					console.log(data[key]);
 					body[key] = values[key] || data[key];
 				}
 			}
