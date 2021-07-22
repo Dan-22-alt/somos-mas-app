@@ -1,5 +1,6 @@
 import React from 'react'
 import { Stack, Text, Input,  IconButton, useColorModeValue } from "@chakra-ui/react";
+import FormNewsletter from './FormNewsletter';
 
 
 const Contactos = ({ titulo, datosContacto }) => {
@@ -10,7 +11,8 @@ const Contactos = ({ titulo, datosContacto }) => {
                 {titulo}
             </Text>
             <Text fontSize={fontSize} align="center"> Teléfono: {datosContacto?.phone} Celular: {datosContacto?.cellphone} </Text>
-            <Text fontSize={fontSize} align="center"> {datosContacto?.address}</Text>  
+            <Text fontSize={fontSize} align="center"> {datosContacto?.address}</Text> 
+            <FormNewsletter></FormNewsletter>
 
         </Stack>
     )

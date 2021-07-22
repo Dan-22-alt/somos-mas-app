@@ -52,7 +52,7 @@ const FooterComponent = ({organizationData}) => {
     >
       <Container as={Stack} maxW={'5x1'} py={2}>
         <SimpleGrid
-          columns={4}
+          columns={3}
           spacing={5}
         >
           <Center>
@@ -67,7 +67,7 @@ const FooterComponent = ({organizationData}) => {
           </Center>
           <Items titulo="Navegación" array={arraySecciones}/>
           <Contactos titulo="Contáctanos" datosContacto={organizationData}/>
-          <FormNewsletter></FormNewsletter>
+          
         </SimpleGrid>
       </Container>
     </Flex>
