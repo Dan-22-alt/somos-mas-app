@@ -1,16 +1,15 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 import Items from "./components/Items";
 import Logo from "./components/Logo";
 import ButtonLog from "./components/ButtonLog";
+// import userIsLogged from "./../../../features/auth/userIsLogged";
 import { links } from "./utils/headerLinks";
 
-import userIsLogged from "./../../../features/auth/userIsLogged";
 
 const Header = ({organizationData})=> {
-
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const handleToggle = () => (isOpen ? onClose() : onOpen());
 
@@ -27,22 +26,24 @@ const Header = ({organizationData})=> {
 			wrap="wrap"
 			padding={1}
 			bg="primary.400"
-			color="white">
+			color="white"
+    >
 			<Flex align="center">
-				<Logo img={organizationData?.logo}></Logo>
+				<Logo img={organizationData?.logo}/>
 			</Flex>
 
 			{usuarioLog ? (
-				<Fragment>
+				<>
 					<Box
 						display={{ base: "block", md: "none" }}
-						onClick={handleToggle}>
+						onClick={handleToggle}
+          >
 						<HamburgerIcon />
 					</Box>
 					<Items array={links} isOpen={isOpen}></Items>
-				</Fragment>
+				</>
 			) : (
-				<ButtonLog isOpen={isOpen}></ButtonLog>
+				<ButtonLog isOpen={isOpen}/>
 			)}
 		</Flex>
 	);

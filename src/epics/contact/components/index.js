@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     Flex,
     Heading,
@@ -12,9 +12,8 @@ import {
 import InfoContact from './infContact';
 import ContactForm from '../../categories/pages/ContactForm';
 
-
-
 const Contact = () => {
+
     return ( 
 
       <Box p={4}>
