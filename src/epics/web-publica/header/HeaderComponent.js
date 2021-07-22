@@ -4,7 +4,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import Items from "./components/Items";
 import Logo from "./components/Logo";
 import ButtonLog from "./components/ButtonLog";
-import userIsLogged from "./../../../features/auth/userIsLogged";
+// import userIsLogged from "./../../../features/auth/userIsLogged";
 import { links } from "./utils/headerLinks";
 
 const Header = props => {
@@ -12,9 +12,8 @@ const Header = props => {
 	const handleToggle = () => (isOpen ? onClose() : onOpen());
 
 	// revisar esta funcion, o verificar de donde traer los datos de sesion
-	const logged = userIsLogged();
-
-	console.log(logged);
+	// const logged = userIsLogged();
+  //	console.log(logged);
 
 	//   datos ejemplo ----------------------------------------
 	const datosEjemplo = {
