@@ -9,20 +9,12 @@ import {
   Center,
 } from '@chakra-ui/react';
 import Spinner from '../../../layout/Spinners.js'
-import { getContact } from '../../../services/contactService';
 import { FaFacebook } from 'react-icons/fa';
 import { SiLinkedin } from 'react-icons/si';
 
-const IMAGE =
-  'https://cdn.discordapp.com/attachments/854123246759968773/858030522151731220/unknown_2.png';
+const InfoContact = ({datos}) => {
 
-const InfoContact = () => {
-
-  const [data, setData] = useState({})
-
-  useEffect(() => {
-    getContact().then(r => setData(r.data[0]))
-  }, []);
+  const data = datos.data
 
   return (
     <Stack spacing={4}>
@@ -61,7 +53,8 @@ const InfoContact = () => {
                 rounded={'lg'}
                 height={125}
                 width={282}
-                src={IMAGE}
+                alt="logo"
+                src={data.logo}
               />
             </Box>
             <Stack pt={6} align={'center'}>
