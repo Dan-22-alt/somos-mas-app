@@ -16,6 +16,7 @@ import Layout from "./components/Layout";
 function App() {
   const dispatch = useDispatch()
   const organizationStatus = useSelector(state => state.organization.status)
+  const organizationData = useSelector(state => state.organization.data)
 
   useEffect(() => {
     console.log(
@@ -34,7 +35,7 @@ function App() {
 
   return (
     <Router>
-      <Layout>
+      <Layout organizationData={organizationData}>
         <Switch>
           {Pages.map((page) => (
             <Route {...page} />
