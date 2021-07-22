@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Text, Input,  IconButton, useColorModeValue } from "@chakra-ui/react";
+import { Stack, Text } from "@chakra-ui/react";
 import FormNewsletter from './FormNewsletter';
 
 

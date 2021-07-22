@@ -5,7 +5,6 @@ import { Flex, Container, SimpleGrid, Stack, Heading, Center } from "@chakra-ui/
 import Logo from './components/Logo';
 import Items from './components/Items';
 import Contactos from './components/Contacto';
-import FormNewsletter from './components/FormNewsletter';
 
 const arraySecciones = [{
     route: "/1",
@@ -67,8 +66,7 @@ const FooterComponent = ({organizationData}) => {
           </Center>
           <Items titulo="Navegación" array={arraySecciones}/>
           <Contactos titulo="Contáctanos" datosContacto={organizationData}/>
-          
-        </SimpleGrid>
+                  </SimpleGrid>
       </Container>
     </Flex>
   )

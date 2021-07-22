@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react'
+import React, {Fragment } from 'react'
 import { Stack, Text, Input, IconButton, useToast } from "@chakra-ui/react";
 import { BiMailSend } from 'react-icons/bi';
 import { useFormik } from 'formik';
-import { useState } from 'react';
-import { Fragment } from 'react';
 
 const FormNewsletter = () => {
     const toast = useToast()
