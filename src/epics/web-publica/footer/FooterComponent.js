@@ -66,7 +66,7 @@ const FooterComponent = ({organizationData}) => {
           </Center>
           <Items titulo="Navegación" array={arraySecciones}/>
           <Contactos titulo="Contáctanos" datosContacto={organizationData}/>
-        </SimpleGrid>
+                  </SimpleGrid>
       </Container>
     </Flex>
   )
