@@ -8,10 +8,8 @@ export const getData = async() => (
    .then(({data})=> data.data)
 )
 
-export function edit(data) {
-    return httpClient
-      .post(`/organization`, data)
-      .then((response) => response.data)
-      .catch(e => {console.log(e)
-         return e});
-  }
+export const edit = async(data)=> (
+  await httpClient
+    .post(`/organization`, data)
+    .then(res => res.data)
+)

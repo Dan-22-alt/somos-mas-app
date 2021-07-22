@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useSelector } from 'react-redux'
 import { HomeEditForm } from "../components/HomeEditForm";
 import { Welcome } from "../components/Welcome";
 import { MainSlide } from "../components/HomeTemplates/MainSlide";
 import { Section } from "../components/HomeTemplates/Section";
 import LogOutButt from "../../logout/LogOutButt";
-import { fetchOrganizationData } from "../../../services/homeService";
 
 export const HomePage = () => {
-	const [homeData, setHomeData] = useState(null);
-
-	useEffect(() => {
-		fetchOrganizationData().then(data => setHomeData(data));
-	}, []);
+  const homeData = useSelector(state => state.organization.data)
 
 	const admin = true;
 	return (
