@@ -1,55 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Container, Heading, Stack } from "@chakra-ui/react";
-import { getData } from "../../services/organizationService";
-import { Spinner } from '../../layout/Spinners'
+import { useSelector } from 'react-redux'
 
 import Description from "./components/Description";
-import Title from "../../components/Title";
-import { getAll } from "../../services/membersService";
-import ComponentSkeleton from './../../layout/ComponentSkeleton';
 import NosotrosMemberList from './components/NosotrosMemberList';
 
+import Title from "../../components/Title";
+import { getAll } from "../../services/membersService";
+import { Spinner } from '../../layout/Spinners'
+import ComponentSkeleton from './../../layout/ComponentSkeleton';
+
 const Index = () => {
-    const {res, loading, error}= getData();
-    const [data, setData] = useState({});
-    const [members, setMembers] = useState()
-    const imagen = 'https://cdn.pixabay.com/photo/2017/10/13/12/29/hands-2847508_960_720.jpg'
+  const { 'data':ongData, 'status': ongStatus } = useSelector(state => state.organization)
 
-    useEffect(() => {
-      if (res) setData(res.data[0])
-      if (error) console.log(error)
-    }, [res, error]);
+  const [members, setMembers] = useState()
+  const imagen = 'https://cdn.pixabay.com/photo/2017/10/13/12/29/hands-2847508_960_720.jpg'
 
-    useEffect(() => {
-      const getMem = async() => {
-        try {
-          const res = await getAll()
-          setMembers(res.data)
-        }
-        catch (e) {
-          console.log(e)
-        }
+  useEffect(() => {
+    const getMem = async() => {
+      try {
+        const res = await getAll()
+        setMembers(res.data)
       }
-      if(!members) getMem()
-    }, [members]);
+      catch (e) {
+        console.log(e)
+      }
+    }
+    if(!members) getMem()
+  }, [members]);
 
   return (
-    <Container maxW={"3xl"}>
+    <Container maxW="3xl">
       <Stack
         as={Box}
-        textAlign={"center"}
+        textAlign="center"
         spacing={{ base: 8, md: 14 }}
         py={{ base: 20, md: 36 }}
       >
         <Title title="Nosotros" image={imagen}/>
-        <Heading align="center" mx={"auto"} my={5} as="h1" size="2xl">
-            Sobre nosotros
+        <Heading align="center" mx="auto" my={5} as="h1" size="2xl">
+          Sobre nosotros
         </Heading>
-        { loading
+        { ongStatus === 'loading'
           ? <Spinner minH='5rem'/>
-          : res
-            ? <Description minH='5rem' text={data.short_description}/>
-            : <Description minH='5rem' text='Error al cargar la descripcion'/>
+          : <Description
+              minH='5rem'
+              text={
+                ongStatus === 'failed'
+                ? 'Error al cargar la descripcion'
+                : ongData?.short_description
+              }
+            />
         }
         <Heading align="center" mx="auto" mb={0} as="h1" size="2xl">
             Miembros

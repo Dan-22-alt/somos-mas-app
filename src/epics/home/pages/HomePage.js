@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useSelector } from 'react-redux'
 
 import { HomeEditForm } from "../components/HomeEditForm";
 import { Welcome } from "../components/Welcome";
 import { MainSlide } from "../components/HomeTemplates/MainSlide";
 import { Section } from "../components/HomeTemplates/Section";
+import { UseRequest }from "../useRequest"
 
 import LogOutButt from "../../logout/LogOutButt";
 
@@ -13,14 +15,9 @@ import { UseRequest }from "../useRequest"
 import { ListNews } from "../components/newsListComponents/ListNews";
 
 export const HomePage = () => {
-
+  const homeData = useSelector(state => state.organization.data)
   const {news, testimonials} = UseRequest()
-	const [homeData, setHomeData] = useState(null);
 	const admin = true;
-
-	useEffect(() => {
-		fetchOrganizationData().then(data => setHomeData(data));
-	}, []);
 
 	return(
     <>

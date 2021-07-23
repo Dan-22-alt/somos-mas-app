@@ -11,10 +11,21 @@ import {
   } from '@chakra-ui/react';
 import InfoContact from './infContact';
 import ContactForm from '../../categories/pages/ContactForm';
+import { useSelector, useDispatch } from 'react-redux';
+import { getOrganization } from './../../../reducers/organizationReducer/index';
+import { Spinner } from './../../../layout/Spinners';
 
 const Contact = () => {
 
-    return ( 
+  const dispatch = useDispatch();
+  const datosOrg = useSelector(state => state.organization)
+  useEffect(() => {
+    if (datosOrg.status === "idle"){
+      dispatch(getOrganization())
+    }
+  }, [datosOrg])
+  
+    return (
 
       <Box p={4}>
         <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
@@ -34,7 +45,7 @@ const Contact = () => {
                     bg: ' #9AC9FB',
                     zIndex: -1,
                   }}>
-                  Contact Pages
+                  Contáctanos
                 </Text>
                 <br />{' '}
                 <Text color={' #9AC9FB'} as={'span'}>
@@ -47,15 +58,16 @@ const Contact = () => {
 
         <Container maxW={'6xl'} mt={10}>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-            <InfoContact/>
+          { datosOrg.status === "succeeded" ?  <InfoContact datos={datosOrg} /> : <Spinner /> }
+            
             <Flex>
               <ContactForm />
             </Flex>
           </SimpleGrid>
         </Container>
       </Box>
-    
+
     );
 }
- 
+
 export default Contact;
