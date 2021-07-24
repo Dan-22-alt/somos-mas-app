@@ -57,7 +57,7 @@ const FooterComponent = () => {
         py="8"
       >
         <Container as={Stack} maxW={'5x1'} py={2}>
-          <SimpleGrid columns={3} spacing={5}>
+          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={5}>
             <Center>
               <Stack spacing={2}>
                 <Flex align="center">
