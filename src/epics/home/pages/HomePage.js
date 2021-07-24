@@ -9,9 +9,6 @@ import { UseRequest }from "../useRequest"
 
 import LogOutButt from "../../logout/LogOutButt";
 
-import { fetchOrganizationData } from "../../../services/homeService";
-
-import { UseRequest }from "../useRequest"
 import { ListNews } from "../components/newsListComponents/ListNews";
 
 export const HomePage = () => {

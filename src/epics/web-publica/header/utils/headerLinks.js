@@ -10,8 +10,13 @@ export const links = [
 		id: 2,
 	},
 	{
+		route: "/actividades",
+		name: "Actividades",
+		id: 3,
+	},
+	{
 		route: "/contacto",
 		name: "Contacto",
-		id: 3,
+		id: 4,
 	},
 ];
