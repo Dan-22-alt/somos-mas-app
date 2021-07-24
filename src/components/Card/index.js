@@ -1,20 +1,13 @@
-import React from "react";
-import { Box } from "@chakra-ui/react";
-import { SmartPicture } from "./SmartPicture";
-import { ButtonsCard } from "./ButtonsCard";
+import { Box } from '@chakra-ui/react';
+import React from 'react';
+import { ButtonsCard } from './ButtonsCard';
+import { SmartPicture } from './SmartPicture';
 
-export const Card = ({name, id, image, description, handleEdit, handleDelete, children}) => {
-  return(
-		<Box
-			borderWidth="1px"
-			borderRadius="lg"
-      w={[350]}
-			pb="10px"
-      boxShadow="lg"
-      p='1rem'
-    >
+export const Card = ({ name, id, image, description, handleEdit, handleDelete, children }) => {
+  return (
+    <Box borderWidth="1px" borderRadius="lg" w={[350]} pb="10px" boxShadow="lg" p="1rem">
       <SmartPicture src={image} />
-			<Box>
+      <Box>
         <Box
           mt="1"
           fontWeight="semibold"
@@ -27,28 +20,16 @@ export const Card = ({name, id, image, description, handleEdit, handleDelete, ch
         >
           {name}
         </Box>
-        { description &&
-            <Box
-              mt="1"
-              fontSize="16px"
-              as="p"
-              textAlign="center"
-              my="8px"
-              lineHeight="tight"
-              isTruncated>
-              {description}
-            </Box>
-        }
-        { children }
-        { handleDelete && handleEdit
-          ? <ButtonsCard
-              id={id}
-              handleDelete={handleDelete}
-              handleEdit={handleEdit}
-            />
-          : null
-        }
-			</Box>
-		</Box>
-  )
-}
+        {description && (
+          <Box mt="1" fontSize="16px" as="p" textAlign="center" my="8px" lineHeight="tight" isTruncated>
+            {description}
+          </Box>
+        )}
+        {children}
+        {handleDelete && handleEdit ? (
+          <ButtonsCard id={id} handleDelete={handleDelete} handleEdit={handleEdit} />
+        ) : null}
+      </Box>
+    </Box>
+  );
+};

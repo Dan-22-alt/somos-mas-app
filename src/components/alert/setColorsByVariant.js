@@ -1,38 +1,38 @@
-import React from "react";
-import { CheckIcon, InfoOutlineIcon, WarningIcon } from "@chakra-ui/icons";
+import { CheckIcon, InfoOutlineIcon, WarningIcon } from '@chakra-ui/icons';
+import React from 'react';
 
 const setColorsByVariant = ({ type, setVariant }) => {
-	const style = {
-		w: 10,
-		h: 10,
-	};
+  const style = {
+    w: 10,
+    h: 10,
+  };
 
-	switch (type) {
-		case "success":
-			setVariant(() => ({
-				Icon: <CheckIcon {...style} />,
-				color: "green",
-			}));
-			break;
-		case "error":
-			setVariant(() => ({
-				Icon: <WarningIcon {...style} />,
-				color: "red",
-			}));
-			break;
-		case "info":
-			setVariant(() => ({
-				Icon: <InfoOutlineIcon {...style} />,
-				color: "blue",
-			}));
-			break;
-		default:
-			setVariant(() => ({
-				Icon: <CheckIcon {...style} />,
-				color: "green",
-			}));
-			break;
-	}
+  switch (type) {
+    case 'success':
+      setVariant(() => ({
+        Icon: <CheckIcon {...style} />,
+        color: 'green',
+      }));
+      break;
+    case 'error':
+      setVariant(() => ({
+        Icon: <WarningIcon {...style} />,
+        color: 'red',
+      }));
+      break;
+    case 'info':
+      setVariant(() => ({
+        Icon: <InfoOutlineIcon {...style} />,
+        color: 'blue',
+      }));
+      break;
+    default:
+      setVariant(() => ({
+        Icon: <CheckIcon {...style} />,
+        color: 'green',
+      }));
+      break;
+  }
 };
 
 export default setColorsByVariant;

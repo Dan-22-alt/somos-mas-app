@@ -1,4 +1,4 @@
-input[type="file"] {
+input[type='file'] {
   position: absolute;
   top: 0px;
   left: 0;
@@ -10,6 +10,6 @@ input[type="file"] {
   z-index: 1;
 }
 
-input[type="file"]:hover {
+input[type='file']:hover {
   cursor: pointer;
 }

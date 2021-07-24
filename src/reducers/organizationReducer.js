@@ -1,41 +1,36 @@
-import {  createSlice,  createAsyncThunk, } from '@reduxjs/toolkit'
-import httpClient from "../utils/httpClient";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getOrganization } from '../services/organizationService';
 
 const initialState = {
-    data: [],
-    status: 'idle',
-    error: null,
+  data: {},
+  status: 'idle',
+  error: null,
 };
 
-export function datosOrganización() {
-	return httpClient.get("/organization").then(response => response.data);
-}
+export const fetchOrganization = createAsyncThunk('activities/fetchOrganization', async () => {
+  const response = await getOrganization();
 
-export function EditarDatos(data) {
-	return httpClient.post("/organization", data).then(response => response.data);
-}
+  return response;
+});
 
 const organizationSlice = createSlice({
-    name: 'organization',
-    initialState,
-    reducers: {
-     
+  name: 'organization',
+  initialState,
+  reducers: {},
+  extraReducers: {
+    [fetchOrganization.pending]: (state, action) => {
+      state.status = 'loading';
     },
-    extraReducers: {
-      [datosOrganización.pending]: (state, action) => {
-        state.status = 'loading'
-      },
-      [datosOrganización.fulfilled]: (state, action) => {
-        state.status = 'succeeded'
-        // Add any fetched posts to the array
-        state.data = action.payload
-      },
-      [datosOrganización.rejected]: (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
-      },
+    [fetchOrganization.fulfilled]: (state, action) => {
+      state.status = 'succeeded';
+      // Add any fetched posts to the array
+      state.data = action.payload;
     },
-  })
-  
-  
-  export default organizationSlice.reducer
+    [fetchOrganization.rejected]: (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    },
+  },
+});
+
+export default organizationSlice.reducer;

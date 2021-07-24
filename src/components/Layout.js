@@ -1,12 +1,12 @@
-import React from "react";
-import HeaderComponent from "../epics/web-publica/header/HeaderComponent";
-import FooterComponent from "../epics/web-publica/footer/FooterComponent";
+import React from 'react';
+import FooterComponent from '../epics/web-publica/footer/FooterComponent';
+import HeaderComponent from '../epics/web-publica/header/HeaderComponent';
 
 const Layout = ({ children }) => {
   return (
     <>
       <HeaderComponent />
-      <div>{children}</div>
+      <main>{children}</main>
       <FooterComponent />
     </>
   );

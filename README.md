@@ -46,32 +46,32 @@ import { ChakraProvider } from "@chakra-ui/react"
 ## Usage
 
 ```javascript
-import { useState } from "react";
-import { Alert } from "../components";
+import { useState } from 'react';
+import { Alert } from '../components';
 
 //...
 
 const App = () => {
-	const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-	return (
-		<>
-			<button onClick={() => setIsOpen(true)}>Test button</button>
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Test button</button>
 
-			<Alert
-				isOpen={isOpen}
-				setIsOpen={setIsOpen}
-				title="Alert title"
-				description="Alert description"
-				onConfirm={() => console.log("onConfirm")}
-				type="error"
-				hasFeedback
-				feedbackTitle="Feedback Title"
-				feedbackDescription="Feedback description"
-				feedbackType="info"
-			/>
-		</>
-	);
+      <Alert
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        title="Alert title"
+        description="Alert description"
+        onConfirm={() => console.log('onConfirm')}
+        type="error"
+        hasFeedback
+        feedbackTitle="Feedback Title"
+        feedbackDescription="Feedback description"
+        feedbackType="info"
+      />
+    </>
+  );
 };
 ```
 

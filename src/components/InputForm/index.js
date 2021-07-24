@@ -1,11 +1,7 @@
-import React from "react";
-import { Input, FormControl, FormLabel } from '@chakra-ui/react';
+import { Alert, AlertIcon, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import React from 'react';
 
-import {
-	Alert, AlertIcon,
-	} from "@chakra-ui/react";
-
-export const InputForm = ({type='text', placeholder='', label='', name, formik}) => {
+export const InputForm = ({ type = 'text', placeholder = '', label = '', name, formik }) => {
   return (
     <FormControl mt={2}>
       <FormLabel>{label}</FormLabel>
@@ -18,13 +14,12 @@ export const InputForm = ({type='text', placeholder='', label='', name, formik})
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
       />
-        {formik.touched[name] && formik.errors[name]
-          ? (<Alert justifyContent="center" status="error">
-              <AlertIcon />
-                {formik.errors[name]}
-              </Alert>
-            )
-          : null}
+      {formik.touched[name] && formik.errors[name] ? (
+        <Alert justifyContent="center" status="error">
+          <AlertIcon />
+          {formik.errors[name]}
+        </Alert>
+      ) : null}
     </FormControl>
-  )
-}
+  );
+};

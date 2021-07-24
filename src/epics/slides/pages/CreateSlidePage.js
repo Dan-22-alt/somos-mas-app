@@ -1,8 +1,8 @@
-import React from "react";
-import SlideForm from "../components/SlideForm";
+import React from 'react';
+import SlideForm from '../components/SlideForm';
 
 const CreateSlidePage = () => {
-	return <SlideForm />;
+  return <SlideForm />;
 };
 
 export default CreateSlidePage;

@@ -1,7 +1,7 @@
-import httpClient from "../utils/httpClient";
+import httpClient from '../utils/httpClient';
 
 export function getUser() {
-  return httpClient.get("/users").then((response) => response.data);
+  return httpClient.get('/users').then((response) => response.data);
 }
 
 export function getUserById(id) {
@@ -9,7 +9,7 @@ export function getUserById(id) {
 }
 
 export function createUser(data) {
-  return httpClient.post("/users", data).then((response) => response.data);
+  return httpClient.post('/users', data).then((response) => response.data);
 }
 
 export function updateUser(id, data) {
