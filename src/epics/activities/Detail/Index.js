@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Container, Heading, Stack } from "@chakra-ui/react";
+import { Box, Container,Stack } from "@chakra-ui/react";
 import { useParams } from 'react-router-dom';
 import Title from '../../../components/Title';
 
