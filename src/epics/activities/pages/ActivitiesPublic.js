@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from "../../../components/Title";
-import { Container, Stack } from "@chakra-ui/react";
+import { Box, Container, Stack } from "@chakra-ui/react";
 
 const ActivitiesPublic = () => {
 
