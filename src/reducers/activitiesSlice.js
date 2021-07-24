@@ -68,7 +68,7 @@ USAGE:{
 // ! UPDATE ACTIVITY FUNCTIONALITY
 
 export const updateActivity = createAsyncThunk('activities/updateActivity', async ({ id, body }) => {
-  const response = await axios.put(`${process.env.REACT_APP_API_ACTIVITY}/${id}`, body);
+  await axios.put(`${process.env.REACT_APP_API_ACTIVITY}/${id}`, body);
   return { id, changes: body };
 });
 

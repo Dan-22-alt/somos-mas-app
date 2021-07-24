@@ -18,3 +18,9 @@ export function edit(data) {
       return e;
     });
 }
+
+export const getOng = async () => await httpClient.get('/organization').then(({ data }) => data.data);
+
+export const editOng = async (data) => {
+  return await httpClient.post(`/organization`, data).then((res) => res.data);
+};

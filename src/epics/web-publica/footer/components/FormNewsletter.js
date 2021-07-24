@@ -15,7 +15,7 @@ const FormNewsletter = () => {
       console.log(values);
       localStorage.setItem('suscripto', values.email);
       toast({
-        title: 'Suscripcion Correcta',
+        title: 'Suscripción Correcta',
         status: 'success',
         duration: 2000,
       });
@@ -60,7 +60,7 @@ const FormNewsletter = () => {
       ) : (
         <Stack align={'flex-center'}>
           <Text align="center" fontWeight={'500'} fontSize={'lg'} mb={2}>
-            Gracias, estas suscripto a nuestro Newsletter.
+            Gracias, ya estas suscripto a nuestro Newsletter.
           </Text>
         </Stack>
       )}

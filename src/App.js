@@ -18,7 +18,7 @@ function App() {
 
   return (
     <Router>
-      <Layout organizationData={ongData}>
+      <Layout>
         <Switch>
           {Pages.map((page) => (
             <Route {...page} />

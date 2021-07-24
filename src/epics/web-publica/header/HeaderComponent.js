@@ -14,7 +14,7 @@ const Header = () => {
   // revisar esta funcion, o verificar de donde traer los datos de sesion
   // const logged = userIsLogged();
 
-  const usuarioLog = true;
+  // const usuarioLog = true;
 
   const organization = useSelector((state) => state.organization.data);
 

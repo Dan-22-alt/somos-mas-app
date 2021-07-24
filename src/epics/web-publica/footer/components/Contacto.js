@@ -1,5 +1,6 @@
 import { Stack, Text } from '@chakra-ui/react';
 import React from 'react';
+import FormNewsletter from './FormNewsletter';
 
 const Contactos = ({ titulo, organization }) => {
   return (
@@ -19,6 +20,7 @@ const Contactos = ({ titulo, organization }) => {
         {' '}
         {organization.address}
       </Text>
+      <FormNewsletter />
     </Stack>
   );
 };

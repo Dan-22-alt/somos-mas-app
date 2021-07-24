@@ -18,7 +18,7 @@ import * as Yup from 'yup';
 import { contactFormPostRequest } from '../../contact/utils/contactFormPostRequest';
 
 const ContactForm = () => {
-  const [send, setSend] = useState(false);
+  const [send] = useState(false);
 
   const toast = useToast();
 

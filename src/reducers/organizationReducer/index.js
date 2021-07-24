@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getOng, editOng } from '../../services/organizationService';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { editOng, getOrganization } from '../../services/organizationService';
 
 const name = 'organization';
 
@@ -9,14 +9,15 @@ const TYPES = {
 };
 
 const initialState = {
-  data: [],
+  data: {},
   status: 'idle',
   error: null,
 };
 
-export const getOrganization = createAsyncThunk(TYPES.GETALL, async () => {
-  const data = await getOng();
-  return data[0];
+export const fetchOrganization = createAsyncThunk('activities/fetchOrganization', async () => {
+  const response = await getOrganization();
+
+  return response;
 });
 
 export const editByIDOrganization = createAsyncThunk(TYPES.EDITBYID, async (body) => {
@@ -29,17 +30,19 @@ const organizationSlice = createSlice({
   initialState,
   reducer: {},
   extraReducers: {
-    [getOrganization.pending]: (state) => {
+    [fetchOrganization.pending]: (state, action) => {
       state.status = 'loading';
     },
-    [getOrganization.fulfilled]: (state, action) => {
+    [fetchOrganization.fulfilled]: (state, action) => {
       state.status = 'succeeded';
+      // Add any fetched posts to the array
       state.data = action.payload;
     },
-    [getOrganization.rejected]: (state, action) => {
+    [fetchOrganization.rejected]: (state, action) => {
       state.status = 'failed';
       state.error = action.error.message;
     },
+
     [editByIDOrganization.pending]: (state) => {
       state.status = 'edit_loading';
     },

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { fetchOrganizationData } from '../../../services/homeService';
+import React from 'react';
+// import { useSelector } from 'react-redux';
 import { MainSlide } from '../components/HomeTemplates/MainSlide';
 import { Section } from '../components/HomeTemplates/Section';
 import { Welcome } from '../components/Welcome';
@@ -8,23 +7,14 @@ import { UseRequest } from '../useRequest';
 
 export const HomePage = () => {
   const { news, testimonials } = UseRequest();
-  const [homeData, setHomeData] = useState(null);
-  const admin = true;
 
-  const state = useSelector((state) => state);
-
-  useEffect(() => {
-    fetchOrganizationData().then((data) => setHomeData(data));
-  }, []);
+  // const state = useSelector((state) => state);
 
   return (
     <>
-      {/* {admin && <HomeEditForm />} */}
-      {/* <LogOutButt /> */}
-
       {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
       <MainSlide />
-      <Welcome text={homeData?.welcome_text} />
+      <Welcome />
       <Section title="Últimas Novedades" state={news} />
       <Section title="Testimonios" state={testimonials} />
     </>

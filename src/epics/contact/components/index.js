@@ -1,19 +1,12 @@
-import React, { useEffect } from 'react';
-import { Flex, Heading, Stack, Text, useBreakpointValue, Box, Container, SimpleGrid } from '@chakra-ui/react';
-import InfoContact from './infContact';
+import { Box, Container, Flex, Heading, SimpleGrid, Stack, Text, useBreakpointValue } from '@chakra-ui/react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import ContactForm from '../../categories/pages/ContactForm';
-import { useSelector, useDispatch } from 'react-redux';
-import { getOrganization } from './../../../reducers/organizationReducer/index';
 import { Spinner } from './../../../layout/Spinners';
+import InfoContact from './infContact';
 
 const Contact = () => {
-  const dispatch = useDispatch();
   const datosOrg = useSelector((state) => state.organization);
-  useEffect(() => {
-    if (datosOrg.status === 'idle') {
-      dispatch(getOrganization());
-    }
-  }, [datosOrg, dispatch]);
 
   return (
     <Box p={4}>
