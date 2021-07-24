@@ -6,6 +6,7 @@ import ContactPage from "../../epics/contact/pages/contactPage";
 import NewDetail from "../../epics/news/Detail/Index"
 import ActivitieDetail from "../../epics/activities/Detail/Index"
 import ActivitiesPublic from "../../epics/activities/pages/ActivitiesPublic";
+import Novedades from '../../epics/news/IndexPublic'
 
 /*
   component = Ahi iria la pagina
@@ -33,4 +34,5 @@ export const PagesP = [
 	new Page(NewDetail, "/novedades/:id"),
 	new Page(ActivitieDetail, "/actividades/:id"),
 	new Page(ActivitiesPublic, "/actividades"),
+	new Page(Novedades, "/novedades")
 ];
