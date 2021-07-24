@@ -23,7 +23,7 @@ const Contact = () => {
     if (datosOrg.status === "idle"){
       dispatch(getOrganization())
     }
-  }, [datosOrg])
+  }, [datosOrg, dispatch])
   
     return (
 
