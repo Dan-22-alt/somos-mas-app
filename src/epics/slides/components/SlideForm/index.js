@@ -3,8 +3,8 @@ import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createSlide, editSlide } from '../../../../services/slidesService';
-import getBase64 from '../../../../utils/getBase64';
 import { slideSchema } from '../../validations/slideSchema';
+import getBase64 from '../../../../utils/getBase64';
 
 const defaultSlide = {
   name: '',
@@ -64,7 +64,6 @@ export default function SlideForm({ data }) {
       let body = {};
       for (const key in data) {
         if (data[key] !== values[key]) {
-          console.log(data[key]);
           body[key] = values[key] || data[key];
         }
       }

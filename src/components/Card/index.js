@@ -1,11 +1,18 @@
-import { Box } from '@chakra-ui/react';
-import React from 'react';
-import { ButtonsCard } from './ButtonsCard';
-import { SmartPicture } from './SmartPicture';
+import React from "react";
+import { Box , Button} from "@chakra-ui/react";
+import { SmartPicture } from "./SmartPicture";
+import { ButtonsCard } from "./ButtonsCard";
 
-export const Card = ({ name, id, image, description, handleEdit, handleDelete, children }) => {
-  return (
-    <Box borderWidth="1px" borderRadius="lg" w={[350]} pb="10px" boxShadow="lg" p="1rem">
+export const Card = ({name, id, image, description, handleEdit, handleDelete, children, activity, handleViews}) => {
+  return(
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      w={[350]}
+      pb="10px"
+      boxShadow="lg"
+      p='1rem'
+    >
       <SmartPicture src={image} />
       <Box>
         <Box
@@ -20,16 +27,39 @@ export const Card = ({ name, id, image, description, handleEdit, handleDelete, c
         >
           {name}
         </Box>
-        {description && (
-          <Box mt="1" fontSize="16px" as="p" textAlign="center" my="8px" lineHeight="tight" isTruncated>
+        {description &&
+          <Box
+            mt="1"
+            fontSize="16px"
+            as="p"
+            textAlign="center"
+            my="8px"
+            lineHeight="tight"
+            isTruncated>
             {description}
           </Box>
-        )}
+        }
         {children}
-        {handleDelete && handleEdit ? (
-          <ButtonsCard id={id} handleDelete={handleDelete} handleEdit={handleEdit} />
-        ) : null}
+        {handleDelete && handleEdit
+          ? <ButtonsCard
+            id={id}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
+          : null
+        }
+        {activity &&
+          <Button
+            borderRadius={0}
+            type="submit"
+            variant="solid"
+            colorScheme="teal"
+            width="full"
+            onClick={() => handleViews(activity)}
+          >
+            Detalles
+          </Button>}
       </Box>
     </Box>
-  );
-};
+  )
+}

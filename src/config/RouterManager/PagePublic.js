@@ -1,10 +1,12 @@
-import ActivitieDetail from '../../epics/activities/Detail/Index';
-import ContactPage from '../../epics/contact/pages/contactPage';
-import { HomePage } from '../../epics/home/pages/HomePage';
-import Login from '../../epics/login/pages/Login';
-import NewDetail from '../../epics/news/Detail/Index';
-import Nosotros from '../../epics/nosotros/Index';
-import Registro from '../../epics/register/pages/Registro';
+import { HomePage } from "../../epics/home/pages/HomePage";
+import Registro from "../../epics/register/pages/Registro";
+import Login from "../../epics/login/pages/Login";
+import Nosotros from "../../epics/nosotros/Index";
+import ContactPage from "../../epics/contact/pages/contactPage";
+import NewDetail from "../../epics/news/Detail/Index"
+import ActivitieDetail from "../../epics/activities/Detail/Index"
+import ActivitiesPublic from "../../epics/activities/pages/ActivitiesPublic";
+import Novedades from '../../epics/news/IndexPublic'
 
 /*
   component = Ahi iria la pagina
@@ -24,11 +26,13 @@ class Page {
 
 //new Page(Example2, "/example2"),
 export const PagesP = [
-  new Page(HomePage, '/'),
-  new Page(Registro, '/Registro'),
-  new Page(Login, '/Login'),
-  new Page(Nosotros, '/nosotros'),
-  new Page(ContactPage, '/contacto'),
-  new Page(NewDetail, '/novedades/:id'),
-  new Page(ActivitieDetail, '/actividades/:id'),
+	new Page(HomePage, "/"),
+	new Page(Registro, "/Registro"),
+	new Page(Login, "/Login"),
+	new Page(Nosotros, "/nosotros"),
+	new Page(ContactPage, "/contacto"),
+	new Page(NewDetail, "/novedades/:id"),
+	new Page(ActivitieDetail, "/actividades/:id"),
+	new Page(ActivitiesPublic, "/actividades"),
+	new Page(Novedades, "/novedades")
 ];

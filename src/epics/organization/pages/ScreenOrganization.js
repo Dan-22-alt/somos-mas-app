@@ -1,22 +1,13 @@
-import { Box, Button, Center, Flex, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { SimpleGrid, Center, Button, Heading, Flex, Text, Image, Box } from '@chakra-ui/react';
+import { convertirHtml } from '../../../utils/convertirHtml';
 import Spinners from '../../../layout/Spinners';
-import { getData } from '../../../services/organizationService';
 
 const ScreenOrganization = () => {
-  const getDatos = getData();
-  const [data, setData] = useState({});
-
-  useEffect(() => {
-    if (getDatos.res?.data) setData(getDatos.res.data[0]);
-  }, [getDatos]);
-
-  const textHtml = () => {
-    const text = data.short_description;
-    const shortDesc = text.replace(/<[^>]+>/g, '');
-    return <Text d="flex">{shortDesc}</Text>;
-  };
+  const ongData = useSelector((state) => state.organization.data);
 
   return (
     <Flex backgroundColor="gray.200" h="100vh" flexDirection="column" alignItems="center" paddingTop="9vh">
@@ -24,17 +15,17 @@ const ScreenOrganization = () => {
         DATOS DE LA ORGANIZACIÓN
       </Text>
       <Center w="100vh" marginBottom="6vh">
-        {data.name ? (
+        {ongData?.name ? (
           <SimpleGrid>
             <Box alignItems="center" justifyContent="space-around" h="15vh" d="flex">
-              <Heading>{data.name}</Heading>
+              <Heading>{ongData?.name}</Heading>
             </Box>
-            <Image boxSize="75%" objectFit="contain" src={data.logo} className="margin-auto" alt="logo" />
+            <Image boxSize="75%" objectFit="contain" src={ongData?.logo} className="margin-auto" alt="logo" />
             <SimpleGrid d="flex" flexDirection="column">
               <Text d="flex" color="teal" fontSize="2xl">
                 Descripción breve
               </Text>
-              {textHtml()}
+              <Text d="flex" dangerouslySetInnerHTML={convertirHtml(ongData?.short_description)} />
             </SimpleGrid>
           </SimpleGrid>
         ) : (

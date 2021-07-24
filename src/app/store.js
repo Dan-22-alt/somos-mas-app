@@ -13,6 +13,6 @@ export default configureStore({
     news: newsBackofficeSlice,
     activities: activitiesReducer,
     category: categoryReducer,
-    organization: organizationSlice,
+    organization: organizationSlice
   },
 });
