@@ -1,6 +1,6 @@
 import httpClient from '../utils/httpClient';
 
-export function getSlide() {
+export function getSlides() {
   return httpClient.get('/slides').then((response) => response.data);
 }
 
