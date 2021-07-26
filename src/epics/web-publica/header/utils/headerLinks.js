@@ -13,15 +13,6 @@ export const links = [
 		route: "/actividades",
 		name: "Actividades",
 		id: 3,
-	},	{
-		route: "/novedades",
-		name: "Novedades",
-		id: 4,
-	},
-	{
-		route: "/testimonios",
-		name: "Testimonios",
-		id: 5,
 	},
 	{
 		route: "/novedades",
