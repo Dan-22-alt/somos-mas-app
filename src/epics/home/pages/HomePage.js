@@ -30,7 +30,6 @@ export const HomePage = () => {
 					title="Últimos testimonios"
 					state={testimonials}
 				/>
-				<Section title="Testimonios" state={testimonials} />
 			</Container>
 		</>
 	);
