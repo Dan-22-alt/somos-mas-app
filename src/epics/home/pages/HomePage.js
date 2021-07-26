@@ -5,7 +5,7 @@ import { HomeEditForm } from "../components/HomeEditForm";
 import { Welcome } from "../components/Welcome";
 import { MainSlide } from "../components/HomeTemplates/MainSlide";
 import { Section } from "../components/HomeTemplates/Section";
-import { UseRequest } from "./useRequest";
+import { UseRequest } from "../useRequest";
 
 import LogOutButt from "../../logout/LogOutButt";
 
