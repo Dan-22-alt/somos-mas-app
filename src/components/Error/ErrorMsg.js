@@ -12,6 +12,7 @@ export const ErrorMsg = ({text}) => (
         '3rem'
       ]}
       color='gray.400'
+      textAlign='center'
     >
       {text}
     </Text>
