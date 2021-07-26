@@ -31,11 +31,8 @@ export function obtenerActividadesAction() {
 
         try {
             const respuesta = await clienteAxios.get();
-            console.log(respuesta.data.data)
             dispatch( descargaActividadesExitosa(respuesta.data.data) )
-            
         } catch (error) {
-            console.log(error);
             dispatch( descargaActividadesError() )
         }
     }
@@ -51,27 +48,24 @@ const descargaActividadesExitosa = actividades => ({
     payload: actividades
 })
 const descargaActividadesError = () => ({
-    type: DESCARGA_ACTIVIDADES_ERROR, 
+    type: DESCARGA_ACTIVIDADES_ERROR,
     payload: true
 });
 
 
 // Crear nuevas Actividades
 export function crearNuevaActividadAction(actividad) {
-    console.log(actividad)
     return async (dispatch) => {
         dispatch( agregarActividad() );
-
         try {
             const respuesta = await clienteAxios({
                 method: 'POST',
-                data : { 
+                data : {
                     name :`${actividad.name}`,
                     description: `${actividad.description}`,
                     image: `${actividad.image }`,
                 } ,
             })
-            console.log(respuesta)
             dispatch( agregarActividadExito(respuesta.data.data) )
         } catch (error) {
             dispatch( agregarActividadError() )
@@ -105,9 +99,8 @@ export function obtenerActividadID(actividad) {
         try {
             const respuesta = await clienteAxios.get(`/${actividad.id}`, actividad);
             dispatch( mostrarActividadIdExitosa(respuesta.data.data) )
-            
+
         } catch (error) {
-            console.log(error);
             dispatch( mostrarActividadIdError() )
         }
     }
@@ -123,12 +116,9 @@ const mostrarActividadIdExitosa = actividad => ({
     payload: actividad
 })
 const mostrarActividadIdError = () => ({
-    type: DESCARGA_ACTIVIDADID_ERROR, 
+    type: DESCARGA_ACTIVIDADID_ERROR,
     payload: true
 });
-
-
-
 
 
 //_________________Actualizar actividades___________
@@ -151,10 +141,9 @@ export function editarActividadAction(actividad) {
         dispatch( editarActividad() );
 
         try {
-            await clienteAxios.put(`/${actividad.id}`, actividad);    
+            await clienteAxios.put(`/${actividad.id}`, actividad);
             dispatch( editarActividadExito(actividad) );
         } catch (error) {
-            console.log(error);
             dispatch( editarActividadError() );
         }
     }
@@ -184,7 +173,6 @@ export function borrarActividadAction(id) {
             dispatch( eliminarActividadExito() );
 
         } catch (error) {
-            console.log(error);
             dispatch( eliminarActividadError() );
         }
     }

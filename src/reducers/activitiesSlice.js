@@ -64,7 +64,7 @@ export const createActivity = createAsyncThunk(
 	}
 );
 
-/* 
+/*
 USAGE:{
 	import {useDispatch} from "react-redux"
 	import {createActivity} from "./activitiesSlice"
@@ -94,7 +94,7 @@ export const updateActivity = createAsyncThunk(
 	}
 );
 
-/* 
+/*
 USAGE:{
 	import {useDispatch} from "react-redux"
 	import {updateActivity} from "./activitiesSlice"
@@ -105,7 +105,7 @@ USAGE:{
 
 	dispatch(
 		updateActivity(
-			{ 
+			{
 				id: 305,
 				body: {
 					name: "new name",
@@ -124,21 +124,25 @@ const activitiesAdapter = createEntityAdapter({
 
 const activitiesSlice = createSlice({
 	name: "activities",
-	initialState: activitiesAdapter.getInitialState({ loading: false }),
+	initialState: activitiesAdapter.getInitialState({
+    status: 'idle',
+    error: null
+  }),
 	reducers: {
 		setAllActivities: activitiesAdapter.setAll,
 	},
 	extraReducers: {
 		// fetchActivities
 		[fetchActivities.pending](state) {
-			state.loading = true;
+      state.status = 'loading'
 		},
 		[fetchActivities.fulfilled](state, { payload }) {
-			state.loading = false;
+      state.status = 'succeeded'
 			activitiesAdapter.setAll(state, payload);
 		},
-		[fetchActivities.rejected](state) {
-			state.loading = false;
+		[fetchActivities.rejected](state, action) {
+      state.status = 'failed'
+      state.error = action.error.message
 		},
 
 		// deleteActivity
@@ -192,7 +196,7 @@ export const activitiesSelectors = activitiesAdapter.getSelectors(
 	state => state.activities
 );
 
-/* 
+/*
 OPTIONS: {
 	selectIds,
 	selectEntities,
@@ -208,7 +212,7 @@ USAGE EXAMPLE:{
 	///...
 
 	const allActivities = useSelector(activitiesSelectors.selectAll)
-}  
+}
 */
 
 export default activitiesSlice.reducer;

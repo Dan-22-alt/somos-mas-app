@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchActivities } from "../../../reducers/activitiesSlice";
 
-const ActivitySearchBar = ({ items }) => {
-	// items must be an array of objects, and have a "name" key
+const ActivitySearchBar = () => {
+	const [items, setItems] = useState([]);
+	const entities = useSelector(state => state.activities.entities);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchActivities());
+	}, [dispatch]);
+
+	useEffect(() => {
+		const activities = Object.values(entities);
+		setItems(() => [...activities]);
+	}, [entities]);
+
 	const handleOnSelect = item => {
 		console.log("handle on select", item.id);
 	};

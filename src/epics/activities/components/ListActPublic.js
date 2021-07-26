@@ -10,9 +10,6 @@ import {
   activitiesSelectors,
 } from "../../../reducers/activitiesSlice"
 
-import {obtenerActividadID} from "../../../services/activitiesService"
-import { sortDate } from "../../../utils/sortDate";
-
 const ListActPublic = () => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -27,8 +24,8 @@ const ListActPublic = () => {
         console.log(activity)
         history.push(`/actividades/${activity.id}`, activity)
     }
- 
-    return ( 
+
+    return (
         <SimpleGrid
             my="50px"
             minChildWidth="350px"
@@ -49,5 +46,5 @@ const ListActPublic = () => {
         </SimpleGrid>
      );
 }
- 
+
 export default ListActPublic;
