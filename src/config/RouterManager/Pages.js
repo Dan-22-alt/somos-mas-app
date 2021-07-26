@@ -16,6 +16,7 @@ import MembersCreate from "../../epics/members/pages/MemberCreate";
 import Members from "../../epics/members/pages/Members";
 import ScreenOrganization from "../../epics/organization/pages/ScreenOrganization";
 import Newspage from "../../epics/news/pages/NewsPage";
+import FormTestimonials from "../../epics/testimonials/components/FormTestimonials";
 
 /*
   component = Ahi iria la pagina
@@ -50,6 +51,8 @@ export const Pages = [
 	new Page(CreateSlidePage, "/backoffice/slides/create"),
 	new Page(EditSlidePage, "/backoffice/slides/:id"),
 	new Page(ListTestimonials, "/backoffice/testimonials"),
+	new Page(FormTestimonials, "/backoffice/testimonials/create"),
+	new Page(FormTestimonials, "/backoffice/testimonials/:id"),
 	new Page(EditPage, "/backoffice/organization/edit"),
 	new Page(MembersEdit, "/backoffice/members/edit/:id"),
 	new Page(MembersCreate, "/backoffice/members/create"),
