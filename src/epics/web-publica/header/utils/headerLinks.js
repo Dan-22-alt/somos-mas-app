@@ -15,8 +15,18 @@ export const links = [
 		id: 3,
 	},
 	{
+		route: "/novedades",
+		name: "Novedades",
+		id: 4,
+	},
+	{
+		route: "/testimonios",
+		name: "Testimonios",
+		id: 5,
+	},
+	{
 		route: "/contacto",
 		name: "Contacto",
-		id: 4,
+		id: 6,
 	},
 ];
