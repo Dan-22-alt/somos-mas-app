@@ -30,6 +30,7 @@
 		"react-router-dom": "^5.2.0",
 		"react-router-transition": "^2.1.0",
 		"react-scripts": "3.4.3",
+		"react-search-autocomplete": "^5.4.2",
 		"redux": "^4.1.0",
 		"sweetalert2-react": "^0.8.3",
 		"yup": "0.32.9"

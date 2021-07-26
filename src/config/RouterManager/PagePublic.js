@@ -8,6 +8,7 @@ import ActivitieDetail from "../../epics/activities/Detail/Index"
 import ActivitiesPublic from "../../epics/activities/pages/ActivitiesPublic";
 import Novedades from '../../epics/news/IndexPublic'
 import Donacion from "../../epics/donaciones/pages/DonacionPages";
+import PageGracias from "../../epics/donaciones/pages/GraciasPage";
 
 /*
   component = Ahi iria la pagina
@@ -36,5 +37,6 @@ export const PagesP = [
 	new Page(ActivitieDetail, "/actividades/:id"),
 	new Page(ActivitiesPublic, "/actividades"),
 	new Page(Novedades, "/novedades"),
-	new Page(Donacion, "/donar")
+	new Page(Donacion, "/donar"),
+	new Page(PageGracias, "/gracias")
 ];
