@@ -77,7 +77,6 @@ const ContactForm = () => {
       width="100vh"
       minH="80vh"
       maxH="125vh"
-      backgroundColor="gray.100"
       justifyContent="center"
       alignItems="center"
       boxShadow={'2xl'}

@@ -8,12 +8,12 @@ const ActivitiesPublic = () => {
   const image = 'https://www.esan.edu.pe/apuntes-empresariales/2016/06/14/ongempresas_principal.jpg';
 
   return (
-    <Container maxW="6xl">
-      <ActivitySearchBar />
-      <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
+    <Container>
+      <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 8 }}>
         <Title title="Actividades" image={image} />
         <ListActPublic />
       </Stack>
+      <ActivitySearchBar />
     </Container>
   );
 };

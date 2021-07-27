@@ -1,12 +1,12 @@
 import React, { useEffect, Fragment } from 'react';
 import { Box, Container, SimpleGrid, Stack } from '@chakra-ui/react';
 import Title from '../../components/Title';
-import Description from '../nosotros/components/Description';
 import { useSelector, useDispatch } from 'react-redux';
 import { ObtenerNovedades } from '../../reducers/newsBackofficeReducer';
 import { Spinner } from '../../layout/Spinners';
 import NewsCardPublic from './components/NewsCardPublic';
 import { Link } from 'react-router-dom';
+import NewsSearchBar from "./components/NewsSearchBar"
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -20,11 +20,11 @@ const Index = () => {
   }, [newsStatus, dispatch]);
 
   return (
-    <Container maxW="5xl">
-      <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
+    <Container>
+      <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 10 }} py={{ base: 20, md: 8 }}>
         <Title title="Novedades" image={imagen} />
-        <Description text="Enterate de nuestras novedades"></Description>
-        <SimpleGrid justifyItems="center" mb="10rem" columns={{ base: 1, md: 2 }}>
+        <NewsSearchBar/>
+        <SimpleGrid justifyItems="center" mb="10rem" columns={{ base: 1, md: 3 }}>
           {newsStatus === 'succeeded' ? (
             newsData.map((ne) => (
               <Link key={ne.id} to={`/novedades/${ne.id}`}>
