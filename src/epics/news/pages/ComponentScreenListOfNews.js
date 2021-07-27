@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import { Box, Button, Center, Container, SimpleGrid, useToast } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Center, Container, SimpleGrid, useToast } from '@chakra-ui/react';
-
 import { Card } from '../../../components/Card';
 import { deleteNews } from '../../../services/newsService';
 import { sortDate } from '../../../utils/sortDate';
@@ -10,13 +9,12 @@ import { sortDate } from '../../../utils/sortDate';
 import { ObtenerNovedades } from '../../../reducers/newsBackofficeReducer';
 
 const ComponentScreenListOfNews = () => {
-
   const dispatch = useDispatch();
   const { news, status } = useSelector((state) => state.news);
 
   useEffect(() => {
-    if (status === 'idle') dispatch(ObtenerNovedades())
-  }, [status, dispatch])
+    if (status === 'idle') dispatch(ObtenerNovedades());
+  }, [status, dispatch]);
 
   const history = useHistory();
   const toast = useToast();
@@ -43,24 +41,15 @@ const ComponentScreenListOfNews = () => {
   };
 
   return (
-    <Container maxW="container.xxl" marginTop="1%">
-      <Center>
+    <Container marginTop={12}>
+      <Box mb={10}>
         <Link to="/backoffice/news/create">
-          <Button colorScheme="blue">Crear Novedad</Button>
+          <Button bg="primary.400" _hover={{ bg: 'primary.300' }} color="white">
+            Crear Novedad
+          </Button>
         </Link>
-      </Center>
-      <Center marginTop="1%">
-        <h1>Ultimas novedades</h1>
-      </Center>
-      <SimpleGrid
-        my="auto"
-        minChildWidth="300px"
-        mt="50px"
-        justifyItems="center"
-        spacing="40px"
-        mx={[0, 5, 10, 30]}
-        mb="10rem"
-      >
+      </Box>
+      <SimpleGrid columns={{ xl: 4, lg: 3, md: 2, base: 1 }} spacing={10} mb={24}>
         {news.map((n) => (
           <Card
             handleEdit={handleEdit}
