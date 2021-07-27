@@ -38,7 +38,7 @@ const ComponentScreenListOfNews = () => {
   // const sortData = (date) => date.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, '$3-$2-$1');
 
   return (
-    <Container maxW="container.xl" marginTop="1%">
+    <Container marginTop={12}>
       <Box mb={10}>
         <Link to="/backoffice/news/create">
           <Button bg="primary.400" _hover={{ bg: 'primary.300' }} color="white">
@@ -46,7 +46,7 @@ const ComponentScreenListOfNews = () => {
           </Button>
         </Link>
       </Box>
-      <SimpleGrid columns={{ xl: 4, lg: 3, md: 2, base: 1 }} spacing={10} mb="10rem">
+      <SimpleGrid columns={{ xl: 4, lg: 3, md: 2, base: 1 }} spacing={10} mb={24}>
         {data.map((n) => (
           <Card
             handleEdit={handleEdit}
