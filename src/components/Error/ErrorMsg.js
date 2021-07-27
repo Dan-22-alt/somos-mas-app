@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, Box } from '@chakra-ui/react';
+import { Spinner } from '../../layout/Spinners';
 
 export const ErrorMsg = ({ text }) => (
   <Box>
@@ -8,3 +9,16 @@ export const ErrorMsg = ({ text }) => (
     </Text>
   </Box>
 );
+
+export const ConditionalRender = (state, Component, errorTxt) => {
+  switch (state) {
+    case 'idle':
+      return ''
+    case 'loading':
+      return <Spinner />
+    case 'succeeded':
+      return <Component />
+    default:
+      return <ErrorMsg text={errorTxt} />;
+  }
+};

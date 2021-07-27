@@ -7,14 +7,13 @@ import { Welcome } from '../components/Welcome';
 import { UseRequest } from '../useRequest';
 
 export const HomePage = () => {
-  const { news, testimonials } = UseRequest();
-
+  const  testimonials = UseRequest();
   return (
     <>
       <MainSlide />
       <Welcome />
       <Container maxW="container.xl">
-        <ListNews title="Últimas Novedades" state={news} />
+        <ListNews title="Últimas Novedades" />
         <TestimoniesCardsList title="Últimos testimonios" state={testimonials} />
       </Container>
     </>

@@ -16,7 +16,6 @@ const initialState = {
 
 export const fetchOrganization = createAsyncThunk('activities/fetchOrganization', async () => {
   const response = await getOrganization();
-
   return response;
 });
 

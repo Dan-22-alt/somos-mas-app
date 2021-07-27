@@ -5,7 +5,24 @@ import { Link, useLocation } from 'react-router-dom';
 const Items = ({ array, isOpen }) => {
   const { pathname } = useLocation();
 
-  const activeLink = ({ thisPath, linkPath }) => (thisPath === linkPath ? 'underline' : '');
+  const styleActive = ({ thisPath, linkPath }) => {
+    if (thisPath === linkPath ){
+      return {
+        textDecoration : "em",
+        color: "white",
+        bg : "primary.800"
+      }
+    } else {
+      return {
+        textDecoration : "",
+        color : "",
+        bg : ""
+      }
+    }
+  }
+
+  const textActive = ({ thisPath, linkPath }) => (thisPath === linkPath ? 'white' : '');
+  const bgActive = ({ thisPath, linkPath }) => (thisPath === linkPath ? 'primary.800' : '');
 
   return (
     <Fragment>
@@ -21,11 +38,25 @@ const Items = ({ array, isOpen }) => {
           <Text
             key={item.id}
             fontSize="xl"
-            pr="4"
-            textDecoration={activeLink({
+            rounded={'md'}
+            px={2}
+            py={1}
+            _hover={{
+              textDecoration: 'none',
+              bg: 'primary.500',
+            }}
+            as={styleActive({
               thisPath: pathname,
               linkPath: item.route,
-            })}
+            }).textDecoration}
+            color={styleActive({
+              thisPath: pathname,
+              linkPath: item.route,
+            }).color}
+            bg={styleActive({
+              thisPath: pathname,
+              linkPath: item.route,
+            }).bg}
           >
             <Link to={item.route}>{item.name}</Link>
           </Text>
