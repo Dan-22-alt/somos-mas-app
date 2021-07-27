@@ -9,10 +9,13 @@ import {
   Stack,
   StackDivider,
   useColorModeValue,
+  Button
 } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import Title from '../../../components/Title';
 import { getNewsById } from '../../../services/newsService';
+import {AiOutlineArrowRight } from "react-icons/ai"
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const { id } = useParams();
@@ -45,6 +48,21 @@ const Index = () => {
             {data.content}
           </Text>
           <Stack spacing={4} divider={<StackDivider borderColor={useColorModeValue('gray.100', 'gray.700')} />}></Stack>
+          <Link to={`/novedades`}>
+            <Button
+              rightIcon={<AiOutlineArrowRight />}
+              textTransform={'uppercase'}
+              colorScheme="teal" 
+              fontWeight={600}
+              fontSize={'xs'}
+              variant="outline"
+              p={2}
+              alignSelf={'flex-end'}
+              rounded={'md'}
+            >
+              Volver
+            </Button>
+          </Link>
         </Stack>
         <Flex>
           <Image rounded={'md'} alt={'feature image'} src={data.image} objectFit={'cover'} />
