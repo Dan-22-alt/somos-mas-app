@@ -20,7 +20,7 @@ const Index = () => {
   }, [newsStatus, dispatch]);
 
   return (
-    <Container maxW="3xl">
+    <Container maxW="5xl">
       <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
         <Title title="Novedades" image={imagen} />
         <Description text="Enterate de nuestras novedades"></Description>
