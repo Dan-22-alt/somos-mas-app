@@ -1,9 +1,9 @@
-import React from "react";
-import userIsLogged from "./userIsLogged";
-import { Redirect } from "react-router";
+import React from 'react';
+import { Redirect } from 'react-router';
+import userIsLogged from './userIsLogged';
 
 const AuthChecker = ({ children, ...rest }) => {
-	return <>{userIsLogged() ? children : <Redirect to="/login" />}</>;
+  return <>{userIsLogged() ? children : <Redirect to="/login" />}</>;
 };
 
 export default AuthChecker;

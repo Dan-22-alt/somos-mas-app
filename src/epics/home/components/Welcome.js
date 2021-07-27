@@ -1,16 +1,21 @@
-import React from "react";
-import { Text } from "@chakra-ui/react";
+import { Text } from '@chakra-ui/react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-export const Welcome = ({text}) => {
+export const Welcome = () => {
+  const organization = useSelector((state) => state.organization.data);
   return (
     <Text
-      textAlign='center'
-      as='h1'
+      textAlign="center"
+      as="h1"
       fontSize={['1.875rem', '2.1875rem', '3.125rem']}
-      mt='2rem'
-      mb={['5rem', '10.625rem']}
+      bg="gray.50"
+      borderBottom="1px"
+      borderColor="gray.200"
+      py="2.5rem"
+      mb="2.5rem"
     >
-      {text}
+      {organization?.welcome_text}
     </Text>
-  )
-}
+  );
+};

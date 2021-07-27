@@ -1,13 +1,13 @@
-import React from "react";
-import HeaderComponent from "../epics/web-publica/header/HeaderComponent";
-import FooterComponent from "../epics/web-publica/footer/FooterComponent";
+import React from 'react';
+import FooterComponent from '../epics/web-publica/footer/FooterComponent';
+import HeaderComponent from '../epics/web-publica/header/HeaderComponent';
 
-const Layout = ({ children, organizationData }) => {
+const Layout = ({ children }) => {
   return (
     <>
-      <HeaderComponent organizationData={organizationData}/>
-      <div>{children}</div>
-      <FooterComponent organizationData={organizationData}/>
+      <HeaderComponent />
+      <main>{children}</main>
+      <FooterComponent />
     </>
   );
 };

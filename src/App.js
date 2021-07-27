@@ -1,41 +1,24 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-
-import { getOrganization } from './reducers/organizationReducer/index'
-
-import userIsLogged from "./features/auth/userIsLogged";
-
-import { RouteP } from "./config/RouterManager/RoutePublic";
-import { PagesP } from "./config/RouterManager/PagePublic";
-import { Route } from "./config/RouterManager/Route";
-import { Pages } from "./config/RouterManager/Pages";
-
-import Layout from "./components/Layout";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import Layout from './components/Layout';
+import { PagesP } from './config/RouterManager/PagePublic';
+import { Pages } from './config/RouterManager/Pages';
+import { Route } from './config/RouterManager/Route';
+import { RouteP } from './config/RouterManager/RoutePublic';
+import userIsLogged from './features/auth/userIsLogged';
+import { fetchOrganization } from './reducers/organizationReducer';
 
 function App() {
-  const dispatch = useDispatch()
-  const ongStatus = useSelector(state => state.organization.status)
-  const ongData = useSelector(state => state.organization.data)
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    console.log(
-      `${
-        userIsLogged()
-          ? "El usuario esta autenticado"
-          : "El usuario no esta autenticado"
-      }`
-    );
-  }, []);
-  useEffect(() => {
-    if(ongStatus === 'idle'){
-      dispatch(getOrganization())
-    }
-  }, [dispatch, ongStatus])
+    console.log(`${userIsLogged() ? 'El usuario esta autenticado' : 'El usuario no esta autenticado'}`);
+    dispatch(fetchOrganization());
+  }, [dispatch]);
 
   return (
     <Router>
-      <Layout organizationData={ongData}>
+      <Layout>
         <Switch>
           {Pages.map((page) => (
             <Route {...page} />

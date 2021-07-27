@@ -1,8 +1,8 @@
-import React from "react";
-import { Textarea, Text, Alert, AlertIcon } from "@chakra-ui/react"
+import { Alert, AlertIcon, Text, Textarea } from '@chakra-ui/react';
+import React from 'react';
 
-export const FormTextArea = ({control, id}) => {
-  return(
+export const FormTextArea = ({ control, id }) => {
+  return (
     <>
       <Text mb="8px">Welcome message</Text>
       <Textarea
@@ -13,12 +13,12 @@ export const FormTextArea = ({control, id}) => {
         size="sm"
         onBlur={control.handleBlur}
       />
-      {control.errors[id] && control.touched[id] &&
-         <Alert justifyContent="center" status="error">
-           <AlertIcon />
-           {control.errors[id]}
-         </Alert>
-      }
+      {control.errors[id] && control.touched[id] && (
+        <Alert justifyContent="center" status="error">
+          <AlertIcon />
+          {control.errors[id]}
+        </Alert>
+      )}
     </>
-  )
-}
+  );
+};

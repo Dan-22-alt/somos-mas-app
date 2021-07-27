@@ -1,20 +1,13 @@
-import {
-	createSlice,
-	createEntityAdapter,
-	createAsyncThunk,
-} from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 // ! FETCH ACTIVITIES FUNCTIONALITY
 
-export const fetchActivities = createAsyncThunk(
-	"activities/fetchActivities",
-	async () => {
-		const response = await axios.get(process.env.REACT_APP_API_ACTIVITY);
-		const data = await response.data.data;
-		return data;
-	}
-);
+export const fetchActivities = createAsyncThunk('activities/fetchActivities', async () => {
+  const response = await axios.get(process.env.REACT_APP_API_ACTIVITY);
+  const data = await response.data.data;
+  return data;
+});
 
 /*
   USAGE:
@@ -31,13 +24,10 @@ export const fetchActivities = createAsyncThunk(
 
 // ! DELETE FUNCTIONALITY
 
-export const deleteActivity = createAsyncThunk(
-	"activities/deleteActivity",
-	async id => {
-		await axios.delete(`${process.env.REACT_APP_API_ACTIVITY}/${id}`);
-		return id;
-	}
-);
+export const deleteActivity = createAsyncThunk('activities/deleteActivity', async (id) => {
+  await axios.delete(`${process.env.REACT_APP_API_ACTIVITY}/${id}`);
+  return id;
+});
 
 /*
   USAGE:{
@@ -53,16 +43,10 @@ export const deleteActivity = createAsyncThunk(
 
 // ! CREATE NEW ACTIVITY FUNCTIONALITY
 
-export const createActivity = createAsyncThunk(
-	"activities/reateActivity",
-	async body => {
-		const response = await axios.post(
-			process.env.REACT_APP_API_ACTIVITY,
-			body
-		);
-		return response.data.data;
-	}
-);
+export const createActivity = createAsyncThunk('activities/reateActivity', async (body) => {
+  const response = await axios.post(process.env.REACT_APP_API_ACTIVITY, body);
+  return response.data.data;
+});
 
 /*
 USAGE:{
@@ -83,16 +67,10 @@ USAGE:{
 
 // ! UPDATE ACTIVITY FUNCTIONALITY
 
-export const updateActivity = createAsyncThunk(
-	"activities/updateActivity",
-	async ({ id, body }) => {
-		const response = await axios.put(
-			`${process.env.REACT_APP_API_ACTIVITY}/${id}`,
-			body
-		);
-		return { id, changes: body };
-	}
-);
+export const updateActivity = createAsyncThunk('activities/updateActivity', async ({ id, body }) => {
+  await axios.put(`${process.env.REACT_APP_API_ACTIVITY}/${id}`, body);
+  return { id, changes: body };
+});
 
 /*
 USAGE:{
@@ -117,73 +95,73 @@ USAGE:{
 // ! ADAPTER
 
 const activitiesAdapter = createEntityAdapter({
-	selectId: activity => activity.id,
+  selectId: (activity) => activity.id,
 });
 
 // ! SLICE
 
 const activitiesSlice = createSlice({
-	name: "activities",
-	initialState: activitiesAdapter.getInitialState({
+  name: 'activities',
+  initialState: activitiesAdapter.getInitialState({
     status: 'idle',
-    error: null
+    error: null,
   }),
-	reducers: {
-		setAllActivities: activitiesAdapter.setAll,
-	},
-	extraReducers: {
-		// fetchActivities
-		[fetchActivities.pending](state) {
-      state.status = 'loading'
-		},
-		[fetchActivities.fulfilled](state, { payload }) {
-      state.status = 'succeeded'
-			activitiesAdapter.setAll(state, payload);
-		},
-		[fetchActivities.rejected](state, action) {
-      state.status = 'failed'
-      state.error = action.error.message
-		},
+  reducers: {
+    setAllActivities: activitiesAdapter.setAll,
+  },
+  extraReducers: {
+    // fetchActivities
+    [fetchActivities.pending](state) {
+      state.status = 'loading';
+    },
+    [fetchActivities.fulfilled](state, { payload }) {
+      state.status = 'succeeded';
+      activitiesAdapter.setAll(state, payload);
+    },
+    [fetchActivities.rejected](state, action) {
+      state.status = 'failed';
+      state.error = action.error.message;
+    },
 
-		// deleteActivity
-		[deleteActivity.pending](state) {
-			state.loading = true;
-		},
-		[deleteActivity.fulfilled](state, { payload: id }) {
-			state.loading = false;
-			activitiesAdapter.removeOne(state, id);
-		},
-		[deleteActivity.rejected](state) {
-			state.loading = false;
-		},
+    // deleteActivity
+    [deleteActivity.pending](state) {
+      state.loading = true;
+    },
+    [deleteActivity.fulfilled](state, { payload: id }) {
+      state.loading = false;
+      activitiesAdapter.removeOne(state, id);
+    },
+    [deleteActivity.rejected](state) {
+      state.loading = false;
+    },
 
-		// createActivity
-		[createActivity.pending](state) {
-			state.loading = true;
-		},
-		[createActivity.fulfilled](state, { payload: newActivty }) {
-			state.loading = false;
-			activitiesAdapter.addOne(state, newActivty);
-		},
-		[createActivity.rejected](state) {
-			state.loading = false;
-		},
+    // createActivity
+    [createActivity.pending](state) {
+      state.loading = true;
+    },
+    [createActivity.fulfilled](state, { payload: newActivty }) {
+      state.loading = false;
+      activitiesAdapter.addOne(state, newActivty);
+    },
+    [createActivity.rejected](state) {
+      state.loading = false;
+    },
 
-		// updateActivity
-		[updateActivity.pending](state) {
-			state.loading = true;
-		},
-		[updateActivity.fulfilled](state, { payload }) {
-			state.loading = false;
-			activitiesAdapter.updateOne(state, {
-				id: payload.id,
-				changes: payload.changes,
-			});
-		},
-		[updateActivity.rejected](state) {
-			state.loading = false;
-		},
-	},
+    // updateActivity
+    [updateActivity.pending](state) {
+      state.loading = true;
+    },
+    [updateActivity.fulfilled](state, { payload }) {
+      state.loading = false;
+      activitiesAdapter.updateOne(state, {
+        id: payload.id,
+        changes: payload.changes,
+      });
+    },
+    [updateActivity.rejected](state) {
+      state.loading = false;
+    },
+  },
 });
 
 // ! ACTIONS
@@ -192,9 +170,7 @@ export const { setAllActivities } = activitiesSlice.actions;
 
 // ! SELECTORS
 
-export const activitiesSelectors = activitiesAdapter.getSelectors(
-	state => state.activities
-);
+export const activitiesSelectors = activitiesAdapter.getSelectors((state) => state.activities);
 
 /*
 OPTIONS: {

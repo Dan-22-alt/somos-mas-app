@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Drawer,
   DrawerBody,
@@ -8,10 +7,11 @@ import {
   List,
   ListIcon,
   ListItem,
-} from "@chakra-ui/react";
-import { FiHome } from "react-icons/fi";
-import { IoNewspaperOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+} from '@chakra-ui/react';
+import React from 'react';
+import { FiHome } from 'react-icons/fi';
+import { IoNewspaperOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const ListLink = ({ title, to, icon, onClick }) => {
   return (
@@ -34,18 +34,8 @@ const Sidebar = ({ onClose, isOpen }) => {
           <DrawerBody>
             <List spacing={3}>
               {/* Ejemplo de navegacion*/}
-              <ListLink
-                title="Home ejemplo"
-                icon={FiHome}
-                to="/backoffice"
-                onClick={onClose}
-              />
-              <ListLink
-                title="Novedades ejemplo"
-                icon={IoNewspaperOutline}
-                to="/backoffice/news"
-                onClick={onClose}
-              />
+              <ListLink title="Home ejemplo" icon={FiHome} to="/backoffice" onClick={onClose} />
+              <ListLink title="Novedades ejemplo" icon={IoNewspaperOutline} to="/backoffice/news" onClick={onClose} />
             </List>
           </DrawerBody>
         </DrawerContent>

@@ -2,9 +2,7 @@ import React from 'react';
 import Gracias from '../components/IndexGracias';
 
 const PageGracias = () => {
-    return ( 
-        <Gracias/>
-     );
-}
- 
+  return <Gracias />;
+};
+
 export default PageGracias;

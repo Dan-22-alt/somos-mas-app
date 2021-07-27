@@ -1,13 +1,12 @@
-import React from "react";
-
-import MemberList from "../components/MemberList";
+import React from 'react';
+import MemberList from '../components/MemberList';
 
 const Members = () => {
-	return (
-		<>
-			<MemberList />
-		</>
-	);
+  return (
+    <>
+      <MemberList />
+    </>
+  );
 };
 
 export default Members;

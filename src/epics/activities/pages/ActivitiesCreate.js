@@ -1,8 +1,8 @@
-import React from "react";
-import FormActivities from "../components/form-activity/FormActivities";
+import React from 'react';
+import FormActivities from '../components/form-activity/FormActivities';
 
 const ActivitiesCreate = () => {
-	return <FormActivities />;
+  return <FormActivities />;
 };
 
 export default ActivitiesCreate;

@@ -1,36 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
-
-import { HomeEditForm } from "../components/HomeEditForm";
-import { Welcome } from "../components/Welcome";
-import { MainSlide } from "../components/HomeTemplates/MainSlide";
-import { Section } from "../components/HomeTemplates/Section";
-import { UseRequest } from "../useRequest";
-
-import LogOutButt from "../../logout/LogOutButt";
-
-import { ListNews } from "../components/newsListComponents/ListNews";
-import TestimoniesCardsList from "../components/testimonies-section/TestimoniesCardsList";
-import { Container } from "@chakra-ui/react";
+import { Container } from '@chakra-ui/react';
+import React from 'react';
+import { MainSlide } from '../components/HomeTemplates/MainSlide';
+import { ListNews } from '../components/newsListComponents/ListNews';
+import TestimoniesCardsList from '../components/testimonies-section/TestimoniesCardsList';
+import { Welcome } from '../components/Welcome';
+import { UseRequest } from '../useRequest';
 
 export const HomePage = () => {
-	const homeData = useSelector(state => state.organization.data);
-	const { news, testimonials } = UseRequest();
-	const admin = true;
+  const { news, testimonials } = UseRequest();
 
-	return (
-		<>
-			{admin && <HomeEditForm />}
-			<LogOutButt />
-			<MainSlide />
-			<Welcome text={homeData?.welcome_text} />
-			<Container maxW="container.xl">
-				<ListNews title="Últimas Novedades" state={news} />
-				<TestimoniesCardsList
-					title="Últimos testimonios"
-					state={testimonials}
-				/>
-			</Container>
-		</>
-	);
+  return (
+    <>
+      <MainSlide />
+      <Welcome />
+      <Container maxW="container.xl">
+        <ListNews title="Últimas Novedades" state={news} />
+        <TestimoniesCardsList title="Últimos testimonios" state={testimonials} />
+      </Container>
+    </>
+  );
 };
