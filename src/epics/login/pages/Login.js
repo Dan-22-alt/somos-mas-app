@@ -7,17 +7,19 @@ import FormLogin from '../components/formLogin';
 
 const Login = () => {
   const log = useSelector(selectAuth);
+  const { state } = log;
   const toast = useToast();
 
   useEffect(() => {
-    if (log.state === 'success') {
+    if (state === 'success') {
       toast({
         description: 'Bienvenido!',
         status: 'success',
         duration: 2000,
         isClosable: true,
       });
-    } else if (log.state === 'error') {
+    }
+    if (state === 'error') {
       toast({
         description: 'Email o contraseña incorrecta',
         status: 'error',
@@ -25,7 +27,8 @@ const Login = () => {
         isClosable: true,
       });
     }
-  });
+    console.log(state);
+  }, [state]);
 
   return (
     <AvoidAuthRedundancies>
