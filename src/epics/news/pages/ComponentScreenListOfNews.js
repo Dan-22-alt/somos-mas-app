@@ -1,22 +1,29 @@
-import { Button, Center, Container, SimpleGrid, useToast } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Button, Center, Container, SimpleGrid, useToast } from '@chakra-ui/react';
+
 import { Card } from '../../../components/Card';
-import { deleteNews, getNews } from '../../../services/newsService';
+import { deleteNews } from '../../../services/newsService';
 import { sortDate } from '../../../utils/sortDate';
 
+import { ObtenerNovedades } from '../../../reducers/newsBackofficeReducer';
+
 const ComponentScreenListOfNews = () => {
+
+  const dispatch = useDispatch();
+  const { news, status } = useSelector((state) => state.news);
+
+  useEffect(() => {
+    if (status === 'idle') dispatch(ObtenerNovedades())
+  }, [status, dispatch])
+
   const history = useHistory();
-  const [data, setData] = useState([]);
   const toast = useToast();
 
   const handleEdit = (id) => {
     history.push(`/backoffice/news/${id}/edit`);
   };
-
-  useEffect(() => {
-    getNews().then((r) => setData(r.data));
-  }, []);
 
   const handleDelete = (id) => {
     deleteNews(id)
@@ -34,8 +41,6 @@ const ComponentScreenListOfNews = () => {
         });
       });
   };
-
-  // const sortData = (date) => date.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, '$3-$2-$1');
 
   return (
     <Container maxW="container.xxl" marginTop="1%">
@@ -56,7 +61,7 @@ const ComponentScreenListOfNews = () => {
         mx={[0, 5, 10, 30]}
         mb="10rem"
       >
-        {data.map((n) => (
+        {news.map((n) => (
           <Card
             handleEdit={handleEdit}
             handleDelete={handleDelete}

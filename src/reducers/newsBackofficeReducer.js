@@ -11,7 +11,7 @@ const initialState = {
 export const ObtenerNovedades = createAsyncThunk('news/ObtenerNovedades', async (arg, { getState }) => {
   // <-- destructure getState method
   const respuesta = await httpClient.get('/news');
-  return respuesta.data.data;
+  return respuesta.data.data.reverse()
 });
 
 //Funcion para obtener las News => dispatch(agregarNews(payload));
