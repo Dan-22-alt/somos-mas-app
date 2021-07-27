@@ -61,3 +61,9 @@ body {
 .arrow--disabled {
   fill: rgba(255, 255, 255, 0.5);
 }
+
+.slider-text {
+  background: rgba(0, 0, 0, 0.33);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}

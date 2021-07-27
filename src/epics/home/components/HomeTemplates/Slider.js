@@ -91,10 +91,10 @@ const Slider = ({ slides }) => {
               >
                 <Stack textAlign="center" direction="column" w="100%" h="100%" justifyContent="center">
                   <Text as="h2" fontSize={['1.5rem', '3rem']} color={color}>
-                    {slide?.name}
+                    <span className="slider-text">{slide?.name}</span>
                   </Text>
                   <Text as="h2" fontSize={['1rem', '2rem']} color={color}>
-                    {slide?.description}
+                    <span className="slider-text">{slide?.description}</span>
                   </Text>
                 </Stack>
               </Box>
