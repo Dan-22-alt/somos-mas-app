@@ -14,13 +14,13 @@ import {
 import { useParams } from 'react-router-dom';
 import Title from '../../../components/Title';
 import { getNewsById } from '../../../services/newsService';
-import {AiOutlineArrowRight } from "react-icons/ai"
+import {AiOutlineArrowLeft } from "react-icons/ai"
 import { Link } from 'react-router-dom';
 
 const Index = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
-
+  const imagen = 'https://image.shutterstock.com/image-photo/text-sign-showing-update-motivational-600w-1326093911.jpg';
   //console.log(data)
   useEffect(() => {
     getNewsById(id).then((r) => setData(r.data));
@@ -28,8 +28,8 @@ const Index = () => {
 
   return (
     <Container maxW={'5xl'} py={12}>
-      <Title title={`Detalle novedad`}></Title>
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+      <Title title={`Detalle novedad`} image={imagen}></Title>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} py={{ base: 20, md: 8 }}>
         <Stack spacing={4}>
           <Text
             textTransform={'uppercase'}
@@ -50,7 +50,7 @@ const Index = () => {
           <Stack spacing={4} divider={<StackDivider borderColor={useColorModeValue('gray.100', 'gray.700')} />}></Stack>
           <Link to={`/novedades`}>
             <Button
-              rightIcon={<AiOutlineArrowRight />}
+              rightIcon={<AiOutlineArrowLeft />}
               textTransform={'uppercase'}
               colorScheme="teal" 
               fontWeight={600}
