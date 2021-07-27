@@ -1,8 +1,6 @@
 import {
   Alert,
   AlertIcon,
-  Avatar,
-  Box,
   Button,
   Flex,
   FormControl,
@@ -10,6 +8,7 @@ import {
   Heading,
   Input,
   Stack,
+ Image, Text,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import React from 'react';
@@ -42,63 +41,96 @@ const FormLogin = () => {
   });
 
   return (
-    <Flex
-      flexDirection="column"
-      width="100wh"
-      height="100vh"
-      backgroundColor="gray.200"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Stack flexDir="column" mb="2" justifyContent="center" alignItems="center">
-        <Avatar bg="teal.500" />
-        <Heading color="teal.400">Login</Heading>
-        <Box minW={{ base: '90%', md: '468px' }}>
-          <form onSubmit={formik.handleSubmit}>
-            <Stack spacing={4} p="1rem" backgroundColor="whiteAlpha.900" boxShadow="md">
-              <FormControl mt={2}>
-                {formik.touched.email && formik.errors.email ? (
-                  <Alert justifyContent="center" status="error">
-                    <AlertIcon />
-                    {formik.errors.email}
-                  </Alert>
-                ) : null}
-                <FormLabel>Email</FormLabel>
-                <Input
-                  type="email"
-                  placeholder="Mquinola@maquinola.com"
-                  id="email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </FormControl>
-
-              <FormControl mt={2}>
-                {formik.touched.password && formik.errors.password ? (
-                  <Alert justifyContent="center" status="error">
-                    <AlertIcon />
-                    {formik.errors.password}
-                  </Alert>
-                ) : null}
-                <FormLabel>Password</FormLabel>
-                <Input
-                  type="password"
-                  placeholder="*******"
-                  id="password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </FormControl>
-              <Button borderRadius={0} type="submit" variant="solid" colorScheme="teal" width="full">
+    <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+      <Flex p={8} flex={1} align={'center'} justify={'center'}>
+        <Stack spacing={4} w={'full'} maxW={'md'}>
+          <Stack
+            bg={'gray.50'}
+            rounded={'xl'}
+            p={{ base: 4, sm: 6, md: 8 }}
+            spacing={{ base: 8 }}
+            maxW={{ lg: 'lg' }}>
+            <Stack spacing={4}>
+              <Heading
+                color={'gray.800'}
+                lineHeight={1.1}
+                fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
                 Login
+                <Text
+                  as={'span'}
+                  bgGradient="linear(to-r, teal.400,teal.400)"
+                  bgClip="text">
+                  !
+                </Text>
+              </Heading>
+              <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
+                Ingresa tus datos para Iniciar Sesión!
+              </Text>
+            </Stack>
+          </Stack>
+          <form onSubmit={formik.handleSubmit}>
+            <FormControl mt={4}  id="email">
+              {formik.touched.email && formik.errors.email ? (
+                <Alert justifyContent="center" status="error">
+                  <AlertIcon />
+                  {formik.errors.email}
+                </Alert>
+              ) : null}
+              <FormLabel>Correo Electrónico</FormLabel>
+              <Input
+                type="email"
+                id="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="Correo@correo.com"
+                bg={'gray.100'}
+                border={0}
+                color={'gray.500'}
+                _placeholder={{
+                  color: 'gray.500',
+                }} />
+            </FormControl>
+            <FormControl mt={4}  id="password">
+              {formik.touched.password && formik.errors.password ? (
+                <Alert justifyContent="center" status="error">
+                  <AlertIcon />
+                  {formik.errors.password}
+                </Alert>
+              ) : null}
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                placeholder="*******"
+                id="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                bg={'gray.100'}
+                border={0}
+                color={'gray.500'}
+                _placeholder={{
+                  color: 'gray.500',
+                }} />
+            </FormControl>
+            <Stack spacing={6}>
+              <Button mt={4} type="submit" colorScheme={'teal'} variant={'solid'}>
+                Ingresar
               </Button>
             </Stack>
           </form>
-        </Box>
-      </Stack>
-    </Flex>
+        </Stack>
+      </Flex>
+      <Flex flex={1}>
+        <Image
+          alt={'Login Image'}
+          objectFit={'cover'}
+          src={
+            'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80'
+          }
+        />
+      </Flex>
+    </Stack>
   );
 };
 
