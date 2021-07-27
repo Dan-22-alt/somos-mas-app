@@ -29,12 +29,9 @@ const Index = () => {
   }, [members]);
 
   return (
-    <Container maxW="3xl">
-      <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
+    <Container>
+      <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 8 }}>
         <Title title="Nosotros" image={imagen} />
-        <Heading align="center" mx="auto" my={5} as="h1" size="2xl">
-          Sobre nosotros
-        </Heading>
         {ongStatus === 'loading' ? (
           <Spinner minH="5rem" />
         ) : (

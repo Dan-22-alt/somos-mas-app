@@ -5,6 +5,13 @@ export const theme = extendTheme({
     heading: 'Noto Serif',
     body: 'Noto Serif',
   },
+  components: {
+    Container: {
+        baseStyle: {
+            maxWidth: "container.xl",
+        },
+    },
+  },
   colors: {
     primary: {
       100: '#62abf8',
