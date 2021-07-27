@@ -34,8 +34,15 @@ const Sidebar = ({ onClose, isOpen }) => {
           <DrawerBody>
             <List spacing={3}>
               {/* Ejemplo de navegacion*/}
-              <ListLink title="Home ejemplo" icon={FiHome} to="/backoffice" onClick={onClose} />
-              <ListLink title="Novedades ejemplo" icon={IoNewspaperOutline} to="/backoffice/news" onClick={onClose} />
+              <ListLink title="Inicio" icon={FiHome} to="/backoffice" onClick={onClose} />
+              <ListLink title="Actividades" icon={IoNewspaperOutline} to="/backoffice/activities" onClick={onClose} />
+              <ListLink title="Categorias" icon={IoNewspaperOutline} to="/backoffice/categories" onClick={onClose} />
+              <ListLink title="Miembros" icon={IoNewspaperOutline} to="/backoffice/members" onClick={onClose} />
+              <ListLink title="Novedades" icon={IoNewspaperOutline} to="/backoffice/news" onClick={onClose} />
+              <ListLink title="Organizacion" icon={IoNewspaperOutline} to="/backoffice/organization" onClick={onClose} />
+              <ListLink title="Slides" icon={IoNewspaperOutline} to="/backoffice/slides" onClick={onClose} />
+              <ListLink title="Testimonios" icon={IoNewspaperOutline} to="/backoffice/testimonials" onClick={onClose} />
+              <ListLink title="Usuarios" icon={IoNewspaperOutline} to="/backoffice/users" onClick={onClose} />
             </List>
           </DrawerBody>
         </DrawerContent>

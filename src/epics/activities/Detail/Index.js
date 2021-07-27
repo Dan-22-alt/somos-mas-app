@@ -12,7 +12,7 @@ const Index = () => {
     <Container maxW={'3xl'}>
       <Stack as={Box} textAlign={'center'} spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 25 }}>
         {/* CAMBIAR TITULO LUEGO POR ALGO MAS ACORDE--------------------------------------------- */}
-        <Title title={`Detalle de la Actividad ID: ${id}`} image={imagen}></Title>
+        <Title title={`Detalle de la Actividad`} image={imagen}></Title>
       </Stack>
     </Container>
   );
