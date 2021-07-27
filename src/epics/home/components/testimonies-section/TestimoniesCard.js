@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text, Image as ChakraImage } from '@chakra-ui/react';
 
-export const Card = ({ image, name }) => {
+const TestimoniesCard = ({ image, name }) => {
   return (
     <Box>
       {image ? (
@@ -28,3 +28,5 @@ export const Card = ({ image, name }) => {
     </Box>
   );
 };
+
+export default TestimoniesCard;

@@ -1,22 +1,23 @@
-import axios from 'axios';
 import {
-  ACTIVIDAD_EDITADO_ERROR,
-  ACTIVIDAD_EDITADO_EXITO,
-  ACTIVIDAD_ELIMINAR_ERROR,
-  ACTIVIDAD_ELIMINAR_EXITO,
-  AGREGAR_ACTIVIDAD,
-  AGREGAR_ACTIVIDAD_ERROR,
-  AGREGAR_ACTIVIDAD_EXITO,
   COMENZAR_DESCARGA_ACTIVIDADES,
-  COMENZAR_DESCARGA_ACTIVIDADID,
-  COMENZAR_EDICION_ACTIVIDAD,
-  DESCARGA_ACTIVIDADES_ERROR,
   DESCARGA_ACTIVIDADES_EXITO,
-  DESCARGA_ACTIVIDADID_ERROR,
+  DESCARGA_ACTIVIDADES_ERROR,
+  AGREGAR_ACTIVIDAD,
+  AGREGAR_ACTIVIDAD_EXITO,
+  AGREGAR_ACTIVIDAD_ERROR,
+  COMENZAR_DESCARGA_ACTIVIDADID,
   DESCARGA_ACTIVIDADID_EXITO,
+  DESCARGA_ACTIVIDADID_ERROR,
   OBTENER_ACTIVIDAD_EDITAR,
+  COMENZAR_EDICION_ACTIVIDAD,
+  ACTIVIDAD_EDITADO_EXITO,
+  ACTIVIDAD_EDITADO_ERROR,
   OBTENER_ACTIVIDAD_ELIMINAR,
+  ACTIVIDAD_ELIMINAR_EXITO,
+  ACTIVIDAD_ELIMINAR_ERROR,
 } from '../types';
+
+import axios from 'axios';
 
 const clienteAxios = axios.create({
   baseURL: process.env.REACT_APP_API_ACTIVITY,
@@ -29,10 +30,8 @@ export function obtenerActividadesAction() {
 
     try {
       const respuesta = await clienteAxios.get();
-      console.log(respuesta.data.data);
       dispatch(descargaActividadesExitosa(respuesta.data.data));
     } catch (error) {
-      console.log(error);
       dispatch(descargaActividadesError());
     }
   };
@@ -54,10 +53,8 @@ const descargaActividadesError = () => ({
 
 // Crear nuevas Actividades
 export function crearNuevaActividadAction(actividad) {
-  console.log(actividad);
   return async (dispatch) => {
     dispatch(agregarActividad());
-
     try {
       const respuesta = await clienteAxios({
         method: 'POST',
@@ -67,7 +64,6 @@ export function crearNuevaActividadAction(actividad) {
           image: `${actividad.image}`,
         },
       });
-      console.log(respuesta);
       dispatch(agregarActividadExito(respuesta.data.data));
     } catch (error) {
       dispatch(agregarActividadError());
@@ -102,7 +98,6 @@ export function obtenerActividadID(actividad) {
       const respuesta = await clienteAxios.get(`/${actividad.id}`, actividad);
       dispatch(mostrarActividadIdExitosa(respuesta.data.data));
     } catch (error) {
-      console.log(error);
       dispatch(mostrarActividadIdError());
     }
   };
@@ -145,7 +140,6 @@ export function editarActividadAction(actividad) {
       await clienteAxios.put(`/${actividad.id}`, actividad);
       dispatch(editarActividadExito(actividad));
     } catch (error) {
-      console.log(error);
       dispatch(editarActividadError());
     }
   };
@@ -174,7 +168,6 @@ export function borrarActividadAction(id) {
       await clienteAxios.delete(`/${id}`);
       dispatch(eliminarActividadExito());
     } catch (error) {
-      console.log(error);
       dispatch(eliminarActividadError());
     }
   };

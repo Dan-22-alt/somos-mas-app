@@ -1,21 +1,22 @@
-import ActivitiesCreate from '../../epics/activities/pages/ActivitiesCreate';
 import { ActivitiesPage } from '../../epics/activities/pages/ActivitiesPage';
-import BackofficePage from '../../epics/backoffice/pages/Backoffice';
 import { CategoriesPage } from '../../epics/categories/pages/CategoriesPage';
-import FormCategory from '../../epics/categories/pages/FormCategory';
-import MembersCreate from '../../epics/members/pages/MemberCreate';
-import Members from '../../epics/members/pages/Members';
-import MembersEdit from '../../epics/members/pages/MembersEdit';
-import ComponentCreateNews from '../../epics/news/pages/ComponentCreateNews';
-import EditNewsPage from '../../epics/news/pages/EditNewsPage';
-import Newspage from '../../epics/news/pages/NewsPage';
 import EditPage from '../../epics/organization/pages/EditPage';
-import ScreenOrganization from '../../epics/organization/pages/ScreenOrganization';
-import ListOfSlides from '../../epics/slides/components/ListOfSlides';
-import CreateSlidePage from '../../epics/slides/pages/CreateSlidePage';
+import ComponentCreateNews from '../../epics/news/pages/ComponentCreateNews';
+import BackofficePage from '../../epics/backoffice/pages/Backoffice';
+import FormCategory from '../../epics/categories/pages/FormCategory';
+import EditNewsPage from '../../epics/news/pages/EditNewsPage';
 import EditSlidePage from '../../epics/slides/pages/EditSlidePage';
+import CreateSlidePage from '../../epics/slides/pages/CreateSlidePage';
+import ActivitiesCreate from '../../epics/activities/pages/ActivitiesCreate';
 import ListTestimonials from '../../epics/testimonials/pages/ListTestimonials';
 import ScreenList from '../../epics/users/components/screen-list/ScreenList';
+import ListOfSlides from '../../epics/slides/components/ListOfSlides';
+import MembersEdit from '../../epics/members/pages/MembersEdit';
+import MembersCreate from '../../epics/members/pages/MemberCreate';
+import Members from '../../epics/members/pages/Members';
+import ScreenOrganization from '../../epics/organization/pages/ScreenOrganization';
+import Newspage from '../../epics/news/pages/NewsPage';
+import FormTestimonials from '../../epics/testimonials/components/FormTestimonials';
 
 /*
   component = Ahi iria la pagina
@@ -50,9 +51,11 @@ export const Pages = [
   new Page(CreateSlidePage, '/backoffice/slides/create'),
   new Page(EditSlidePage, '/backoffice/slides/:id'),
   new Page(ListTestimonials, '/backoffice/testimonials'),
-  new Page(ScreenOrganization, '/backoffice/organization'),
+  new Page(FormTestimonials, '/backoffice/testimonials/create'),
+  new Page(FormTestimonials, '/backoffice/testimonials/:id'),
   new Page(EditPage, '/backoffice/organization/edit'),
-  new Page(Members, '/backoffice/members'),
-  new Page(MembersCreate, '/backoffice/members/create'),
   new Page(MembersEdit, '/backoffice/members/edit/:id'),
+  new Page(MembersCreate, '/backoffice/members/create'),
+  new Page(Members, '/backoffice/members'),
+  new Page(ScreenOrganization, '/backoffice/organization'),
 ];

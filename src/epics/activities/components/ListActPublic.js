@@ -7,9 +7,6 @@ import { Card } from '../../../components/Card';
 
 import { fetchActivities, activitiesSelectors } from '../../../reducers/activitiesSlice';
 
-import { obtenerActividadID } from '../../../services/activitiesService';
-import { sortDate } from '../../../utils/sortDate';
-
 const ListActPublic = () => {
   const dispatch = useDispatch();
   const history = useHistory();

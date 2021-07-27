@@ -13,6 +13,7 @@ export const Welcome = () => {
       borderBottom="1px"
       borderColor="gray.200"
       py="2.5rem"
+      mb="2.5rem"
     >
       {organization?.welcome_text}
     </Text>

@@ -14,9 +14,24 @@ export const links = [
     icon: FiUsers,
   },
   {
+    route: '/actividades',
+    name: 'Actividades',
+    id: 3,
+  },
+  {
+    route: '/novedades',
+    name: 'Novedades',
+    id: 4,
+  },
+  {
+    route: '/testimonios',
+    name: 'Testimonios',
+    id: 5,
+  },
+  {
     route: '/contacto',
     name: 'Contacto',
-    id: 3,
+    id: 6,
     icon: FiMail,
   },
 ];
