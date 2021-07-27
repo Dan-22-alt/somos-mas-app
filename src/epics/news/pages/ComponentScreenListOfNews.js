@@ -1,4 +1,4 @@
-import { Button, Center, Container, SimpleGrid, useToast } from '@chakra-ui/react';
+import { Box, Button, Center, Container, SimpleGrid, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Card } from '../../../components/Card';
@@ -38,24 +38,15 @@ const ComponentScreenListOfNews = () => {
   // const sortData = (date) => date.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, '$3-$2-$1');
 
   return (
-    <Container maxW="container.xxl" marginTop="1%">
-      <Center>
+    <Container maxW="container.xl" marginTop="1%">
+      <Box mb={10}>
         <Link to="/backoffice/news/create">
-          <Button colorScheme="blue">Crear Novedad</Button>
+          <Button bg="primary.400" _hover={{ bg: 'primary.300' }} color="white">
+            Crear Novedad
+          </Button>
         </Link>
-      </Center>
-      <Center marginTop="1%">
-        <h1>Ultimas novedades</h1>
-      </Center>
-      <SimpleGrid
-        my="auto"
-        minChildWidth="300px"
-        mt="50px"
-        justifyItems="center"
-        spacing="40px"
-        mx={[0, 5, 10, 30]}
-        mb="10rem"
-      >
+      </Box>
+      <SimpleGrid columns={{ xl: 4, lg: 3, md: 2, base: 1 }} spacing={10} mb="10rem">
         {data.map((n) => (
           <Card
             handleEdit={handleEdit}
