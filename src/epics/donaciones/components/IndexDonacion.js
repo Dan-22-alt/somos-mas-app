@@ -2,7 +2,7 @@ import { Box, Container, Stack } from '@chakra-ui/react';
 import React from 'react';
 import Title from '../../../components/Title';
 
-const Index = () => {
+const Donar = () => {
   const imagen = 'https://www.expoknews.com/wp-content/uploads/2018/01/cosas-que-debes-saber-antes-de-donar.jpg';
 
   return (
@@ -14,4 +14,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Donar;
