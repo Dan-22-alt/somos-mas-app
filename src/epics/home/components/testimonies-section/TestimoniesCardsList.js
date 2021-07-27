@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, Text, Button, SimpleGrid } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import { Spinner } from '../../../../layout/Spinners';
-import { Card } from './Card';
+import { SimpleGrid } from '@chakra-ui/react';
+import Card from './TestimoniesCard';
 import { Link } from 'react-router-dom';
 
-export const ListNews = ({ title, state }) => {
+const TestimoniesCardsList = ({ title, state }) => {
   return (
     <Box mb={['5rem', '10.625rem']}>
       <Text as="h2" fontSize="4xl" textAlign="center" fontWeight="bold" color="primary.400" mb={12}>
@@ -20,12 +21,14 @@ export const ListNews = ({ title, state }) => {
         </SimpleGrid>
       )}
       <Box mx="auto" width="fit-content">
-        <Link to="/novedades">
+        <Link to="/testimonios">
           <Button bg="primary.400" color="white" _hover={{ bg: 'primary.500' }}>
-            Ver todas
+            Ver todos
           </Button>
         </Link>
       </Box>
     </Box>
   );
 };
+
+export default TestimoniesCardsList;
