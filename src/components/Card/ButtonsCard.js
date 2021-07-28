@@ -1,4 +1,4 @@
-import { Box, Button, HStack } from '@chakra-ui/react';
+import { Button, HStack } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import Alert from '../alert/Alert';
 

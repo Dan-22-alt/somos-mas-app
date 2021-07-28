@@ -11,7 +11,7 @@ const initialState = {
 export const ObtenerNovedades = createAsyncThunk('news/ObtenerNovedades', async (arg, { getState }) => {
   // <-- destructure getState method
   const respuesta = await httpClient.get('/news');
-  return respuesta.data.data.reverse()
+  return respuesta.data.data.reverse();
 });
 
 //Funcion para obtener las News => dispatch(agregarNews(payload));
@@ -38,11 +38,12 @@ export const actualizarNews = createAsyncThunk('posts/actualizarNews', async (ne
 });
 
 //Funcion para obtener las News => dispatch(borrarNewsAction(news));
-export const borrarNewsAction = createAsyncThunk('posts/borrarNews', async (news) => {
+export const borrarNewsAction = createAsyncThunk('posts/borrarNews', async (id) => {
   // <-- destructure getState metho
-  await httpClient.delete(`/news/${news.id}`);
+  await httpClient.delete(`/news/${id}`);
+  //await httpClient.delete(`/news/${news.id}`);
   // console.log(respuesta)
-  return news.id;
+  return id;
 });
 
 //Funcion para obtener las News => dispatch(ObtenerNovedadesId(news));
@@ -57,6 +58,9 @@ const novedadesSlice = createSlice({
   name: 'news',
   initialState,
   reducers: {
+    defaultOk: (state, action) => {
+      state.status = 'Ok'
+    },
     newEliminar: (state, action) => {
       state.newseliminar = action.payload;
     },
@@ -83,7 +87,7 @@ const novedadesSlice = createSlice({
     },
     [agregarNews.fulfilled]: (state, action) => {
       state.status = 'succeeded';
-      state.news = [...state.news, action.payload];
+      state.news = [action.payload, ...state.news];
     },
     [agregarNews.rejected]: (state, action) => {
       state.status = 'failed';
@@ -106,7 +110,7 @@ const novedadesSlice = createSlice({
       state.status = 'loading';
     },
     [borrarNewsAction.fulfilled]: (state, action) => {
-      state.status = 'succeeded';
+      state.status = 'succeeded-delete';
       const id = action.payload;
       state.news = state.news.filter((novedad) => novedad.id !== id);
     },
@@ -128,6 +132,6 @@ const novedadesSlice = createSlice({
   },
 });
 
-export const { newError, newEliminar } = novedadesSlice.actions;
+export const { newError, newEliminar, defaultOk } = novedadesSlice.actions;
 
 export default novedadesSlice.reducer;
