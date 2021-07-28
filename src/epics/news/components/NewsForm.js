@@ -17,7 +17,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { agregarNews } from '../../../reducers/newsBackofficeReducer';
 import { getCategories } from '../../../services/categories.service';
-import { crearNuevaNewsAction, editarNewsAction } from '../../../services/newServices';
+import { editarNewsAction } from '../../../services/newServices';
 import { newsSchema } from '../validations/newsSchema';
 
 const defaultNew = {

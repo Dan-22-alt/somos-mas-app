@@ -21,8 +21,8 @@ const Items = ({ array, isOpen }) => {
     }
   }
 
-  const textActive = ({ thisPath, linkPath }) => (thisPath === linkPath ? 'white' : '');
-  const bgActive = ({ thisPath, linkPath }) => (thisPath === linkPath ? 'primary.800' : '');
+  // const textActive = ({ thisPath, linkPath }) => (thisPath === linkPath ? 'white' : '');
+  // const bgActive = ({ thisPath, linkPath }) => (thisPath === linkPath ? 'primary.800' : '');
 
   return (
     <Fragment>
