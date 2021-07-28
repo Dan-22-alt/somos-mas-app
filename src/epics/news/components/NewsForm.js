@@ -3,6 +3,7 @@ import { ErrorMessage, Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { agregarNews } from '../../../reducers/newsBackofficeReducer';
 import { getCategories } from '../../../services/categories.service';
 import { crearNuevaNewsAction, editarNewsAction } from '../../../services/newServices';
 import { newsSchema } from '../validations/newsSchema';
@@ -18,7 +19,7 @@ export default function NewsForm({ data = defaultNew }) {
   const dispatch = useDispatch();
 
   //llamar la funcion desde el services
-  const crearNews = (news) => dispatch(crearNuevaNewsAction(news));
+  const crearNews = (news) => dispatch(agregarNews(news));
   const editarNews = (news) => dispatch(editarNewsAction(news));
 
   const [categories, setCategories] = useState([]);
@@ -59,8 +60,11 @@ export default function NewsForm({ data = defaultNew }) {
       ...values,
       image,
     };
+
+    console.log({ payload });
+
     if (data?.id) {
-      editarNews(data?.id, payload);
+      editarNews(payload);
       toast({
         title: 'Novedad Actualizada con exito',
         status: 'success',

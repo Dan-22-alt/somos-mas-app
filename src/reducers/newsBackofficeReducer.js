@@ -11,7 +11,7 @@ const initialState = {
 export const ObtenerNovedades = createAsyncThunk('news/ObtenerNovedades', async (arg, { getState }) => {
   // <-- destructure getState method
   const respuesta = await httpClient.get('/news');
-  return respuesta.data.data.reverse()
+  return respuesta.data.data.reverse();
 });
 
 //Funcion para obtener las News => dispatch(agregarNews(payload));
@@ -83,7 +83,7 @@ const novedadesSlice = createSlice({
     },
     [agregarNews.fulfilled]: (state, action) => {
       state.status = 'succeeded';
-      state.news = [...state.news, action.payload];
+      state.news = [action.payload, ...state.news];
     },
     [agregarNews.rejected]: (state, action) => {
       state.status = 'failed';
