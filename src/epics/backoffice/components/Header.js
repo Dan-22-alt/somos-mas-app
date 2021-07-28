@@ -1,10 +1,13 @@
-import { Box, Flex, IconButton, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, IconButton, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
 import { FiMenu } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
+import Logo from '../../web-publica/footer/components/Logo';
 import Sidebar from './Sidebar';
 
 const Header = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const logo = useSelector((state) => state.organization.data);
   return (
     <Box>
       <Flex
@@ -20,11 +23,7 @@ const Header = () => {
       >
         <Flex flex={{ base: 1, md: 'auto' }} ml={{ base: -2 }}>
           <IconButton onClick={onOpen} icon={<FiMenu />} variant={'ghost'} aria-label={'Toggle Navigation'} />
-        </Flex>
-        <Flex flex={{ base: 1 }}>
-          <Text fontFamily={'heading'} color="gray.800">
-            Somos mas
-          </Text>
+          <Logo img={logo.logo} />
         </Flex>
       </Flex>
       <Sidebar onClose={onClose} isOpen={isOpen} />
