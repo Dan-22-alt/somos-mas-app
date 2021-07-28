@@ -26,10 +26,10 @@ const FormLogin = () => {
       password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email('El email no es válido').required('El Email es Obligatorio'),
+      email: Yup.string().email('El email no es válido').required('El email es obligatorio'),
       password: Yup.string()
         .required('Ingrese su contraseña')
-        .min(6, 'El password debe contener al menos 6 caracteres'),
+        .min(6, 'la contraseña debe contener al menos 6 caracteres'),
     }),
     onSubmit: (valores) => {
       const values = {
@@ -55,16 +55,16 @@ const FormLogin = () => {
                 color={'gray.800'}
                 lineHeight={1.1}
                 fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-                Login
+                Iniciar sesión
                 <Text
                   as={'span'}
                   bgGradient="linear(to-r, teal.400,teal.400)"
                   bgClip="text">
-                  !
+                  .
                 </Text>
               </Heading>
               <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
-                Ingresa tus datos para Iniciar Sesión!
+                Ingresa tus datos para comenzar!
               </Text>
             </Stack>
           </Stack>
@@ -98,7 +98,7 @@ const FormLogin = () => {
                   {formik.errors.password}
                 </Alert>
               ) : null}
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Contraseña</FormLabel>
               <Input
                 type="password"
                 placeholder="*******"
