@@ -3,9 +3,9 @@ import { extendTheme } from '@chakra-ui/react';
 export const theme = extendTheme({
   components: {
     Container: {
-        baseStyle: {
-            maxWidth: "container.xl",
-        },
+      baseStyle: {
+        maxWidth: 'container.xl',
+      },
     },
   },
   colors: {

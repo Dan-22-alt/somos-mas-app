@@ -20,7 +20,7 @@ const ListActPublic = () => {
     <SimpleGrid my="50px" minChildWidth="350px" mt="150px" justifyItems="center" spacing="40px" mx={[0, 5, 10, 30]}>
       {allActivities.map((activity) => (
         // <Link key={activity.id} to={`/actividades/${activity.id}`}>
-            <CardActivityPublic {...activity} />
+        <CardActivityPublic {...activity} />
         // {/* </Link> */}
       ))}
     </SimpleGrid>

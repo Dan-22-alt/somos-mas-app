@@ -2,7 +2,7 @@ import { ActivitiesPage } from '../../epics/activities/pages/ActivitiesPage';
 import { CategoriesPage } from '../../epics/categories/pages/CategoriesPage';
 import EditPage from '../../epics/organization/pages/EditPage';
 import ComponentCreateNews from '../../epics/news/pages/ComponentCreateNews';
-import BackofficePage from '../../epics/backoffice/pages/Backoffice';
+import BackofficePage from '../../epics/backoffice/pages/BackofficeHomePage';
 import FormCategory from '../../epics/categories/pages/FormCategory';
 import EditNewsPage from '../../epics/news/pages/EditNewsPage';
 import EditSlidePage from '../../epics/slides/pages/EditSlidePage';
@@ -35,27 +35,4 @@ class Page {
 }
 
 //new Page(Example2, "/example2"),
-export const Pages = [
-  new Page(BackofficePage, '/backoffice'),
-  new Page(ScreenList, '/backoffice/users'),
-  new Page(Newspage, '/backoffice/news'),
-  new Page(ComponentCreateNews, '/backoffice/news/create'),
-  new Page(EditNewsPage, '/backoffice/news/:id/edit'),
-  new Page(ActivitiesPage, '/backoffice/activities'),
-  new Page(ActivitiesCreate, '/backoffice/activities/create'),
-  new Page(ActivitiesCreate, '/backoffice/activities/:id'),
-  new Page(CategoriesPage, '/backoffice/categories'),
-  new Page(FormCategory, '/backoffice/categories/create'),
-  new Page(FormCategory, '/backoffice/categories/:id'),
-  new Page(ListOfSlides, '/backoffice/slides'),
-  new Page(CreateSlidePage, '/backoffice/slides/create'),
-  new Page(EditSlidePage, '/backoffice/slides/:id'),
-  new Page(ListTestimonials, '/backoffice/testimonials'),
-  new Page(FormTestimonials, '/backoffice/testimonials/create'),
-  new Page(FormTestimonials, '/backoffice/testimonials/:id'),
-  new Page(EditPage, '/backoffice/organization/edit'),
-  new Page(MembersEdit, '/backoffice/members/edit/:id'),
-  new Page(MembersCreate, '/backoffice/members/create'),
-  new Page(Members, '/backoffice/members'),
-  new Page(ScreenOrganization, '/backoffice/organization'),
-];
+export const Pages = [];

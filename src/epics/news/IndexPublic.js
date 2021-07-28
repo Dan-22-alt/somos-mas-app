@@ -6,7 +6,7 @@ import { ObtenerNovedades } from '../../reducers/newsBackofficeReducer';
 import { Spinner } from '../../layout/Spinners';
 import NewsCardPublic from './components/NewsCardPublic';
 import { Link } from 'react-router-dom';
-import NewsSearchBar from "./components/NewsSearchBar";
+import NewsSearchBar from './components/NewsSearchBar';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Index = () => {
     <Container>
       <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 10 }} py={{ base: 20, md: 8 }}>
         <Title title="Novedades" image={imagen} />
-        <NewsSearchBar/>
+        <NewsSearchBar />
         <SimpleGrid justifyItems="center" mb="10rem" columns={{ base: 1, md: 3 }}>
           {newsStatus === 'succeeded' ? (
             newsData.map((ne) => (

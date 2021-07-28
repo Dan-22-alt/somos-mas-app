@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import {  SimpleGrid, useToast } from '@chakra-ui/react';
+import { SimpleGrid, useToast } from '@chakra-ui/react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Card } from '../../../components/Card';
@@ -17,19 +17,19 @@ export const ListOfNews = () => {
 
   useEffect(() => {
     if (status === 'idle') dispatch(ObtenerNovedades());
-    if(status === 'succeeded-delete'){
+    if (status === 'succeeded-delete') {
       toast({
         title: 'Novedad eliminada.',
         status: 'success',
       });
-      dispatch(defaultOk())
+      dispatch(defaultOk());
     }
-    if(status === 'failed'){
+    if (status === 'failed') {
       toast({
         title: 'Ocurrio un error al eliminar la novedad.',
         status: 'error',
       });
-      dispatch(defaultOk())
+      dispatch(defaultOk());
     }
   }, [status, dispatch, toast]);
 
@@ -37,10 +37,9 @@ export const ListOfNews = () => {
     history.push(`/backoffice/news/${id}/edit`);
   };
 
-  const handleDelete = (id) => dispatch(borrarNewsAction(id))
+  const handleDelete = (id) => dispatch(borrarNewsAction(id));
 
-
-  return(
+  return (
     <SimpleGrid columns={{ xl: 4, lg: 3, md: 2, base: 1 }} spacing={10} mb={24}>
       {news.map((n) => (
         <Card
@@ -52,5 +51,5 @@ export const ListOfNews = () => {
         />
       ))}
     </SimpleGrid>
-  )
-}
+  );
+};

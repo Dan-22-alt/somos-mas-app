@@ -5,7 +5,7 @@ import Slide from './Slide';
 
 const ListOfSlides = () => {
   return (
-    <Flex backgroundColor="gray.200">
+    <Flex>
       <Center flexDirection="column" marginTop="3vh">
         <Link to="/backoffice/slides/create">
           <Button borderRadius="20px" type="submit" variant="solid" colorScheme="teal">

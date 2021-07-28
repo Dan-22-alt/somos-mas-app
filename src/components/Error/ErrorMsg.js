@@ -13,11 +13,11 @@ export const ErrorMsg = ({ text }) => (
 export const ConditionalRender = (state, Component, errorTxt) => {
   switch (state) {
     case 'idle':
-      return ''
+      return '';
     case 'loading':
-      return <Spinner />
+      return <Spinner />;
     case 'succeeded':
-      return <Component />
+      return <Component />;
     default:
       return <ErrorMsg text={errorTxt} />;
   }
