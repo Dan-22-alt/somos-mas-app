@@ -1,9 +1,9 @@
 import { Box, Flex, IconButton, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
 import { FiMenu } from 'react-icons/fi';
-import Sidebar from './Sidebar';
-import Logo from '../../web-publica/header/components/Logo';
 import { useSelector } from 'react-redux';
+import Logo from '../../web-publica/footer/components/Logo';
+import Sidebar from './Sidebar';
 
 const Header = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
