@@ -1,4 +1,16 @@
-import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Select, Stack, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Image,
+  Input,
+  Select,
+  Stack,
+  useToast,
+} from '@chakra-ui/react';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -151,11 +163,7 @@ export default function NewsForm({ data = defaultNew }) {
                       }}
                     />
 
-                    {previewImage && (
-                      <div>
-                        <img src={previewImage} alt="" />
-                      </div>
-                    )}
+                    {previewImage && <Image src={previewImage} alt="preview" h={40} />}
 
                     <Box color="red.500">
                       <ErrorMessage name="image" component="small" />
