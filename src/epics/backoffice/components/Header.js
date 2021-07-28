@@ -7,7 +7,8 @@ import Sidebar from './Sidebar';
 
 const Header = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const logo = useSelector((state) => state.organization.data);
+  const organization = useSelector((state) => state.organization.data);
+
   return (
     <Box>
       <Flex
@@ -23,7 +24,9 @@ const Header = () => {
       >
         <Flex flex={{ base: 1, md: 'auto' }} ml={{ base: -2 }}>
           <IconButton onClick={onOpen} icon={<FiMenu />} variant={'ghost'} aria-label={'Toggle Navigation'} />
-          <Logo img={logo.logo} />
+        </Flex>
+        <Flex flex={{ base: 1 }}>
+          <Logo img={organization.logo} alt={organization.name} />
         </Flex>
       </Flex>
       <Sidebar onClose={onClose} isOpen={isOpen} />
