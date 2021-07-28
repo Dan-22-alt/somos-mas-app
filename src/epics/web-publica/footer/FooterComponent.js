@@ -1,7 +1,7 @@
-import { Center, Container, Flex, Heading, SimpleGrid, Stack, Text } from '@chakra-ui/react';
-import React, { Fragment } from 'react';
+import { Center, Container, Flex, SimpleGrid, Stack, Text, Link } from '@chakra-ui/react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link as ReactLink } from 'react-router-dom';
 import Contactos from './components/Contacto';
 import FormNewsletter from './components/FormNewsletter';
 import Logo from './components/Logo';
@@ -16,7 +16,7 @@ const FooterComponent = () => {
         align="center"
         justify="space-between"
         wrap="wrap"
-        pb={-1}
+        pb={1}
         color="gray.900"
         borderTop="1px"
         borderColor="gray.200"
@@ -27,23 +27,21 @@ const FooterComponent = () => {
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={5}>
             <Center>
               <Stack spacing={2}>
-                <Flex align="center" width="15vw" height="15vw">
+                <Flex align={'center'} width="15vw" height="15vw">
                   <Logo img={organization.logo} />
                 </Flex>
-                {/* <Text>2021 Alkemy</Text> */}
               </Stack>
             </Center>
 
             <Contactos titulo={'Contáctanos'} organization={organization} />
-            <Stack align={'center'} justify="center" height="10vw" p={5} display="flex">
+            <Stack align={'center'} justify="center" height="10vw" m={5}>
               <FormNewsletter />
             </Stack>
           </SimpleGrid>
-          <Stack direction="row" justify="space-between" p={3}>
-            <Text fontSize="sm" color="#737373">
-              Alkemy © 2021
-            </Text>
-            <Link to="/login" fontSize="sm" color="#737373" mt={10} display="block">
+
+          <Stack direction="row" justify="space-between" wrap="wrap" pt={3} fontSize="sm" color="#737373">
+            <Text>Alkemy © 2021</Text>
+            <Link as={ReactLink} to="/login">
               Ingresar como administrador
             </Link>
           </Stack>
