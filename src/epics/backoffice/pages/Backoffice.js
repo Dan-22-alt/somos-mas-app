@@ -1,7 +1,6 @@
 import React from 'react';
 import Dasboard from '../components/Dasboard';
 import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
 import { Box, Container, SimpleGrid, Stack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
@@ -65,21 +64,20 @@ const Varios = {
 
 const BackofficePage = () => {
   return (
-    <Container>
+    <>
+      <Header />
+      <Container>
       <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 10 }} py={{ base: 20, md: 8 }}>
-        <div>
-          <Header />
-        </div>
-        <Sidebar />
-        <SimpleGrid justifyItems="center" mb="10rem" columns={{ base: 1, md: 3 }}>
-          {Varios.data.map((vario) => (
-            <Link key={vario.name} to={`/backoffice/${vario.name}`}>
-              <Dasboard key={vario.id} name={vario.Title} image={vario.image} />
-            </Link>
-          ))}
-        </SimpleGrid>
-      </Stack>
-    </Container>
+          <SimpleGrid justifyItems="center" mb="10rem" columns={{ base: 1, md: 3 }}>
+            {Varios.data.map((vario) => (
+              <Link key={vario.name} to={`/backoffice/${vario.name}`}>
+                <Dasboard key={vario.id} name={vario.Title} image={vario.image} />
+              </Link>
+            ))}
+          </SimpleGrid>
+        </Stack>
+      </Container>
+  </>
   );
 };
 
