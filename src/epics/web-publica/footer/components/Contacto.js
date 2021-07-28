@@ -4,7 +4,7 @@ import React from 'react';
 const Contactos = ({ titulo, organization }) => {
   return (
     <Flex>
-      <Stack align={'center'} mx={'auto'} mt={0}>
+      <Stack align={'center'} mx={'auto'} mt={0} justify="center">
         <Text fontWeight="bold" fontSize={['md', 'lg', 'xl']} mb={2}>
           {titulo}
         </Text>
