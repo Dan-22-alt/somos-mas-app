@@ -35,10 +35,15 @@ const Sidebar = ({ onClose, isOpen }) => {
           <LogOutButt />
         </DrawerHeader>
           <DrawerHeader borderBottomWidth="1px">Somos mas</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">
+            <List spacing={3}>
+              <ListLink title="Inicio Publico" icon={FiHome} to="/" onClick={onClose} />
+            </List>
+          </DrawerHeader>
           <DrawerBody>
             <List spacing={3}>
               {/* Ejemplo de navegacion*/}
-              <ListLink title="Inicio" icon={FiHome} to="/backoffice" onClick={onClose} />
+              <ListLink title="Inicio Administrador" icon={FiHome} to="/backoffice" onClick={onClose} />
               <ListLink title="Actividades" icon={IoNewspaperOutline} to="/backoffice/activities" onClick={onClose} />
               <ListLink title="Categorias" icon={IoNewspaperOutline} to="/backoffice/categories" onClick={onClose} />
               <ListLink title="Miembros" icon={IoNewspaperOutline} to="/backoffice/members" onClick={onClose} />
