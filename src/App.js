@@ -18,16 +18,16 @@ function App() {
 
   return (
     <Router>
-      <Layout>
-        <Switch>
-          {Pages.map((page) => (
-            <Route {...page} />
-          ))}
+      <Switch>
+        {Pages.map((page) => (
+          <Route {...page} />
+        ))}
+        <Layout>
           {PagesP.map((page) => (
             <RouteP {...page} />
           ))}
-        </Switch>
-      </Layout>
+        </Layout>
+      </Switch>
     </Router>
   );
 }
