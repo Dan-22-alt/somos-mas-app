@@ -9,15 +9,16 @@ import { sortDate } from '../../../utils/sortDate';
 import { ObtenerNovedades } from '../../../reducers/newsBackofficeReducer';
 
 const ComponentScreenListOfNews = () => {
+  const history = useHistory();
+  const toast = useToast();
   const dispatch = useDispatch();
-  const { news, status } = useSelector((state) => state.news);
+  const newsState = useSelector((state) => state.news);
+
+  const { news, status } = newsState;
 
   useEffect(() => {
     if (status === 'idle') dispatch(ObtenerNovedades());
   }, [status, dispatch]);
-
-  const history = useHistory();
-  const toast = useToast();
 
   const handleEdit = (id) => {
     history.push(`/backoffice/news/${id}/edit`);
