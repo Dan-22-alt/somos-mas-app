@@ -1,49 +1,16 @@
-import { Center, Container, Flex, Heading, SimpleGrid, Stack } from '@chakra-ui/react';
-import React, { Fragment } from 'react';
+import { Center, Container, Flex, SimpleGrid, Stack, Text, Link } from '@chakra-ui/react';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link as ReactLink } from 'react-router-dom';
 import Contactos from './components/Contacto';
-import Items from './components/Items';
+import FormNewsletter from './components/FormNewsletter';
 import Logo from './components/Logo';
 
 const FooterComponent = () => {
   const organization = useSelector((state) => state.organization.data);
-  // datos ejemplo------------------------------------------------------------
-  const arraySecciones = [
-    {
-      route: '/1',
-      name: 'Inicio',
-      id: 1,
-    },
-    {
-      route: '/2',
-      name: 'Contactos',
-      id: 2,
-    },
-    {
-      route: '/3',
-      name: 'Proyectos',
-      id: 3,
-    },
-    {
-      route: '/2',
-      name: 'Donaciones',
-      id: 4,
-    },
-    {
-      route: '/3',
-      name: 'Servicios',
-      id: 5,
-    },
-    {
-      route: '/2',
-      name: 'Algo mas',
-      id: 6,
-    },
-  ];
-  // Fin datos ejemplo------------------------------------------------------------
 
   return (
-    <Fragment>
+    <>
       <Flex
         as="footer"
         align="center"
@@ -54,26 +21,33 @@ const FooterComponent = () => {
         borderTop="1px"
         borderColor="gray.200"
         bgColor="gray.50"
-        py="8"
+        fontSize={['md', 'lg', 'xl']}
       >
-        <Container as={Stack} maxW={'5x1'} py={2}>
+        <Container as={Stack} maxW={'5x1'} p={1}>
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={5}>
             <Center>
               <Stack spacing={2}>
-                <Flex align="center">
+                <Flex align={'center'} width="15vw" height="15vw">
                   <Logo img={organization.logo} />
                 </Flex>
-                <Heading align="center" mx={0} as="h3" size="md">
-                  <Center>{organization.name}</Center>
-                </Heading>
               </Stack>
             </Center>
-            <Items titulo={'Navegación'} array={arraySecciones}></Items>
-            <Contactos titulo={'Contáctanos'} organization={organization}></Contactos>
+
+            <Contactos titulo={'Contáctanos'} organization={organization} />
+            <Stack align={'center'} justify="center" height="10vw" m={5}>
+              <FormNewsletter />
+            </Stack>
           </SimpleGrid>
+
+          <Stack direction="row" justify="space-between" wrap="wrap" pt={3} fontSize="sm" color="#737373">
+            <Text>Alkemy © 2021</Text>
+            <Link as={ReactLink} to="/login">
+              Ingresar como administrador
+            </Link>
+          </Stack>
         </Container>
       </Flex>
-    </Fragment>
+    </>
   );
 };
 export default FooterComponent;

@@ -7,13 +7,7 @@ const Items = ({ titulo, array }) => {
       <Text fontWeight="bold" fontSize={['md', 'lg', 'xl']} mb={2}>
         {titulo}
       </Text>
-      <SimpleGrid columns={['1', '2']} spacing={2}>
-        {array.map((item) => (
-          <Text key={item.id} fontSize={['sm', 'md', 'lg', 'xl']} mx={'auto'}>
-            <Link href={item.route}>{item.name}</Link>
-          </Text>
-        ))}
-      </SimpleGrid>
+      <SimpleGrid columns={['1', '2']} spacing={2}></SimpleGrid>
     </Stack>
   );
 };

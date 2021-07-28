@@ -1,4 +1,4 @@
-import { FiHome, FiMail, FiUsers } from 'react-icons/fi';
+import { FiActivity, FiFileText, FiHeart, FiHome, FiMail, FiUsers } from 'react-icons/fi';
 
 export const links = [
   {
@@ -17,16 +17,19 @@ export const links = [
     route: '/actividades',
     name: 'Actividades',
     id: 3,
+    icon: FiActivity,
   },
   {
     route: '/novedades',
     name: 'Novedades',
     id: 4,
+    icon: FiFileText,
   },
   {
     route: '/testimonios',
     name: 'Testimonios',
     id: 5,
+    icon: FiHeart,
   },
   {
     route: '/contacto',
