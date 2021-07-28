@@ -94,7 +94,7 @@ const FormActivities = ({ data }) => {
       name: data ? data.name : '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().required('Name requerido').min(6, 'El nombre debe contener al menos 6 caracteres'),
+      name: Yup.string().required('Nombre requerido').min(6, 'El nombre debe contener al menos 6 caracteres'),
     }),
     onSubmit: (valores) => {
       const values = {
@@ -143,15 +143,15 @@ const FormActivities = ({ data }) => {
         ) : (
           <Stack flexDir="column" mb="2" justifyContent="center" alignItems="center" maxW="md">
             {data ? (
-              <Heading color="teal.400">Editar categoria</Heading>
+              <Heading color="teal.400">Editar Actividad</Heading>
             ) : (
-              <Heading color="teal.400">Nueva categoria</Heading>
+              <Heading color="teal.400">Nueva Actividad</Heading>
             )}
             <Box minW={{ base: '90%', md: '468px' }}>
               <form onSubmit={formik.handleSubmit} className="formActivities">
                 <Stack spacing={4} p="1rem" backgroundColor="whiteAlpha.900" boxShadow="md">
                   <FormControl mt={2}>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Nombre</FormLabel>
                     <Input
                       type="text"
                       id="name"

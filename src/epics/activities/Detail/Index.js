@@ -1,19 +1,78 @@
-import React from 'react';
-import { Box, Container, Stack } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import {
+  Container,
+  SimpleGrid,
+  Image,
+  Flex,
+  Heading,
+  Text,
+  Stack,
+  StackDivider,
+  // useColorModeValue,
+  Button
+} from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import Title from '../../../components/Title';
+import { obtenerActividadID } from '../../../services/activitiesService';
+import {AiOutlineArrowLeft } from "react-icons/ai"
+import { Link } from 'react-router-dom';
+import Description from './../../nosotros/components/Description';
 
 const Index = () => {
   const { id } = useParams();
-  console.log(id);
+  const [data, setData] = useState(null);
   const imagen =
-    'https://media.istockphoto.com/photos/little-girl-molding-colorful-clay-cloud-with-rain-watching-online-picture-id1219030024?s=612x612';
+  'https://media.istockphoto.com/photos/little-girl-molding-colorful-clay-cloud-with-rain-watching-online-picture-id1219030024?s=612x612';
+  
+  useEffect(() => {
+    const activity = obtenerActividadID(id)
+    setData(activity)
+  }, [id]);
+
   return (
-    <Container maxW={'3xl'}>
-      <Stack as={Box} textAlign={'center'} spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 25 }}>
-        {/* CAMBIAR TITULO LUEGO POR ALGO MAS ACORDE--------------------------------------------- */}
-        <Title title={`Detalle de la Actividad ID: ${id}`} image={imagen}></Title>
-      </Stack>
+    <Container maxW={'5xl'} py={12}>
+      <Title title={`Detalle de Novedad`} image={imagen}></Title>
+      { data?.id 
+        ? <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} py={{ base: 20, md: 8 }}>
+        <Stack spacing={4}>
+          <Text
+            textTransform={'uppercase'}
+            color={'blue.400'}
+            fontWeight={600}
+            fontSize={'sm'}
+            // bg={useColorModeValue('blue.50', 'blue.900')}
+            p={2}
+            alignSelf={'flex-start'}
+            rounded={'md'}
+          >
+            Novedad: {data.id}
+          </Text>
+          <Heading>{data.name}</Heading>
+          <Description color={'gray.500'} fontSize={'lg'} align={'justify'} text={data.content} />
+          <Stack spacing={4} divider={<StackDivider  />}></Stack>
+          <Link to={`/actividades`}>
+            <Button
+              rightIcon={<AiOutlineArrowLeft />}
+              textTransform={'uppercase'}
+              colorScheme="teal" 
+              fontWeight={600}
+              fontSize={'xs'}
+              variant="outline"
+              p={2}
+              alignSelf={'flex-end'}
+              rounded={'md'}
+            >
+              Volver
+            </Button>
+          </Link>
+        </Stack>
+        <Flex>
+          <Image rounded={'md'} alt={'feature image'} src={data.image} objectFit={'cover'} />
+        </Flex>
+      </SimpleGrid>
+
+      : <p>Cargando</p>
+      }
     </Container>
   );
 };

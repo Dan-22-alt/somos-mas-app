@@ -3,15 +3,17 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Alert } from '../../components';
 import { logoutSuccess } from '../../reducers/authReducer';
+import { useHistory } from 'react-router';
 
 const LogOutButt = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [alertOpen, setAlertOpen] = useState(false);
 
   const logOut = () => {
-    console.log('logout');
     dispatch(logoutSuccess());
+    history.push('/');
   };
 
   return (

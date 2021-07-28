@@ -6,7 +6,7 @@ import { ObtenerNovedades } from '../../reducers/newsBackofficeReducer';
 import { Spinner } from '../../layout/Spinners';
 import NewsCardPublic from './components/NewsCardPublic';
 import { Link } from 'react-router-dom';
-import NewsSearchBar from "./components/NewsSearchBar"
+import NewsSearchBar from "./components/NewsSearchBar";
 
 const Index = () => {
   const dispatch = useDispatch();

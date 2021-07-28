@@ -14,7 +14,7 @@ export const HomePage = () => {
       <Welcome />
       <Container maxW="container.xl">
         <ListNews title="Últimas Novedades" />
-        <TestimoniesCardsList title="Últimos testimonios" state={testimonials} />
+        <TestimoniesCardsList title="Últimos Testimonios" state={testimonials} />
       </Container>
     </>
   );
