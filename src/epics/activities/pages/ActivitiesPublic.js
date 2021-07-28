@@ -11,9 +11,9 @@ const ActivitiesPublic = () => {
     <Container>
       <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 8 }}>
         <Title title="Actividades" image={image} />
+        <ActivitySearchBar /> 
         <ListActPublic />
       </Stack>
-      <ActivitySearchBar />
     </Container>
   );
 };

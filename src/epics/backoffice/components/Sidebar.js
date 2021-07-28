@@ -12,6 +12,7 @@ import React from 'react';
 import { FiHome } from 'react-icons/fi';
 import { IoNewspaperOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import LogOutButt from '../../logout/LogOutButt'
 
 const ListLink = ({ title, to, icon, onClick }) => {
   return (
@@ -30,6 +31,9 @@ const Sidebar = ({ onClose, isOpen }) => {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
+        <DrawerHeader borderBottomWidth="1px">
+          <LogOutButt />
+        </DrawerHeader>
           <DrawerHeader borderBottomWidth="1px">Somos mas</DrawerHeader>
           <DrawerBody>
             <List spacing={3}>
