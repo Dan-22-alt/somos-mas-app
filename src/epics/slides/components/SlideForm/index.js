@@ -1,76 +1,51 @@
-import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useToast } from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useToast, Container, Image } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { createSlide, editSlide } from '../../../../services/slidesService';
+import { newSlide, updateSlide } from '../../../../reducers/slicesReducer'
 import { slideSchema } from '../../validations/slideSchema';
 import getBase64 from '../../../../utils/getBase64';
+import { useDispatch } from 'react-redux';
 
-const defaultSlide = {
-  name: '',
-  description: '',
-  image: '',
-  order: '',
-};
 
 export default function SlideForm({ data }) {
-  const [previewImage, setPreviewImage] = useState(null);
 
-  const [create, apiCreate] = createSlide();
-  const [edit, apiEdit] = editSlide();
+  const defaultSlide = {
+    name: '',
+    description: '',
+    image: '',
+    order: '',
+    id: ''
+  };
+
+  const [previewImage, setPreviewImage] = useState(null);
+  const dispatch = useDispatch()
 
   const toast = useToast();
   let history = useHistory();
-
-  useEffect(() => {
-    if (edit.res) {
-      toast({
-        title: 'Slide actualizada.',
-        status: 'success',
-      });
-      history.push('/backoffice/slides');
-    }
-    if (edit.error) {
-      toast({
-        title: 'Ocurrio un error al actualizar el slide.',
-        status: 'error',
-      });
-    }
-    // eslint-disable-next-line
-  }, [edit.res, edit.error]);
-
-  useEffect(() => {
-    if (create.res) {
-      toast({
-        title: 'Slide creada.',
-        status: 'success',
-      });
-      history.push('/backoffice/slides');
-    }
-    if (create.error) {
-      toast({
-        title: 'Ocurrio un error al crear el slide.',
-        status: 'error',
-      });
-    }
-    // eslint-disable-next-line
-  }, [create.res, create.error]);
 
   const submitText = data?.id ? 'Guardar' : 'Crear';
   const formTitle = data?.id ? 'Editar Slide' : 'Crear Slide';
 
   const onSubmit = (values) => {
-    if (data?.id) {
-      let body = {};
-      for (const key in data) {
-        if (data[key] !== values[key]) {
-          body[key] = values[key] || data[key];
-        }
-      }
-      body.name = data.name;
-      apiEdit(body);
-    } else {
-      apiCreate(values);
+    if (data?.id){
+      dispatch(updateSlide(values))
+      toast({
+        title: 'Slide editado!',
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      });
+      history.push('/backoffice/slides');
+    }else{
+      dispatch(newSlide(values))
+      toast({
+        title: 'Slide creado!',
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      });
+      history.push('/backoffice/slides');
     }
   };
 
@@ -84,7 +59,6 @@ export default function SlideForm({ data }) {
     if (formik.values.image) {
       setPreviewImage(formik.values.image);
     }
-    // eslint-disable-next-line
   }, [formik.values.image]);
 
   useEffect(() => {
@@ -93,7 +67,7 @@ export default function SlideForm({ data }) {
         formik.setFieldValue(key, data[key]);
       }
     }
-    // eslint-disable-next-line
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const handleImage = async (e) => {
@@ -106,13 +80,14 @@ export default function SlideForm({ data }) {
   };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Container>
       <Flex flexDirection="column" justifyContent="center" alignItems="center">
         <Stack flexDir="column" mb="2" justifyContent="center" alignItems="center">
           <Heading color="teal.400" my="6">
             {formTitle}
           </Heading>
           <Box>
+            <form onSubmit={formik.handleSubmit}>
             <Stack spacing={4} p="1rem" backgroundColor="whiteAlpha.900" boxShadow="md">
               <FormControl mt={2}>
                 <FormLabel>Título</FormLabel>
@@ -137,7 +112,7 @@ export default function SlideForm({ data }) {
                 <Input name="image" type="file" onChange={handleImage} />
 
                 <div>
-                  <img src={previewImage ? previewImage : ''} alt="" />
+                  <Image src={previewImage ? previewImage : ''} alt="" h={40}/>
                 </div>
                 {formik.errors.image ? (
                   <Box mt={2} fontSize="sm" color="red.500">
@@ -165,7 +140,7 @@ export default function SlideForm({ data }) {
 
               <FormControl mt={2}>
                 <FormLabel>Order</FormLabel>
-                <Input name="order" placeholder="" value={formik.values.order} onChange={formik.handleChange} />
+                <Input type="number" name="order" placeholder="" value={formik.values.order} onChange={formik.handleChange} />
 
                 {formik.errors.order ? (
                   <Box mt={2} fontSize="sm" color="red.500">
@@ -177,9 +152,10 @@ export default function SlideForm({ data }) {
                 {submitText}
               </Button>
             </Stack>
+    </form>
           </Box>
         </Stack>
       </Flex>
-    </form>
+    </Container>
   );
 }

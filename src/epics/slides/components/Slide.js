@@ -2,12 +2,13 @@ import { Box, Button, Image } from '@chakra-ui/react';
 import React from 'react';
 import ButtDeleteSlide from './ButtDeleteSlide';
 
-const Slide = () => {
+const Slide = ({ name, image, order, id, handleDelete, handleEdit }) => {
+
   return (
     <Box borderWidth="1px" borderRadius="lg" w="400px" bg="purple.100" pb="10px" borderColor="teal">
       <Image
         borderRadius="lg"
-        src="https://www.dzoom.org.es/wp-content/uploads/2010/09/mirada-ojos-encuadre-primer-plano-sexy-810x540.jpg"
+        src={image}
         alt="imagen"
         objectFit="cover"
         h="350px"
@@ -24,16 +25,16 @@ const Slide = () => {
         lineHeight="tight"
         isTruncated
       >
-        Titulo
+        {name}
       </Box>
       <Box mt="1" fontWeight="semibold" as="h4" textAlign="center" my="8px" lineHeight="tight" isTruncated>
-        Orden
+        <p>Orden: {order}</p>
       </Box>
       <Box display="flex" justifyContent="space-around">
-        <Button w="25vh" colorScheme="messenger" color="white" m="2px">
+        <Button w="25vh" colorScheme="messenger" color="white" m="2px" onClick={() => {handleEdit(id)}}>
           Editar
         </Button>
-        <ButtDeleteSlide />
+        <ButtDeleteSlide handleDelete={handleDelete} id={id}/>
       </Box>
     </Box>
   );

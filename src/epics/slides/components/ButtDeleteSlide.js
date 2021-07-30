@@ -2,8 +2,12 @@ import { Button } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import Alert from '../../../components/alert/Alert';
 
-const ButtDeleteSlide = () => {
+const ButtDeleteSlide = ({handleDelete, id}) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const deleteSlide = () => {
+    handleDelete(id)
+  }
 
   return (
     <>
@@ -14,12 +18,10 @@ const ButtDeleteSlide = () => {
       <Alert
         isOpen={isOpen}
         setIsOpen={setIsOpen}
+        onConfirm={deleteSlide}
         title="Eliminando"
         description="¿Estas seguro que deseas eliminar este slide?"
         type="error"
-        hasFeedback={true}
-        feedbackTitle="Eliminado con exito!"
-        feedbackDuration={3000}
       />
     </>
   );
