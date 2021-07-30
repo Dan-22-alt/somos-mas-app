@@ -3,9 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { editByIDOrganization as editOng } from '../../../../reducers/organizationReducer/index';
 import { formEditOrgSchema as validationSchema } from '../../validations/formEditOrg';
+import { useToast } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 
 export const UseFormik = () => {
   const dispatch = useDispatch();
+  const toast = useToast();
+  const history = useHistory();
   const ongData = useSelector((state) => state.organization.data);
 
   const onSubmit = (values) => {
@@ -15,7 +19,15 @@ export const UseFormik = () => {
         body = { ...body, [key]: values[key] };
       }
     }
+
     dispatch(editOng(body));
+    history.push('/backoffice/Organization');
+    toast({
+      description: 'Se ha editado con exito!',
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+    });
   };
 
   const initialValues = {
