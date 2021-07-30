@@ -5,6 +5,6 @@ export const formEditOrgSchema = Yup.object({
   short_description: Yup.string().required('La descripción corta es obligatorio'),
   long_description: Yup.string().required('La descripción larga es obligatorio'),
   logo: Yup.string().required('El logo es obligatorio'),
-  facebookLink: Yup.string().url('Url invalida').required('Este campo es obligatorio'),
-  instagramLink: Yup.string().url('Url invalida').required('Este campo es obligatorio'),
+  facebookLink: Yup.string().url('Url invalida').notRequired(),
+  instagramLink: Yup.string().url('Url invalida').notRequired(),
 });
