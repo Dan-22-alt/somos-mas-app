@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SimpleGrid } from '@chakra-ui/react';
+import { SimpleGrid, useToast } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { Spinner } from '../../../layout/Spinners';
 
@@ -8,6 +8,7 @@ import { Card } from '../../../components/Card';
 import { ErrorMsg } from '../../../components/Error/ErrorMsg';
 
 import { fetchActivities, activitiesSelectors, deleteActivity } from '../../../reducers/activitiesSlice';
+import { obtenerActividadID } from './../../../services/activitiesService';
 
 export const ListOfActivities = () => {
   const dispatch = useDispatch();
@@ -15,12 +16,19 @@ export const ListOfActivities = () => {
   const allActivities = useSelector(activitiesSelectors.selectAll);
   const actStatus = useSelector((state) => state.activities.status);
 
+  const toast = useToast()
   useEffect(() => {
     dispatch(fetchActivities());
   }, [dispatch]);
 
   const handleDelete = (id) => {
     dispatch(deleteActivity(id));
+    toast({
+        title: 'Actividad Eliminada',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+    })
     history.push('/backoffice/activities');
   };
 
@@ -44,7 +52,7 @@ export const ListOfActivities = () => {
   };
 
   return (
-    <SimpleGrid my="50px" minChildWidth="350px" mt="150px" justifyItems="center" spacing="40px" mx={[0, 5, 10, 30]}>
+    <SimpleGrid my="50px" minChildWidth="350px" mt={20} justifyItems="center" spacing="40px" mx={[0, 5, 10, 30]}>
       {conditionalList(actStatus, allActivities)}
     </SimpleGrid>
   );
