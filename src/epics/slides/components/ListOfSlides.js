@@ -30,7 +30,7 @@ const ListOfSlides = () => {
     if (status === 'idle') dispatch(listSlides());
     if (status === 'succeeded-delete') {
       toast({
-        title: 'Slide eliminado.',
+        title: 'Slide eliminado!',
         status: 'success',
         duration: 2000,
         isClosable: true,

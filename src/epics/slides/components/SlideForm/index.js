@@ -31,7 +31,7 @@ export default function SlideForm({ data }) {
     if (data?.id){
       dispatch(updateSlide(values))
       toast({
-        title: 'Slide editada.',
+        title: 'Slide editado!',
         status: 'success',
         duration: 2000,
         isClosable: true,
@@ -40,7 +40,7 @@ export default function SlideForm({ data }) {
     }else{
       dispatch(newSlide(values))
       toast({
-        title: 'Slide creada.',
+        title: 'Slide creado!',
         status: 'success',
         duration: 2000,
         isClosable: true,
