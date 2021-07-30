@@ -5,6 +5,7 @@ import authReducer from '../reducers/authReducer';
 import categoryReducer from '../reducers/categoryReducer';
 import newsBackofficeSlice from '../reducers/newsBackofficeReducer';
 import organizationSlice from '../reducers/organizationReducer';
+import slicesReducer from '../reducers/slicesReducer';
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     activities: activitiesReducer,
     category: categoryReducer,
     organization: organizationSlice,
+    slides: slicesReducer,
   },
 });
