@@ -7,7 +7,7 @@ import { Welcome } from '../components/Welcome';
 import { UseRequest } from '../useRequest';
 
 export const HomePage = () => {
-  const  testimonials = UseRequest();
+  const testimonials = UseRequest();
   return (
     <>
       <MainSlide />

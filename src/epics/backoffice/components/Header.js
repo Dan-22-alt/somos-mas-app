@@ -10,27 +10,30 @@ const Header = () => {
   const organization = useSelector((state) => state.organization.data);
 
   return (
-    <Box>
-      <Flex
-        bg="white"
-        color="gray.600"
-        minH={'60px'}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={'solid'}
-        borderColor="gray.200"
-        align={'center'}
-      >
-        <Flex flex={{ base: 1, md: 'auto' }} ml={{ base: -2 }}>
-          <IconButton onClick={onOpen} icon={<FiMenu />} variant={'ghost'} aria-label={'Toggle Navigation'} />
+    <>
+      <Box>
+        <Flex
+          bg="white"
+          color="gray.600"
+          minH={'60px'}
+          py={{ base: 2 }}
+          px={{ base: 4 }}
+          borderBottom={1}
+          borderStyle={'solid'}
+          borderColor="gray.200"
+          align={'center'}
+          justify="space-between"
+        >
+          <Flex ml={{ base: -2 }}>
+            <IconButton onClick={onOpen} icon={<FiMenu />} variant={'ghost'} aria-label={'Toggle Navigation'} />
+          </Flex>
+          <Flex>
+            <Logo img={organization.logo} alt={organization.name} />
+          </Flex>
         </Flex>
-        <Flex flex={{ base: 1 }}>
-          <Logo img={organization.logo} alt={organization.name} />
-        </Flex>
-      </Flex>
+      </Box>
       <Sidebar onClose={onClose} isOpen={isOpen} />
-    </Box>
+    </>
   );
 };
 

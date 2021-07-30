@@ -8,7 +8,8 @@ import {
   Heading,
   Input,
   Stack,
- Image, Text,
+  Image,
+  Text,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import React from 'react';
@@ -44,22 +45,11 @@ const FormLogin = () => {
     <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={4} w={'full'} maxW={'md'}>
-          <Stack
-            bg={'gray.50'}
-            rounded={'xl'}
-            p={{ base: 4, sm: 6, md: 8 }}
-            spacing={{ base: 8 }}
-            maxW={{ lg: 'lg' }}>
+          <Stack bg={'gray.50'} rounded={'xl'} p={{ base: 4, sm: 6, md: 8 }} spacing={{ base: 8 }} maxW={{ lg: 'lg' }}>
             <Stack spacing={4}>
-              <Heading
-                color={'gray.800'}
-                lineHeight={1.1}
-                fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+              <Heading color={'gray.800'} lineHeight={1.1} fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
                 Iniciar sesión
-                <Text
-                  as={'span'}
-                  bgGradient="linear(to-r, teal.400,teal.400)"
-                  bgClip="text">
+                <Text as={'span'} bgGradient="linear(to-r, teal.400,teal.400)" bgClip="text">
                   .
                 </Text>
               </Heading>
@@ -69,7 +59,7 @@ const FormLogin = () => {
             </Stack>
           </Stack>
           <form onSubmit={formik.handleSubmit}>
-            <FormControl mt={4}  id="email">
+            <FormControl mt={4} id="email">
               {formik.touched.email && formik.errors.email ? (
                 <Alert justifyContent="center" status="error">
                   <AlertIcon />
@@ -89,9 +79,10 @@ const FormLogin = () => {
                 color={'gray.500'}
                 _placeholder={{
                   color: 'gray.500',
-                }} />
+                }}
+              />
             </FormControl>
-            <FormControl mt={4}  id="password">
+            <FormControl mt={4} id="password">
               {formik.touched.password && formik.errors.password ? (
                 <Alert justifyContent="center" status="error">
                   <AlertIcon />
@@ -111,7 +102,8 @@ const FormLogin = () => {
                 color={'gray.500'}
                 _placeholder={{
                   color: 'gray.500',
-                }} />
+                }}
+              />
             </FormControl>
             <Stack spacing={6}>
               <Button mt={4} type="submit" colorScheme={'teal'} variant={'solid'}>

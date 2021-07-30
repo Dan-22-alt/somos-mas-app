@@ -9,12 +9,12 @@ import {
   Stack,
   StackDivider,
   useColorModeValue,
-  Button
+  Button,
 } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import Title from '../../../components/Title';
 import { getNewsById } from '../../../services/newsService';
-import {AiOutlineArrowLeft } from "react-icons/ai"
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import Description from './../../nosotros/components/Description';
 
@@ -51,7 +51,7 @@ const Index = () => {
             <Button
               rightIcon={<AiOutlineArrowLeft />}
               textTransform={'uppercase'}
-              colorScheme="teal" 
+              colorScheme="teal"
               fontWeight={600}
               fontSize={'xs'}
               variant="outline"

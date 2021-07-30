@@ -9,17 +9,17 @@ import {
   ListItem,
 } from '@chakra-ui/react';
 import React from 'react';
-import { 
-  IoNewspaperOutline, 
-  IoTennisballOutline, 
-  IoStorefrontOutline, 
-  IoReaderOutline, 
-  IoPeopleOutline, 
+import {
+  IoNewspaperOutline,
+  IoTennisballOutline,
+  IoStorefrontOutline,
+  IoReaderOutline,
+  IoPeopleOutline,
   IoPersonCircleOutline,
   IoImagesOutline,
   IoHomeOutline,
   IoHomeSharp,
-  IoChatbubblesOutline
+  IoChatbubblesOutline,
 } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import LogOutButt from '../../logout/LogOutButt';
@@ -27,7 +27,6 @@ import Logo from '../../web-publica/header/components/Logo';
 import { useSelector } from 'react-redux';
 
 const ListLink = ({ title, to, icon, onClick }) => {
-
   return (
     <ListItem>
       <ListIcon as={icon} color="gray.500" />
@@ -39,7 +38,6 @@ const ListLink = ({ title, to, icon, onClick }) => {
 };
 
 const Sidebar = ({ onClose, isOpen }) => {
-
   const organization = useSelector((state) => state.organization.data);
 
   return (
@@ -47,9 +45,9 @@ const Sidebar = ({ onClose, isOpen }) => {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-        <DrawerHeader borderBottomWidth="1px">
-          <LogOutButt />
-        </DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">
+            <LogOutButt />
+          </DrawerHeader>
           <DrawerHeader borderBottomWidth="1px">
             <Logo img={organization.logo} alt={organization.name} />
           </DrawerHeader>
@@ -65,9 +63,19 @@ const Sidebar = ({ onClose, isOpen }) => {
               <ListLink title="Categorias" icon={IoReaderOutline} to="/backoffice/categories" onClick={onClose} />
               <ListLink title="Miembros" icon={IoPeopleOutline} to="/backoffice/members" onClick={onClose} />
               <ListLink title="Novedades" icon={IoNewspaperOutline} to="/backoffice/news" onClick={onClose} />
-              <ListLink title="Organizacion" icon={IoStorefrontOutline} to="/backoffice/organization" onClick={onClose} />
+              <ListLink
+                title="Organizacion"
+                icon={IoStorefrontOutline}
+                to="/backoffice/organization"
+                onClick={onClose}
+              />
               <ListLink title="Slides" icon={IoImagesOutline} to="/backoffice/slides" onClick={onClose} />
-              <ListLink title="Testimonios" icon={IoChatbubblesOutline} to="/backoffice/testimonials" onClick={onClose} />
+              <ListLink
+                title="Testimonios"
+                icon={IoChatbubblesOutline}
+                to="/backoffice/testimonials"
+                onClick={onClose}
+              />
               <ListLink title="Usuarios" icon={IoPersonCircleOutline} to="/backoffice/users" onClick={onClose} />
             </List>
           </DrawerBody>

@@ -6,20 +6,20 @@ const Items = ({ array, isOpen }) => {
   const { pathname } = useLocation();
 
   const styleActive = ({ thisPath, linkPath }) => {
-    if (thisPath === linkPath ){
+    if (thisPath === linkPath) {
       return {
-        textDecoration : "em",
-        color: "white",
-        bg : "primary.800"
-      }
+        textDecoration: 'em',
+        color: 'white',
+        bg: 'primary.800',
+      };
     } else {
       return {
-        textDecoration : "",
-        color : "",
-        bg : ""
-      }
+        textDecoration: '',
+        color: '',
+        bg: '',
+      };
     }
-  }
+  };
 
   // const textActive = ({ thisPath, linkPath }) => (thisPath === linkPath ? 'white' : '');
   // const bgActive = ({ thisPath, linkPath }) => (thisPath === linkPath ? 'primary.800' : '');
@@ -45,18 +45,24 @@ const Items = ({ array, isOpen }) => {
               textDecoration: 'none',
               bg: 'primary.500',
             }}
-            as={styleActive({
-              thisPath: pathname,
-              linkPath: item.route,
-            }).textDecoration}
-            color={styleActive({
-              thisPath: pathname,
-              linkPath: item.route,
-            }).color}
-            bg={styleActive({
-              thisPath: pathname,
-              linkPath: item.route,
-            }).bg}
+            as={
+              styleActive({
+                thisPath: pathname,
+                linkPath: item.route,
+              }).textDecoration
+            }
+            color={
+              styleActive({
+                thisPath: pathname,
+                linkPath: item.route,
+              }).color
+            }
+            bg={
+              styleActive({
+                thisPath: pathname,
+                linkPath: item.route,
+              }).bg
+            }
           >
             <Link to={item.route}>{item.name}</Link>
           </Text>

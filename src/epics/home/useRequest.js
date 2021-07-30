@@ -25,5 +25,5 @@ export const UseRequest = () => {
     }
   }, [res, error]);
 
-  return testimonials
+  return testimonials;
 };

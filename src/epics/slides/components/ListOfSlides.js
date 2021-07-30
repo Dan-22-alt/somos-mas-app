@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
-import { Box, 
-  Button, 
-  Center, 
-  Flex, 
-  Heading, 
-  SimpleGrid, 
-  Container, 
-  useToast, 
-  Stack, 
-  Text, 
-  useBreakpointValue 
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  SimpleGrid,
+  Container,
+  useToast,
+  Stack,
+  Text,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide';
@@ -35,7 +36,7 @@ const ListOfSlides = () => {
         duration: 2000,
         isClosable: true,
       });
-      dispatch(defaultOk())
+      dispatch(defaultOk());
     }
     if (status === 'failed') {
       toast({
@@ -44,7 +45,7 @@ const ListOfSlides = () => {
         duration: 2000,
         isClosable: true,
       });
-      dispatch(defaultOk())
+      dispatch(defaultOk());
     }
   }, [status, dispatch, toast]);
 
@@ -52,11 +53,11 @@ const ListOfSlides = () => {
     history.push(`/backoffice/slides/${id}`);
   };
 
-  const handleDelete = (id) => dispatch(deleteSlide(id))
+  const handleDelete = (id) => dispatch(deleteSlide(id));
 
   return (
     <Flex>
-      <Container >
+      <Container>
         <Center flexDirection="column" marginTop="3vh">
           <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
             <Flex p={8} flex={1} align={'center'} justify={'center'}>
@@ -106,12 +107,7 @@ const ListOfSlides = () => {
             mx={[0, 5, 10, 30]}
           >
             {slides.map((s) => (
-              <Slide
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-                {...s}
-                key={s.id}
-              />
+              <Slide handleEdit={handleEdit} handleDelete={handleDelete} {...s} key={s.id} />
             ))}
           </SimpleGrid>
         </Center>

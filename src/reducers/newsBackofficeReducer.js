@@ -59,7 +59,7 @@ const novedadesSlice = createSlice({
   initialState,
   reducers: {
     defaultOk: (state, action) => {
-      state.status = 'Ok'
+      state.status = 'Ok';
     },
     newEliminar: (state, action) => {
       state.newseliminar = action.payload;
