@@ -1,8 +1,16 @@
 import { ApiGet, ApiService } from './ApiService';
+import httpClient from '../utils/httpClient';
 
 const endPoint = process.env.REACT_APP_API_TESTIMONIAL;
 
 export const getTestimonials = () => ApiGet(endPoint);
+
+export const getTestimonials2 = () => (
+  httpClient
+    .get('/testimonials')
+    .then( response => response.data.data)
+)
+
 
 export const getTestimonialsById = (id) => ApiGet(endPoint + `/${id}`);
 

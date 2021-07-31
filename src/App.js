@@ -1,19 +1,27 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import Layout from './components/Layout';
+
 import { PagesP } from './config/RouterManager/PagePublic';
 import { RouteP } from './config/RouterManager/RoutePublic';
+
 import BackofficeContainer from './epics/backoffice/BackofficeContainer';
-import userIsLogged from './features/auth/userIsLogged';
+
 import { fetchOrganization } from './reducers/organizationReducer';
+import { fetchTestimonials } from './reducers/testimonialsReducer';
 
 function App() {
   const dispatch = useDispatch();
+  const { testimonials, organization }= useSelector(state => state);
+
   useEffect(() => {
-    console.log(`${userIsLogged() ? 'El usuario esta autenticado' : 'El usuario no esta autenticado'}`);
-    dispatch(fetchOrganization());
-  }, [dispatch]);
+    if(testimonials.status === 'idle')
+      dispatch(fetchTestimonials())
+    if(organization.status === 'idle')
+      dispatch(fetchOrganization())
+  }, [dispatch, testimonials.status, organization.status]);
 
   return (
     <Router>
