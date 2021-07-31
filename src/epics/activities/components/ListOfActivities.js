@@ -8,7 +8,6 @@ import { Card } from '../../../components/Card';
 import { ErrorMsg } from '../../../components/Error/ErrorMsg';
 
 import { fetchActivities, activitiesSelectors, deleteActivity } from '../../../reducers/activitiesSlice';
-import { obtenerActividadID } from './../../../services/activitiesService';
 
 export const ListOfActivities = () => {
   const dispatch = useDispatch();

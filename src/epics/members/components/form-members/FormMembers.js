@@ -16,20 +16,28 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React, { useEffect, useRef, useState } from 'react';
 import { BsUpload } from 'react-icons/bs';
-import { create, edit } from '../../../../services/membersService';
+import { newMember, updateMember } from '../../../../reducers/membersReducer'
 import getBase64 from '../../../../utils/getBase64';
 import { memberSchema } from '../../validations/memberSchema';
 import './stylesMembers.css';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const FormMembers = ({ data, mode }) => {
+
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const toast = useToast();
   const [foto, setFoto] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [error, setError] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [editado, setEditado] = useState(null);
   const buttonImg = useRef();
 
   const initialValues = {
+    id: data.id ? data.id : '',
     name: data.name ? data.name : '',
     description: data.description ? data.description : '',
     image: data.image ? data.image : '',
@@ -71,53 +79,30 @@ const FormMembers = ({ data, mode }) => {
   const enviarData = (values, actions) => {
     // CREAR
     if (mode === 'create') {
-      create(values)
-        .then((res) => {
-          setError(false);
-          toast({
-            title: 'Miembro creado id: ' + res.data.id,
-            status: 'success',
-            duration: 2000,
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-          toast({
-            title: 'Ocurrio un error al crear el nuevo miembro',
-            status: 'error',
-            duration: 2000,
-          });
-        });
+      dispatch(newMember(values))
+      toast({
+        title: 'Miembro creado!',
+        status: 'success',
+        duration: 2000,
+        isClosable: true
+      });
+      history.push('/backoffice/members')
     }
     // EDITAR
     else if (mode === 'edit') {
-      if (!editado) {
-        setError(true);
-      } else {
-        edit(data.id, values)
-          .then((res) => {
-            console.log(res);
-            setError(false);
-            toast({
-              title: 'Datos Editados',
-              status: 'success',
-              duration: 2000,
-            });
-          })
-          .catch((error) => {
-            console.error(error);
-            toast({
-              title: 'Ocurrio un error al editar',
-              status: 'error',
-              duration: 2000,
-            });
-          });
-      }
+      dispatch(updateMember(values))
+      toast({
+        title: 'Miembro editado!',
+        status: 'success',
+        duration: 2000,
+        isClosable: true
+      });
+      history.push('/backoffice/members')
     }
   };
 
   return (
-    <div className="SeccFormMembers">
+    // <div className="SeccFormMembers">
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
@@ -128,9 +113,8 @@ const FormMembers = ({ data, mode }) => {
         {(props) => (
           <Flex
             flexDirection="column"
-            backgroundColor="gray.200"
             justifyContent="center"
-            height="110vh"
+            minH="110vh"
             alignItems="center"
           >
             <Stack flexDir="column" mb="2" mt="2" justifyContent="center" alignItems="center" maxW="md">
@@ -257,7 +241,7 @@ const FormMembers = ({ data, mode }) => {
           </Flex>
         )}
       </Formik>
-    </div>
+    // </div>
   );
 };
 

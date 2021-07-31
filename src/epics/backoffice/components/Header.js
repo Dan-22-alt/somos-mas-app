@@ -1,8 +1,7 @@
-import { Box, Flex, IconButton, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, IconButton, useDisclosure, Container, Image } from '@chakra-ui/react';
 import React from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
-import Logo from '../../web-publica/footer/components/Logo';
 import Sidebar from './Sidebar';
 
 const Header = () => {
@@ -27,8 +26,10 @@ const Header = () => {
           <Flex ml={{ base: -2 }}>
             <IconButton onClick={onOpen} icon={<FiMenu />} variant={'ghost'} aria-label={'Toggle Navigation'} />
           </Flex>
-          <Flex>
-            <Logo img={organization.logo} alt={organization.name} />
+          <Flex >
+            <Container>
+              <Image src={organization.logo} alt={organization.name} h="70px" d="flex"/>
+            </Container>
           </Flex>
         </Flex>
       </Box>

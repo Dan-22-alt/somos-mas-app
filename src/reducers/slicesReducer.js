@@ -7,14 +7,12 @@ const initialState = {
   error: null,
 };
 
-//Funcion para obtener las News => dispatch(ObtenerNovedades());
 export const listSlides = createAsyncThunk('slides/listSlides', async (arg, { getState }) => {
   // <-- destructure getState method
   const respuesta = await httpClient.get('/slides');
   return respuesta.data.data.reverse();
 });
 
-//Funcion para obtener las News => dispatch(agregarNews(payload));
 export const newSlide = createAsyncThunk('slides/newSlide', async (slide, { getState }) => {
   // <-- destructure getState method
   const respuesta = await httpClient('/slides', {
@@ -30,28 +28,21 @@ export const newSlide = createAsyncThunk('slides/newSlide', async (slide, { getS
   return respuesta.data.data;
 });
 
-//Funcion para obtener las News => dispatch(actualizarNews(news));
 export const updateSlide = createAsyncThunk('slides/updateSlide', async (slides, { getState }) => {
   // <-- destructure getState method
   const respuesta = await httpClient.put(`/slides/${slides.id}`, slides);
-  // console.log(respuesta.data.data)
   return respuesta.data.data;
 });
 
-//Funcion para obtener las News => dispatch(borrarNewsAction(news));
 export const deleteSlide = createAsyncThunk('slides/deleteSlide', async (id) => {
   // <-- destructure getState metho
   await httpClient.delete(`/slides/${id}`);
-  //await httpClient.delete(`/news/${news.id}`);
-  // console.log(respuesta)
   return id;
 });
 
-//Funcion para obtener las News => dispatch(ObtenerNovedadesId(news));
 export const slideId = createAsyncThunk('slides/slideId', async (slides, { getState }) => {
   // <-- destructure getState method
   const respuesta = await httpClient.get(`/slides/${slides.id}`, slides);
-  // console.log(respuesta)
   return respuesta.data.data;
 });
 
@@ -63,7 +54,7 @@ const slidesSlice = createSlice({
       state.status = 'Ok'
     },
     slideEliminar: (state, action) => {
-      state.newseliminar = action.payload;
+      state.slideeliminar = action.payload;
     },
     slideError: (state, action) => {
       state.error = action.error.message;

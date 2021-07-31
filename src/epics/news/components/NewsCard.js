@@ -18,6 +18,8 @@ const NewsCard = ({ id, name, slug, content, image, created_at }) => {
         toast({
           title: 'Novedad eliminada.',
           status: 'success',
+          duration: 2000,
+          isClosable: true
         });
         window.location.reload();
       })

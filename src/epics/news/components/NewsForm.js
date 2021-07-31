@@ -15,9 +15,8 @@ import { ErrorMessage, Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { agregarNews } from '../../../reducers/newsBackofficeReducer';
+import { agregarNews, actualizarNews } from '../../../reducers/newsBackofficeReducer';
 import { getCategories } from '../../../services/categories.service';
-import { editarNewsAction } from '../../../services/newServices';
 import { newsSchema } from '../validations/newsSchema';
 
 const defaultNew = {
@@ -32,7 +31,7 @@ export default function NewsForm({ data = defaultNew }) {
 
   //llamar la funcion desde el services
   const crearNews = (news) => dispatch(agregarNews(news));
-  const editarNews = (news) => dispatch(editarNewsAction(news));
+  // const editarNews = (news) => dispatch(editarNewsAction(news));
 
   const [categories, setCategories] = useState([]);
   const [image, setImage] = useState(null);
@@ -76,9 +75,9 @@ export default function NewsForm({ data = defaultNew }) {
     console.log({ payload });
 
     if (data?.id) {
-      editarNews(payload);
+      dispatch(actualizarNews(payload));
       toast({
-        title: 'Novedad Actualizada con exito',
+        title: 'Novedad actualizada!',
         status: 'success',
         duration: 2000,
         isClosable: true,
@@ -89,7 +88,7 @@ export default function NewsForm({ data = defaultNew }) {
       // Crear
       crearNews(payload);
       toast({
-        title: 'Novedad creada con exito',
+        title: 'Novedad creada!',
         status: 'success',
         duration: 2000,
         isClosable: true,
@@ -129,7 +128,7 @@ export default function NewsForm({ data = defaultNew }) {
   return (
     <Formik initialValues={data} validationSchema={newsSchema} onSubmit={onSubmit} enableReinitialize>
       {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-        <Form className="form-new-post" onSubmit={handleSubmit} noValidate>
+        <Form className="form-new-post" onSubmit={handleSubmit} noValidate >
           <Flex flexDirection="column" justifyContent="center" alignItems="center">
             <Stack flexDir="column" mb="2" justifyContent="center" alignItems="center">
               <Heading color="teal.400" my="6">
@@ -163,7 +162,7 @@ export default function NewsForm({ data = defaultNew }) {
                       }}
                     />
 
-                    {previewImage && <Image src={previewImage} alt="preview" h={40} />}
+                    {previewImage && <Image src={previewImage} alt="preview" h="80px" />}
 
                     <Box color="red.500">
                       <ErrorMessage name="image" component="small" />
