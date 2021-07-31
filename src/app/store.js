@@ -6,6 +6,7 @@ import categoryReducer from '../reducers/categoryReducer';
 import newsBackofficeSlice from '../reducers/newsBackofficeReducer';
 import organizationSlice from '../reducers/organizationReducer';
 import slicesReducer from '../reducers/slicesReducer';
+import membersReducer from '../reducers/membersReducer';
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     category: categoryReducer,
     organization: organizationSlice,
     slides: slicesReducer,
+    members: membersReducer,
   },
 });
