@@ -7,7 +7,7 @@ import Card from './TestimoniesCard';
 import { ConditionalRender } from '../../../../components/Error/ErrorMsg';
 
 const TestimoniesCardsList = ({ title }) => {
-  const { testimonials } = useSelector(state => state);
+  const { testimonials } = useSelector(state => state)
 
   const List = () => (
    <SimpleGrid
