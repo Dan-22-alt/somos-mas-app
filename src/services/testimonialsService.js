@@ -3,14 +3,17 @@ import httpClient from '../utils/httpClient';
 
 const endPoint = process.env.REACT_APP_API_TESTIMONIAL;
 
-export const getTestimonials = () => ApiGet(endPoint);
-
-export const getTestimonials2 = () => (
+export const getTestimonials = () => (
   httpClient
     .get('/testimonials')
     .then( response => response.data.data)
 )
 
+export const deleteTestimonials = id => (
+  httpClient
+    .delete('/testimonials/' + id)
+    .then( response => response.data )
+)
 
 export const getTestimonialsById = (id) => ApiGet(endPoint + `/${id}`);
 
@@ -34,14 +37,4 @@ export const editTestimonials = () => {
       body: rest,
     });
   return [data, put];
-};
-
-export const deleteTestimonials = () => {
-  const [data, apiFetch] = ApiService();
-  const deleteFetch = (id) =>
-    apiFetch({
-      endPoint: endPoint + `/${id}`,
-      method: 'delete',
-    });
-  return [data, deleteFetch];
 };

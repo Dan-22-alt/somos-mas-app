@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getTestimonials2 } from '../services/testimonialsService';
+import { getTestimonials, deleteTestimonials } from '../services/testimonialsService';
 
 const name = 'testimonials';
 
@@ -7,7 +7,7 @@ const TYPES = {
   GETALL: name + '/getTestimonials',
   EDIT: name + '/createTestimonial',
   EDITBYID: name + '/editTestimonial',
-  DELETE: name + 'deleteTestimonial'
+  DELETE: name + '/deleteTestimonial'
 }
 
 const initialState = {
@@ -16,13 +16,20 @@ const initialState = {
   error: null,
 };
 
-
 export const fetchTestimonials = createAsyncThunk(
-  TYPES.GETALL , async () => {
-  const response = await getTestimonials2();
+  TYPES.GETALL , async () =>
+  await getTestimonials()
+)
+
+export const deleteTestimonialByID = createAsyncThunk(
+  TYPES.DELETE, async (id) => {
+  const response = await deleteTestimonials(id)
   console.log(response)
-  return response;
+  return 'hola'//response;
 });
+
+
+
 
 const testimonialsSlice = createSlice({
   name,
@@ -35,12 +42,20 @@ const testimonialsSlice = createSlice({
     [fetchTestimonials.fulfilled]: (state, action) => {
       state.status = 'succeeded'
       // Add any fetched posts to the array
-      console.log(action.payload)
       state.data = action.payload
     },
     [fetchTestimonials.rejected]: (state, action) => {
       state.status = 'failed'
       state.error = action.error.message
+    },
+    [deleteTestimonialByID.pending]: state => {
+      state.status = 'loading-delete'
+    },
+    [deleteTestimonialByID.fulfilled]: (state, action) => {
+      state.status = 'succeeded-delete'
+    },
+    [deleteTestimonialByID.rejected]: state => {
+      state.status = 'failed-delete'
     },
   },
 });

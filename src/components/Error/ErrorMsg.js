@@ -18,7 +18,9 @@ export const ConditionalRender = (state, Component, errorTxt) => {
       return <Spinner />;
     case 'succeeded':
       return <Component />;
-    default:
+    case /failed/:
       return <ErrorMsg text={errorTxt} />;
+    default:
+      return <Component />;
   }
 };

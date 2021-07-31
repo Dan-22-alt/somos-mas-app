@@ -1,13 +1,26 @@
 import { Avatar, Box, Button, Center, Heading, Stack, useColorModeValue } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { Alert } from '../../../components';
+import { deleteTestimonialByID } from '../../../reducers/testimonialsReducer';
+
 
 export default function TestimonialCard({ image, name, id }) {
-  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleDelete = () => {
-    setDeleteIsOpen(true);
-  };
+
+  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+  const history = useHistory();
+
+  const handleDelete = () => setDeleteIsOpen(true)
+  const onConfirmDelete = () => dispatch(deleteTestimonialByID(id))
+
+  const handleEdit = () => {
+    history.push(`/backoffice/testimonials/${id}`);
+  }
+
+
 
   return (
     <Center py={6}>
@@ -23,6 +36,7 @@ export default function TestimonialCard({ image, name, id }) {
             fontSize="sm"
             rounded="md"
             boxShadow="md"
+            onClick={handleEdit}
             _focus={{
               bg: 'gray.100',
             }}
@@ -51,6 +65,7 @@ export default function TestimonialCard({ image, name, id }) {
       <Alert
         isOpen={deleteIsOpen}
         setIsOpen={setDeleteIsOpen}
+        onConfirm={onConfirmDelete}
         title="¿Desea eliminar el testimonio?"
         type="error"
         confirmButtonText="Eliminar"

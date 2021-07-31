@@ -22,7 +22,7 @@ const ListTestimonials = () => {
       <Link to="/backoffice/testimonials/create">
         <Button colorScheme="teal">Crear testimonio</Button>
       </Link>
-      {ConditionalRender(testimonials.status, List, 'hola')}
+      {ConditionalRender(testimonials.status, List, 'No se pudieron cargar los testimonios')}
     </Container>
   );
 };
