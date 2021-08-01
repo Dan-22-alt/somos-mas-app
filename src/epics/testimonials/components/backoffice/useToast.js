@@ -29,5 +29,5 @@ export const useToast =
         isClosable: true,
       });
     }
-  }, [status, failMsg, successMsg, toast, typeAction, history])
+  }, [status, failMsg, successMsg, toast, typeAction, history, defaultState])
 }

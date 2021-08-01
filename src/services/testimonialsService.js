@@ -1,33 +1,23 @@
-import { ApiGet, ApiService } from './ApiService';
 import httpClient from '../utils/httpClient';
 
 const endPoint = process.env.REACT_APP_API_TESTIMONIAL;
 
 export const getTestimonials = () => (
   httpClient
-    .get('/testimonials')
+    .get(endPoint)
     .then( response => response.data.data)
 )
 export const deleteTestimonials = id => (
   httpClient
-    .delete('/testimonials/' + id)
+    .delete(endPoint + `/${id}`)
 )
-
 export const createTestimonials = data => (
   httpClient
-    .post('/testimonials', data)
+    .post(endPoint, data)
     .then(res => res.data.data)
 )
-
-export const getTestimonialsById = (id) => ApiGet(endPoint + `/${id}`);
-
-export const editTestimonials = () => {
-  const [data, apiFetch] = ApiService();
-  const put = ({ id, ...rest }) =>
-    apiFetch({
-      endPoint: endPoint + `/${id}`,
-      method: 'put',
-      body: rest,
-    });
-  return [data, put];
-};
+export const editTestimonial = (id, values) => (
+  httpClient
+    .put(endPoint + `/${id}`, values)
+    .then(res => res.data.data)
+)

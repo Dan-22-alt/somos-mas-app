@@ -2,7 +2,7 @@ import React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, FormControl, FormLabel, Heading, Image, Stack } from '@chakra-ui/react';
+import { Grid, Box, Button, FormControl, FormLabel, Heading, Image, Stack } from '@chakra-ui/react';
 
 import { useToast } from '../../components/backoffice/useToast';
 import { CenterBox } from '../../../../components/CenterBox';
@@ -21,7 +21,8 @@ const validationSchema = Yup.object({
     .string()
     .required('Name requerido')
     .min(6, 'El nombre debe contener al menos 6 caracteres'),
-  description: Yup.string()
+  description: Yup
+    .string()
     .required('Description requerido')
     .min(6, 'La descripcion debe contener al menos 6 caracteres'),
 });
@@ -50,12 +51,26 @@ const FormTestimonials = () => {
             <InputForm name="name" label="Nombre" formik={formik} />
             <FormControl id="imagen">
               <FormLabel>Foto</FormLabel>
-              <Box d="flex">
-                <input type="file" onChange={onFileChange} />
+              <Grid
+                templateColumns="repeat(1, 1fr)"
+                gap='10px'
+              >
+                <input
+                  type="file"
+                  onChange={onFileChange}
+                />
                 {formik.values.image && (
-                  <Image src={formik.values.image} alt="imagen" width="100px" borderRadius="10%" m="auto" />
+                  <Image
+                    src={formik.values.image}
+                    alt="imagen"
+                    w="100%"
+                    maxH={{ base: '90%', md: '458px' }}
+                    objectFit='cover'
+                    borderRadius="10px"
+                    m="auto"
+                  />
                 )}
-              </Box>
+              </Grid>
             </FormControl>
             <InputForm name="description" label="Descripción" formik={formik} />
             <Button borderRadius={0} type="submit" variant="solid" colorScheme="teal" width="full">

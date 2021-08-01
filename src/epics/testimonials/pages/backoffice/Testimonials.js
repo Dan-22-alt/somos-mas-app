@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { testimonialSelectors } from '../../../../reducers/testimonialsReducer';
-import TestimonialCard from '../../components/TestimonialCard';
+import TestimonialCard from '../../components/backoffice/TestimonialCard';
 import { ConditionalRender } from '../../../../components/Error/ErrorMsg';
 
 const Testimonials = () => {
