@@ -8,7 +8,7 @@ import ActivitieDetail from '../../epics/activities/Detail/Index';
 import ActivitiesPublic from '../../epics/activities/pages/ActivitiesPublic';
 import Novedades from '../../epics/news/IndexPublic';
 import Donacion from '../../epics/donaciones/pages/DonacionPages';
-import Testimonios from '../../epics/testimonials/testimonialsPublic/Index';
+import Testimonios from '../../epics/testimonials/pages/public/Testimonials';
 import PageGracias from '../../epics/donaciones/pages/GraciasPage';
 
 /*

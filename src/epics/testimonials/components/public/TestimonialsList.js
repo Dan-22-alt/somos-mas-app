@@ -2,15 +2,16 @@ import React from 'react';
 import { SimpleGrid, Container, Stack, Box } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
-import CardTestimonialsPublic from './CardTestimonialsPublic';
+import CardTestimonialsPublic from './TestimonialCard';
 import { ConditionalRender } from '../../../../components/Error/ErrorMsg';
-
+import { testimonialSelectors } from '../../../../reducers/testimonialsReducer';
 
 const ListTestimonialsPublic = () => {
+  const allTestimonials = useSelector(testimonialSelectors.selectAll);
   const { testimonials } = useSelector(state => state)
 
   const List = () => (
-    testimonials.data.map(data =>
+    allTestimonials.map(data =>
       <CardTestimonialsPublic key={data.id} {...data} />
     )
   )
