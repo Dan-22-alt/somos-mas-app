@@ -23,9 +23,7 @@ const validationSchema = Yup.object({
 });
 
 const FormTestimonials = () => {
-  // es un ejemplo
   const { res, loading } = getTestimonialsById(111);
-  //
   const { fetchEdit, fetchCreate } = AlertTestimonials();
 
   const apiRes = res?.data;

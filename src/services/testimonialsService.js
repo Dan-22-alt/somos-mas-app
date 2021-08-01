@@ -8,25 +8,18 @@ export const getTestimonials = () => (
     .get('/testimonials')
     .then( response => response.data.data)
 )
-
 export const deleteTestimonials = id => (
   httpClient
     .delete('/testimonials/' + id)
-    .then( response => response.data )
+)
+
+export const createTestimonials = data => (
+  httpClient
+    .post('/testimonials', data)
+    .then(res => res.data.data)
 )
 
 export const getTestimonialsById = (id) => ApiGet(endPoint + `/${id}`);
-
-export const createTestimonials = () => {
-  const [data, apiFetch] = ApiService();
-  const post = ({ name, image, description }) =>
-    apiFetch({
-      endPoint,
-      method: 'post',
-      body: { name, image, description },
-    });
-  return [data, post];
-};
 
 export const editTestimonials = () => {
   const [data, apiFetch] = ApiService();

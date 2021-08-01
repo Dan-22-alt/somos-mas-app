@@ -3,11 +3,13 @@ import { Box, Button, Text, SimpleGrid } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { testimonialSelectors } from '../../../../reducers/testimonialsReducer';
 import Card from './TestimoniesCard';
 import { ConditionalRender } from '../../../../components/Error/ErrorMsg';
 
 const TestimoniesCardsList = ({ title }) => {
   const { testimonials } = useSelector(state => state)
+  const allTestimonials = useSelector(testimonialSelectors.selectAll);
 
   const List = () => (
    <SimpleGrid
@@ -15,7 +17,7 @@ const TestimoniesCardsList = ({ title }) => {
      spacing={10}
      columns={[1, 2, 2, 4]}
    >
-     {testimonials.data.slice(0, 4).map((data, i) =>
+     {allTestimonials.slice(0, 4).map((data, i) =>
        <Card key={data.name + i} {...data} />
      )}
    </SimpleGrid>

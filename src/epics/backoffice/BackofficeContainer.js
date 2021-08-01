@@ -15,8 +15,10 @@ import FormCategory from '../categories/pages/FormCategory';
 import ListOfSlides from '../slides/components/ListOfSlides';
 import CreateSlidePage from '../slides/pages/CreateSlidePage';
 import EditSlidePage from '../slides/pages/EditSlidePage';
-import ListTestimonials from '../testimonials/pages/ListTestimonials';
+import Testimonials from '../testimonials/pages/backoffice/Testimonials';
 import FormTestimonials from '../testimonials/components/FormTestimonials';
+import CreateTestimonial from '../testimonials/pages/backoffice/CreateTestimonial';
+
 import EditPage from '../organization/pages/EditPage';
 import MembersEdit from '../members/pages/MembersEdit';
 import MembersCreate from '../members/pages/MemberCreate';
@@ -45,8 +47,8 @@ const BackofficeContainer = () => {
             <Route path="/backoffice/slides" component={ListOfSlides} exact />
             <Route path="/backoffice/slides/create" component={CreateSlidePage} exact />
             <Route path="/backoffice/slides/:id" component={EditSlidePage} exact />
-            <Route path="/backoffice/testimonials" component={ListTestimonials} exact />
-            <Route path="/backoffice/testimonials/create" component={FormTestimonials} exact />
+            <Route path="/backoffice/testimonials" component={Testimonials} exact />
+            <Route path="/backoffice/testimonials/create" component={CreateTestimonial} exact />
             <Route path="/backoffice/testimonials/:id" component={FormTestimonials} exact />
             <Route path="/backoffice/organization/edit" component={EditPage} exact />
             <Route path="/backoffice/members/edit/:id" component={MembersEdit} exact />

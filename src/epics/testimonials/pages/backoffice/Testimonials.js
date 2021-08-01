@@ -3,15 +3,17 @@ import { Button, Container, SimpleGrid } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import TestimonialCard from '../components/TestimonialCard';
-import { ConditionalRender } from '../../../components/Error/ErrorMsg';
+import { testimonialSelectors } from '../../../../reducers/testimonialsReducer';
+import TestimonialCard from '../../components/TestimonialCard';
+import { ConditionalRender } from '../../../../components/Error/ErrorMsg';
 
-const ListTestimonials = () => {
+const Testimonials = () => {
+  const allTestimonials = useSelector(testimonialSelectors.selectAll);
   const { testimonials } = useSelector(state => state)
 
   const List = () => (
     <SimpleGrid columns={{ lg: 3, sm: 2, base: 1 }} spacing={4}>
-      {testimonials.data.map( testimonial =>
+      {allTestimonials.map( testimonial =>
         <TestimonialCard key={testimonial.id} {...testimonial} />
       )}
     </SimpleGrid>
@@ -27,4 +29,4 @@ const ListTestimonials = () => {
   );
 };
 
-export default ListTestimonials;
+export default Testimonials

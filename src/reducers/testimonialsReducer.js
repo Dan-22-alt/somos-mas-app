@@ -1,20 +1,19 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getTestimonials, deleteTestimonials } from '../services/testimonialsService';
+import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+
+import { getTestimonials, deleteTestimonials, createTestimonials } from '../services/testimonialsService';
 
 const name = 'testimonials';
 
 const TYPES = {
   GETALL: name + '/getTestimonials',
-  EDIT: name + '/createTestimonial',
+  CREATE: name + '/createTestimonial',
   EDITBYID: name + '/editTestimonial',
   DELETE: name + '/deleteTestimonial'
 }
 
-const initialState = {
-  data: [],
-  status: 'idle',
-  error: null,
-};
+const testimonialsAdapter = createEntityAdapter({
+  selectId: testimonial => testimonial.id,
+});
 
 export const fetchTestimonials = createAsyncThunk(
   TYPES.GETALL , async () =>
@@ -23,26 +22,37 @@ export const fetchTestimonials = createAsyncThunk(
 
 export const deleteTestimonialByID = createAsyncThunk(
   TYPES.DELETE, async (id) => {
-  const response = await deleteTestimonials(id)
-  console.log(response)
-  return 'hola'//response;
+  await deleteTestimonials(id)
+  return id
 });
 
+
+export const createTestimonial = createAsyncThunk(
+  TYPES.CREATE, async (data) =>
+  await createTestimonials(data)
+);
 
 
 
 const testimonialsSlice = createSlice({
   name,
-  initialState,
-  reducer: {},
+  initialState :testimonialsAdapter.getInitialState({
+    status: 'idle',
+    error: null,
+  }),
+  reducers: {
+    setAllTestimonials: testimonialsAdapter.setAll,
+    defaultOk: (state, action) => {
+      state.status = 'Ok';
+    },
+  },
   extraReducers: {
     [fetchTestimonials.pending]: state => {
       state.status = 'loading'
     },
-    [fetchTestimonials.fulfilled]: (state, action) => {
+    [fetchTestimonials.fulfilled]: (state, { payload }) => {
       state.status = 'succeeded'
-      // Add any fetched posts to the array
-      state.data = action.payload
+      testimonialsAdapter.setAll(state, payload);
     },
     [fetchTestimonials.rejected]: (state, action) => {
       state.status = 'failed'
@@ -51,13 +61,27 @@ const testimonialsSlice = createSlice({
     [deleteTestimonialByID.pending]: state => {
       state.status = 'loading-delete'
     },
-    [deleteTestimonialByID.fulfilled]: (state, action) => {
+    [deleteTestimonialByID.fulfilled]: (state, {payload: id}) => {
+      testimonialsAdapter.removeOne(state, id)
       state.status = 'succeeded-delete'
     },
     [deleteTestimonialByID.rejected]: state => {
       state.status = 'failed-delete'
     },
+    [createTestimonial.pending]: state => {
+      state.status = 'loading'
+    },
+    [createTestimonial.fulfilled]: (state, { payload }) => {
+      testimonialsAdapter.addOne(state, payload)
+      state.status = 'succeeded-created'
+    },
+    [createTestimonial.rejected]: state => {
+      state.status = 'failed-created'
+    },
   },
 });
+
+export const { setAllTestimonials, defaultOk } = testimonialsSlice.actions;
+export const testimonialSelectors = testimonialsAdapter.getSelectors((state) => state.testimonials);
 
 export default testimonialsSlice.reducer;
