@@ -1,0 +1,16 @@
+.margin-auto {
+  margin: auto !important;
+}
+
+.SeccFormMembers form {
+  max-width: 90vw;
+}
+
+.contenedorMemberEditSkeleton {
+  margin-top: 10rem !important;
+  max-width: 60vw;
+}
+
+.text-small {
+  font-size: x-small;
+}

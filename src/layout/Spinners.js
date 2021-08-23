@@ -1,17 +1,16 @@
+import { Box, Spinner as SpinnerChakra } from '@chakra-ui/react';
 import React from 'react';
-import { Spinner } from "@chakra-ui/react"
 
 const Spinners = () => {
-    return ( 
-        <Spinner
-            label="Cargando"
-            thickness="5px"
-            speed="0.55s"
-            emptyColor="gray.200"
-            color="purple"
-            size="xl"
-        />
-     );
-}
- 
+  return (
+    <SpinnerChakra label="Cargando" thickness="5px" speed="0.55s" emptyColor="gray.200" color="primary.400" size="xl" />
+  );
+};
+
+export const Spinner = ({ ...rest }) => (
+  <Box w="100%" {...rest} display="flex" alignItems="center" justifyContent="center">
+    <Spinners />
+  </Box>
+);
+
 export default Spinners;
